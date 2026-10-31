@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FindNainital | Find Nainital. Your Way.</title>
+    <meta name="description"
+        content="FindNainital - Find Nainital. Your Way. Mobile-first smart tourism guide for Lake City. Book cabs, rent bikes, explore famous & hidden spots, live GPS route tracking, and hotels.">
+    <meta name="keywords"
+        content="FindNainital, Nainital Tourism, Nainital Car Booking, Nainital Bike Rental, Naini Lake, Kainchi Dham, Nainital Hotels, Nainital Trip Planner">
+    <meta name="author" content="Priyanshu Kumar, Uttarakhand Government Institute of Polytechnic, Nainital">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= SECTION A: COMPACT HEADER & SEARCH ================= -->
+    <header class="app-header" id="header">
+        <div class="header-top-row">
+            <!-- Brand & Location -->
+            <div class="header-left-group">
+                <a href="#home" class="app-logo">
+                    <span class="app-logo-badge">N</span>
+                    <div class="app-logo-titles">
+                        <strong>FindNainital</strong>
+                        <small>“Find Nainital. Your Way.”</small>
+                    </div>
+                </a>
+
+                <!-- Location Selector Pill -->
+                <div class="location-pill-container">
+                    <button class="location-pill-btn" onclick="toggleLocationDropdown(event)" aria-label="Select Destination Location" title="Change Location">
+                        <span>📍</span>
+                        <span id="currentLocationLabel">Nainital</span>
+                        <span style="font-size: 0.65rem; opacity: 0.7;">▾</span>
+                    </button>
+                    <div class="location-dropdown-box" id="locationDropdown">
+                        <button class="loc-option-btn" onclick="switchLocation('All')">📍 All Destinations</button>
+                        <button class="loc-option-btn" onclick="switchLocation('Nainital')">🌊 Nainital (Town & Lake)</button>
+                        <button class="loc-option-btn" onclick="switchLocation('Bhimtal')">🏝️ Bhimtal & Lakes</button>
+                        <button class="loc-option-btn" onclick="switchLocation('Pangot')">🕊️ Pangot & Kilbury</button>
+                        <button class="loc-option-btn" onclick="switchLocation('Mukteshwar')">🏔️ Mukteshwar & Peaks</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Search Bar (Hidden on mobile) -->
+            <div class="header-search-desktop">
+                <div class="search-input-wrap">
+                    <input type="text" id="globalSearchInput" placeholder="Search places, hotels, cafes or rentals..." autocomplete="off">
+                    <span class="search-lens">🔍</span>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Links (Compact, Non-wrapping) -->
+            <nav class="header-desktop-nav" id="navbar">
+                <a href="index.html" class="compact-nav-link active" onclick="closeMenu()">Home</a>
+                <a href="services.html" class="compact-nav-link" style="color:var(--primary-orange);font-weight:700;" onclick="closeMenu()">⚡ All Functions</a>
+                <a href="places.html" class="compact-nav-link" onclick="closeMenu()">Places</a>
+                <a href="hidden-places.html" class="compact-nav-link" onclick="closeMenu()">Hidden Gems</a>
+                <a href="booking.html" class="compact-nav-link" onclick="closeMenu()">🚗 Rides</a>
+                <a href="hotels.html" class="compact-nav-link" onclick="closeMenu()">Hotels</a>
+                <a href="food.html" class="compact-nav-link" onclick="closeMenu()">Food</a>
+                <a href="temples.html" class="compact-nav-link" onclick="closeMenu()">Temples</a>
+                <a href="activities.html" class="compact-nav-link" onclick="closeMenu()">Boating</a>
+                <a href="tracking.html" class="compact-nav-link" onclick="closeMenu()">🧭 Track</a>
+                <a href="planner.html" class="compact-nav-link" onclick="closeMenu()">Planner</a>
+                <a href="nearby.html" class="compact-nav-link" onclick="closeMenu()">Nearby</a>
+                <a href="contact.html" class="compact-nav-link" onclick="closeMenu()">Contact</a>
+            </nav>
+
+            <!-- Action Icons (Wishlist, Cart/Bookings, Profile, Menu) -->
+            <div class="header-actions-group">
+                <a href="#my-activities" onclick="switchMyActivityTab('favourites')" class="icon-action-btn" title="Saved Favourites" aria-label="Favourites">
+                    <span>❤️</span>
+                    <span class="badge-dot-counter" id="headerFavBadge" style="display:none;">0</span>
+                </a>
+                <a href="#my-activities" onclick="switchMyActivityTab('bookings')" class="icon-action-btn" title="My Bookings" aria-label="Bookings">
+                    <span>🚗</span>
+                    <span class="badge-dot-counter green" id="headerBookingBadge" style="display:none;">0</span>
+                </a>
+                <button class="icon-action-btn" onclick="openProfileModal()" title="Tourist Profile & Help" aria-label="Profile">
+                    <span>👤</span>
+                </button>
+                <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Search Bar (Directly below Header) -->
+        <div class="mobile-search-strip">
+            <div class="search-input-wrap">
+                <input type="text" id="appSearchInput" placeholder="Search places, hotels, cafes or rentals..." autocomplete="off">
+                <span class="search-lens">🔍</span>
+            </div>
+
+            <!-- Autocomplete Suggestions Dropdown -->
+            <div class="search-suggestions-dropdown" id="searchSuggestionsBox"></div>
+
+            <!-- Popular Search Chips Bar -->
+            <div class="search-chips-strip">
+                <button class="popular-chip-pill" onclick="quickSearchPlace('Naini Lake')">🌊 Naini Lake</button>
+                <button class="popular-chip-pill" onclick="quickSearchPlace('Snow View')">🏔️ Snow View</button>
+                <button class="popular-chip-pill" onclick="quickSearchPlace('Naina Devi')">🛕 Naina Devi</button>
+                <button class="popular-chip-pill" onclick="quickSearchPlace('Eco Cave')">🦇 Cave Gardens</button>
+                <button class="popular-chip-pill" onclick="quickSearchPlace('Bhimtal')">🏝️ Bhimtal</button>
+                <button class="popular-chip-pill" onclick="quickSearchPlace('Kainchi Dham')">🙏 Kainchi Dham</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleMenu()"></div>
+
+    <main>
+        <!-- ================= SECTION B: TRAVEL CATEGORIES GRID (MEESHO-INSPIRED) ================= -->
+        <section class="categories-app-section" aria-label="Travel Categories">
+            <div class="categories-app-grid">
+                <a href="services.html" class="category-shortcut-item">
+                    <div class="cat-bubble-icon" style="background:#fff7ed;color:#ea580c;border:1.5px solid #ffedd5;">⚡</div>
+                    <span class="cat-shortcut-label" style="font-weight:700;color:#ea580c;">All Functions</span>
+                </a>
+                <a href="places.html" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-places">🏔️</div>
+                    <span class="cat-shortcut-label">Popular Places</span>
+                </a>
+                <a href="hidden-places.html" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-hidden">💎</div>
+                    <span class="cat-shortcut-label">Hidden Places</span>
+                </a>
+                <a href="nearby.html" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-nearby">🌄</div>
+                    <span class="cat-shortcut-label">Nearby Spots</span>
+                </a>
+                <a href="booking.html?type=car" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-car">🚗</div>
+                    <span class="cat-shortcut-label">Rent a Car</span>
+                </a>
+                <a href="booking.html?type=bike" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-bike">🏍️</div>
+                    <span class="cat-shortcut-label">Rent a Bike</span>
+                </a>
+                <a href="hotels.html" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-hotels">🏨</div>
+                    <span class="cat-shortcut-label">Hotels & Stays</span>
+                </a>
+                <a href="food.html" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-food">🍴</div>
+                    <span class="cat-shortcut-label">Restaurants & Cafes</span>
+                </a>
+                <a href="temples.html" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-temples">🛕</div>
+                    <span class="cat-shortcut-label">Temples</span>
+                </a>
+                <a href="activities.html" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-boating">🚤</div>
+                    <span class="cat-shortcut-label">Boating & Fun</span>
+                </a>
+                <a href="tracking.html" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-tracking">🧭</div>
+                    <span class="cat-shortcut-label">Live Tracking</span>
+                </a>
+                <a href="planner.html" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-planner">🗺️</div>
+                    <span class="cat-shortcut-label">Trip Planner</span>
+                </a>
+                <a href="booking.html?service=pickup" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-pickup">🚕</div>
+                    <span class="cat-shortcut-label">Pick-up & Drop</span>
+                </a>
+                <a href="contact.html" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-about">ℹ️</div>
+                    <span class="cat-shortcut-label">About Nainital</span>
+                </a>
+                <a href="admin.html" class="category-shortcut-item">
+                    <div class="cat-bubble-icon" style="background:#eff6ff;color:#2563eb;border:1.5px solid #bfdbfe;">🔐</div>
+                    <span class="cat-shortcut-label" style="font-weight:700;color:#2563eb;">Admin Console</span>
+                </a>
+                <a href="#my-activities" onclick="switchMyActivityTab('bookings')" class="category-shortcut-item">
+                    <div class="cat-bubble-icon cat-bg-bookings">📋</div>
+                    <span class="cat-shortcut-label">My Bookings</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ================= SECTION C: SLIM PROMOTIONAL BANNER ================= -->
+        <div class="slim-banner-wrapper" id="home">
+            <div class="slim-promo-card">
+                <div>
+                    <span class="promo-badge-tag">✨ FindNainital. Your Way.</span>
+                    <h2>Discover Nainital Your Way</h2>
+                    <p>Instant verified cab & bike rentals, live GPS directions, and scenic lakeside discoveries.</p>
+                    <div class="promo-actions-row">
+                        <a href="#booking" class="btn-promo-primary">🚗 Book a Ride Now</a>
+                        <a href="#places" class="btn-promo-secondary">Explore Places →</a>
+                    </div>
+                </div>
+                <div class="promo-weather-pill">
+                    <span>🌤️ 16°C • Clear Mountain Breeze (2,084m)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SECTION D: POPULAR PLACES (HORIZONTAL SCROLL ON MOBILE) ================= -->
+        <section id="places" class="compact-section">
+            <div class="container">
+                <div class="compact-section-header">
+                    <div class="section-title-wrap">
+                        <h3>⭐ Popular Places in Nainital</h3>
+                        <p>Iconic attractions, viewpoints, and trails with live map navigation</p>
+                    </div>
+                    <a href="places.html" class="see-all-link">View All (15+) →</a>
+                </div>
+
+                <div class="cards-scroll-track" id="placesGrid">
+                    <!-- Place 1: Naini Lake -->
+                    <div class="compact-dest-card" data-category="lakes">
+                        <div class="compact-card-media">
+                            <img src="images/nainital_hero_1789405015484.jpg" alt="Naini Lake Boating" loading="lazy">
+                            <span class="card-top-badge">Top Attraction</span>
+                            <button class="card-heart-btn" data-fav-id="naini-lake" onclick="toggleFavorite('naini-lake', 'Naini Lake (Nainital Jheel)', 'images/nainital_hero_1789405015484.jpg', 'Lakes', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Naini Lake (Nainital Jheel)</h4>
+                            <span class="card-meta-pill">⏱️ 6:00 AM - 6:00 PM • Free Entry</span>
+                            <p>Iconic eye-shaped natural lake famous for scenic boating, yachting, and evening promenades.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Naini Lake', 29.3803, 79.4636, 'Mallital/Tallital, Nainital, Uttarakhand 263002')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Naini Lake')">🚗 Book Cab</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Place 2: Snow View Point -->
+                    <div class="compact-dest-card" data-category="viewpoints">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80" alt="Snow View Point" loading="lazy">
+                            <span class="card-top-badge teal">2,270m Altitude</span>
+                            <button class="card-heart-btn" data-fav-id="snow-view" onclick="toggleFavorite('snow-view', 'Snow View Point', 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80', 'Viewpoints', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Snow View Point</h4>
+                            <span class="card-meta-pill">🚠 Ropeway Top • ₹50 Entry</span>
+                            <p>Panoramic views of Nanda Devi, Trishul, and snow-capped Himalayan ranges.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Snow View Point', 29.3970, 79.4580, 'Snow View Point, Nainital, Uttarakhand 263001')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Snow View Point')">🚗 Book Cab</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Place 3: Eco Cave Gardens -->
+                    <div class="compact-dest-card" data-category="nature">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Eco Cave Gardens" loading="lazy">
+                            <span class="card-top-badge orange">Adventure</span>
+                            <button class="card-heart-btn" data-fav-id="eco-caves" onclick="toggleFavorite('eco-caves', 'Eco Cave Gardens', 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80', 'Nature & Caves', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Eco Cave Gardens</h4>
+                            <span class="card-meta-pill">🧗 6 Rocky Caves • ₹60 Entry</span>
+                            <p>Interconnected animal-shaped caves (Tiger, Bat, Panther) with hanging gardens & musical fountain.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Eco Cave Gardens', 29.3900, 79.4480, 'Sukhatal, Mallital, Nainital, Uttarakhand 263001')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Eco Cave Gardens')">🚗 Book Cab</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Place 4: Tiffin Top -->
+                    <div class="compact-dest-card" data-category="viewpoints">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Tiffin Top" loading="lazy">
+                            <span class="card-top-badge">Trek & Sunset</span>
+                            <button class="card-heart-btn" data-fav-id="tiffin-top" onclick="toggleFavorite('tiffin-top', 'Tiffin Top (Dorothy Seat)', 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80', 'Viewpoints', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Tiffin Top (Dorothy's Seat)</h4>
+                            <span class="card-meta-pill">🥾 4 km Forest Trail • 2,292m</span>
+                            <p>360-degree hilltop views of Nainital town and green Kumaon valleys. Popular for horse riding.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Tiffin Top', 29.3800, 79.4440, 'Ayarpatta, Nainital, Uttarakhand 263002')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Tiffin Top')">🚗 Book Cab</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION E: HIDDEN GEMS (LESSER-KNOWN DESTINATIONS) ================= -->
+        <section id="hidden-places" class="compact-section" style="background: #f1f5f9;">
+            <div class="container">
+                <div class="compact-section-header">
+                    <div class="section-title-wrap">
+                        <h3>💎 Hidden Gems & Secret Paradises</h3>
+                        <p>Untouched, peaceful mountain spots away from common tourist crowds</p>
+                    </div>
+                    <a href="hidden-places.html" class="see-all-link">See All Gems →</a>
+                </div>
+
+                <div class="cards-scroll-track" id="hiddenPlacesGrid">
+                    <!-- Gem 1 -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Sariyatal Waterfall" loading="lazy">
+                            <span class="card-top-badge teal">6 km from Mallital</span>
+                            <button class="card-heart-btn" data-fav-id="sariyatal" onclick="toggleFavorite('sariyatal', 'Sariyatal Waterfall & Lake', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80', 'Hidden Gems', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Sariyatal & Botanical Waterfall</h4>
+                            <span class="card-meta-pill">🦋 Butterfly Park • Cold Spring</span>
+                            <p>Heart-shaped emerald lake and refreshing mountain stream located on Kaladungi Road.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Sariyatal Waterfall', 29.3780, 79.4350, 'Sariyatal, Kaladungi Road, Nainital')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Sariyatal Lake')">🚗 Book Ride</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gem 2 -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80" alt="Land's End Cliff View" loading="lazy">
+                            <span class="card-top-badge orange">Cliff Edge • 2,118m</span>
+                            <button class="card-heart-btn" data-fav-id="lands-end" onclick="toggleFavorite('lands-end', 'Lands End Cliff View', 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80', 'Hidden Gems', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Land's End (Khura Pat View)</h4>
+                            <span class="card-meta-pill">🌲 Oak Forest • Valley Drops</span>
+                            <p>Sheer vertical drop overlooking emerald Khurpatal lake and terraced farms below.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Lands End Nainital', 29.3710, 79.4420, 'Lands End, Nainital, Uttarakhand')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Lands End')">🚗 Book Ride</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gem 3 -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=800&q=80" alt="Khurpatal Lake" loading="lazy">
+                            <span class="card-top-badge">10 km from Town</span>
+                            <button class="card-heart-btn" data-fav-id="khurpatal" onclick="toggleFavorite('khurpatal', 'Khurpatal Emerald Lake', 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=800&q=80', 'Hidden Gems', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Khurpatal Emerald Lake</h4>
+                            <span class="card-meta-pill">🎣 Fish Angling • Cedar Pines</span>
+                            <p>Enchanting secret lake nestled at 1,635m that shifts colors with changing sunlight.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Khurpatal Lake', 29.3667, 79.4333, 'Khurpatal, Nainital, Uttarakhand')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Khurpatal Lake')">🚗 Book Ride</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gem 4 -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=800&q=80" alt="Pangot Sanctuary" loading="lazy">
+                            <span class="card-top-badge teal">15 km • 2,150m</span>
+                            <button class="card-heart-btn" data-fav-id="pangot" onclick="toggleFavorite('pangot', 'Pangot Bird Sanctuary', 'https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=800&q=80', 'Nature', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Pangot & Kilbury Bird Haven</h4>
+                            <span class="card-meta-pill">🕊️ 250+ Bird Species • Oak Forest</span>
+                            <p>Untouched mountain village famous worldwide for Himalayan birding and pine forest stays.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Pangot Bird Sanctuary', 29.4270, 79.4180, 'Pangot, Uttarakhand 263001')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Pangot Village')">🚗 Book Ride</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION F: RENT A CAR / RENT A BIKE (COMPACT ENGINE) ================= -->
+        <section id="booking" class="compact-section">
+            <div class="container">
+                <div class="compact-section-header">
+                    <div class="section-title-wrap">
+                        <h3>🚗 Rent a Car & 🏍️ Rent a Bike</h3>
+                        <p>Transparent rates with hill-verified drivers or freedom self-drive scooties</p>
+                    </div>
+                    <a href="booking.html" class="see-all-link">Full Fleet & Rates →</a>
+                </div>
+
+                <div class="compact-booking-box">
+                    <!-- Vehicle Type Toggle Pills -->
+                    <div class="vehicle-type-tabs-pill">
+                        <button class="v-pill-btn active" id="tabCar" onclick="switchVehicleTab('car')">
+                            🚗 Car / Cab Rental
+                        </button>
+                        <button class="v-pill-btn" id="tabBike" onclick="switchVehicleTab('bike')">
+                            🏍️ Bike & Scooty
+                        </button>
+                    </div>
+
+                    <!-- Quick Model Selector Pills -->
+                    <div class="fleet-quick-pills">
+                        <div class="fleet-pill-card" onclick="selectFleetModel('Maruti Dzire / Etios (Sedan)')">
+                            <h5>Dzire / Etios</h5>
+                            <span>₹1,800/day</span>
+                        </div>
+                        <div class="fleet-pill-card" onclick="selectFleetModel('Toyota Innova Crysta (Luxury)')">
+                            <h5>Innova Crysta</h5>
+                            <span>₹3,800/day</span>
+                        </div>
+                        <div class="fleet-pill-card" onclick="selectFleetModel('Royal Enfield Classic 350')">
+                            <h5>Enfield Classic</h5>
+                            <span>₹1,200/day</span>
+                        </div>
+                        <div class="fleet-pill-card" onclick="selectFleetModel('Honda Activa 6G')">
+                            <h5>Activa Scooty</h5>
+                            <span>₹600/day</span>
+                        </div>
+                        <div class="fleet-pill-card" onclick="selectFleetModel('Mahindra Thar 4x4 (Offroad)')">
+                            <h5>Thar 4x4 Jeep</h5>
+                            <span>₹4,500/day</span>
+                        </div>
+                    </div>
+
+                    <!-- Booking Form (Preserving all working features, IDs, event listeners) -->
+                    <form id="vehicleBookingForm" onsubmit="handleVehicleBooking(event)">
+                        <div class="compact-form-grid two-cols">
+                            <div class="compact-form-group">
+                                <label for="pickupLocation">📍 Pickup Spot</label>
+                                <select id="pickupLocation" required onchange="calculateEstimatedFare()">
+                                    <option value="">Select Pickup Spot</option>
+                                    <option value="Mallital (Nainital)">Mallital (Nainital)</option>
+                                    <option value="Tallital Bus Stand (Nainital)">Tallital Bus Stand (Nainital)</option>
+                                    <option value="Kathgodam Railway Station">Kathgodam Railway Station (35 km)</option>
+                                    <option value="Pantnagar Airport">Pantnagar Airport (70 km)</option>
+                                    <option value="Bhimtal">Bhimtal</option>
+                                    <option value="Custom Hotel Pickup">My Hotel / Resort</option>
+                                </select>
+                            </div>
+
+                            <div class="compact-form-group">
+                                <label for="dropDestination">🏁 Trip Destination</label>
+                                <select id="dropDestination" required onchange="calculateEstimatedFare()">
+                                    <option value="">Select Destination / Tour</option>
+                                    <option value="Nainital Local Sightseeing (Full Day 8 Hrs)">Nainital Local Sightseeing (8 Hrs)</option>
+                                    <option value="Kainchi Dham Darshan (Neem Karoli Ashram)">Kainchi Dham Darshan (Round Trip)</option>
+                                    <option value="Lake Tour (Bhimtal, Sattal, Naukuchiatal)">Lake Tour (Bhimtal, Sattal, Naukuchiatal)</option>
+                                    <option value="Mukteshwar Sightseeing Day Trip">Mukteshwar Day Trip (Chauli Ki Jali)</option>
+                                    <option value="Kathgodam Drop / Pickup">Kathgodam Station Drop / Pickup</option>
+                                    <option value="24 Hours Self-Drive Rental">24 Hours Daily Rental</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="compact-form-grid three-cols">
+                            <div class="compact-form-group">
+                                <label for="bookingDate">📅 Pickup Date</label>
+                                <input type="date" id="bookingDate" required>
+                            </div>
+                            <div class="compact-form-group">
+                                <label for="bookingTime">⏰ Time</label>
+                                <input type="time" id="bookingTime" required>
+                            </div>
+                            <div class="compact-form-group">
+                                <label for="tourDuration">⏳ Duration</label>
+                                <select id="tourDuration" onchange="calculateEstimatedFare()">
+                                    <option value="1" selected>1 Day</option>
+                                    <option value="2">2 Days</option>
+                                    <option value="3">3 Days</option>
+                                    <option value="4">4 Days</option>
+                                    <option value="7">Full Week</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="compact-form-grid two-cols">
+                            <div class="compact-form-group">
+                                <label for="vehicleModel">🚘 Vehicle Selected</label>
+                                <select id="vehicleModel" required onchange="calculateEstimatedFare()">
+                                    <option value="Maruti Dzire / Etios (Sedan)" data-base="1800">Maruti Dzire / Etios (AC Sedan) • ₹1,800/day</option>
+                                    <option value="Maruti Ertiga (6 Seater)" data-base="2600">Maruti Ertiga (MUV - 6 Seater) • ₹2,600/day</option>
+                                    <option value="Toyota Innova Crysta (Luxury)" data-base="3800">Toyota Innova Crysta (SUV) • ₹3,800/day</option>
+                                    <option value="Mahindra Thar 4x4 (Offroad)" data-base="4500">Mahindra Thar 4x4 Explorer • ₹4,500/day</option>
+                                </select>
+                            </div>
+                            <div class="compact-form-group">
+                                <label for="passengerCount" id="passengersLabel">👥 Passengers</label>
+                                <select id="passengerCount" onchange="calculateEstimatedFare()">
+                                    <option value="1">1 Person</option>
+                                    <option value="2">2 Persons</option>
+                                    <option value="4" selected>4 Persons</option>
+                                    <option value="6">6-7 Persons (SUV)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- User Contact Info -->
+                        <div class="compact-form-grid three-cols">
+                            <div class="compact-form-group">
+                                <label for="customerName">👤 Full Name</label>
+                                <input type="text" id="customerName" placeholder="Your Name" required>
+                            </div>
+                            <div class="compact-form-group">
+                                <label for="customerPhone">📞 Phone Number</label>
+                                <input type="tel" id="customerPhone" placeholder="10-digit number" pattern="[0-9]{10}" required>
+                            </div>
+                            <div class="compact-form-group">
+                                <label for="customerEmail">✉️ Email</label>
+                                <input type="email" id="customerEmail" placeholder="you@gmail.com" required>
+                            </div>
+                        </div>
+
+                        <!-- Live Fare Bar -->
+                        <div class="compact-fare-bar">
+                            <span>Estimated Fare (Fuel & Driver Included):</span>
+                            <strong id="estimatedFareText">₹1,800</strong>
+                        </div>
+
+                        <!-- Submit Buttons -->
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button type="submit" class="btn-promo-primary" id="btnSubmitBooking" style="flex: 1.2; min-width: 200px; padding: 11px 16px; font-size: 0.88rem; cursor: pointer; border: none;">
+                                🚀 Confirm Booking & Dispatch Alerts →
+                            </button>
+                            <button type="button" class="btn-promo-secondary" onclick="quickBookOnWhatsApp()" style="flex: 1; min-width: 180px; background: #25d366; color: white; border: none; font-size: 0.88rem; padding: 11px 16px; cursor: pointer;" title="Instant WhatsApp to 9456168611">
+                                💬 1-Click WhatsApp Book
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION G: HOTELS & STAYS ================= -->
+        <section id="hotels" class="compact-section" style="background: #ffffff;">
+            <div class="container">
+                <div class="compact-section-header">
+                    <div class="section-title-wrap">
+                        <h3>🏨 Hotels & Lakeside Homestays</h3>
+                        <p>Curated mountain stays from luxury resorts to budget family homestays</p>
+                    </div>
+                    <a href="hotels.html" class="see-all-link">View All Stays →</a>
+                </div>
+
+                <div class="cards-scroll-track" id="hotelsGrid">
+                    <!-- Hotel 1 -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="images/hotel_lakeview_1789405137728.jpg" alt="The Manu Maharani" loading="lazy">
+                            <span class="card-top-badge orange">★ 4.8 Luxury</span>
+                            <button class="card-heart-btn" data-fav-id="hotel-manu" onclick="toggleFavorite('hotel-manu', 'The Manu Maharani Resort', 'images/hotel_lakeview_1789405137728.jpg', 'Hotels', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>The Manu Maharani Resort</h4>
+                            <span class="card-meta-pill">📍 Mallital Overlooking Lake</span>
+                            <p>Premier lake-view luxury suites with spa, multi-cuisine dining & shuttle service.</p>
+                            <div class="compact-card-actions">
+                                <span style="font-weight: 800; color: #15803d; font-size: 0.85rem; align-self: center;">₹6,500<small>/nt</small></span>
+                                <button class="btn-card-book" onclick="inquireHotel('The Manu Maharani', '+91 5942 237341')">📞 Call & Book</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hotel 2 -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="The Naini Retreat" loading="lazy">
+                            <span class="card-top-badge teal">★ 4.6 Heritage</span>
+                            <button class="card-heart-btn" data-fav-id="hotel-naini-retreat" onclick="toggleFavorite('hotel-naini-retreat', 'The Naini Retreat Heritage', 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80', 'Hotels', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>The Naini Retreat (Heritage)</h4>
+                            <span class="card-meta-pill">📍 Ayarpatta Pine Slopes</span>
+                            <p>Royal colonial architecture, live bonfire music, and direct nature trail access.</p>
+                            <div class="compact-card-actions">
+                                <span style="font-weight: 800; color: #15803d; font-size: 0.85rem; align-self: center;">₹5,800<small>/nt</small></span>
+                                <button class="btn-card-book" onclick="inquireHotel('The Naini Retreat', '+91 5942 235105')">📞 Call & Book</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hotel 3 -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80" alt="Kumaon Homestay" loading="lazy">
+                            <span class="card-top-badge">★ 4.4 Homestay</span>
+                            <button class="card-heart-btn" data-fav-id="hotel-kumaon" onclick="toggleFavorite('hotel-kumaon', 'Kumaon Homestay & Inn', 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80', 'Hotels', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Kumaon Homestay & Inn</h4>
+                            <span class="card-meta-pill">📍 Sukhatal Road</span>
+                            <p>Authentic family-run homestay serving homemade Pahadi meals with clean mountain views.</p>
+                            <div class="compact-card-actions">
+                                <span style="font-weight: 800; color: #15803d; font-size: 0.85rem; align-self: center;">₹1,400<small>/nt</small></span>
+                                <button class="btn-card-book" onclick="inquireHotel('Kumaon Homestay', '+91 9412 000000')">📞 Call & Book</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hotel 4 -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80" alt="Hotel Lake View Grand" loading="lazy">
+                            <span class="card-top-badge teal">★ 4.3 Lakeside</span>
+                            <button class="card-heart-btn" data-fav-id="hotel-lake-grand" onclick="toggleFavorite('hotel-lake-grand', 'Hotel Lake View Grand', 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80', 'Hotels', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Hotel Lake View Grand</h4>
+                            <span class="card-meta-pill">📍 The Mall, Tallital Front</span>
+                            <p>Prime central location on Mall Road with private lake-facing balconies.</p>
+                            <div class="compact-card-actions">
+                                <span style="font-weight: 800; color: #15803d; font-size: 0.85rem; align-self: center;">₹2,200<small>/nt</small></span>
+                                <button class="btn-card-book" onclick="inquireHotel('Hotel Lake View Grand', '+91 5942 236000')">📞 Call & Book</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION H: RESTAURANTS & CAFES ================= -->
+        <section id="food" class="compact-section" style="background: #f8fafc;">
+            <div class="container">
+                <div class="compact-section-header">
+                    <div class="section-title-wrap">
+                        <h3>🍴 Cafes & Authentic Kumaoni Cuisine</h3>
+                        <p>Taste traditional black soybean curry, Bal Mithai & lakeside European bakeries</p>
+                    </div>
+                    <a href="food.html" class="see-all-link">Food Trail →</a>
+                </div>
+
+                <div class="cards-scroll-track" id="restaurantsGrid">
+                    <!-- Cafe 1 -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Sakleys Restaurant" loading="lazy">
+                            <span class="card-top-badge orange">Est. 1944</span>
+                            <button class="card-heart-btn" data-fav-id="rest-sakleys" onclick="toggleFavorite('rest-sakleys', 'Sakleys Restaurant & Pastry Shop', 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80', 'Food', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Sakley's Restaurant & Bakery</h4>
+                            <span class="card-meta-pill">📍 Off Mall Road, Mallital • ₹₹</span>
+                            <p>Vintage European cafe famous for wood-fired pizzas, apple pie & mountain roast coffee.</p>
+                            <div class="compact-card-actions">
+                                <a href="food.html" class="btn-card-track" style="text-decoration:none;">View Menu</a>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Sakleys Restaurant')">🚗 Ride Here</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cafe 2 -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Machan Restaurant" loading="lazy">
+                            <span class="card-top-badge teal">Pahadi Thali</span>
+                            <button class="card-heart-btn" data-fav-id="rest-machan" onclick="toggleFavorite('rest-machan', 'Machan Restaurant Kumaoni Food', 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80', 'Food', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Machan Restaurant</h4>
+                            <span class="card-meta-pill">📍 Mall Road • Traditional Thali</span>
+                            <p>Authentic Bhatt ki Churkani, Mandua Roti, and rich North Indian curries in cabin decor.</p>
+                            <div class="compact-card-actions">
+                                <a href="food.html" class="btn-card-track" style="text-decoration:none;">View Menu</a>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Machan Restaurant')">🚗 Ride Here</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cafe 3 -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1496412705862-e0088f16f791?auto=format&fit=crop&w=800&q=80" alt="Tibetan Momos" loading="lazy">
+                            <span class="card-top-badge">Street Cult</span>
+                            <button class="card-heart-btn" data-fav-id="rest-sonam" onclick="toggleFavorite('rest-sonam', 'Sonam Tibetan Momos', 'https://images.unsplash.com/photo-1496412705862-e0088f16f791?auto=format&fit=crop&w=800&q=80', 'Food', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Sonam's Tibetan Momos & Thukpa</h4>
+                            <span class="card-meta-pill">📍 Tibetan Market Flats • ₹ Budget</span>
+                            <p>Piping hot steamed mutton & veg dumplings served with spicy red pahadi garlic chutney.</p>
+                            <div class="compact-card-actions">
+                                <a href="food.html" class="btn-card-track" style="text-decoration:none;">View Details</a>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Tibetan Market Nainital')">🚗 Ride Here</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION I: NEARBY DESTINATIONS ================= -->
+        <section id="nearby" class="compact-section" style="background: #ffffff;">
+            <div class="container">
+                <div class="compact-section-header">
+                    <div class="section-title-wrap">
+                        <h3>🌄 Nearby Excursions (Within 1-2 Hours)</h3>
+                        <p>Scenic day trips to island lakes, paragliding ridges, and pine forests</p>
+                    </div>
+                    <a href="nearby.html" class="see-all-link">Explore Gateways →</a>
+                </div>
+
+                <div class="cards-scroll-track" id="nearbyGrid">
+                    <!-- Nearby 1: Bhimtal -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Bhimtal Island Lake" loading="lazy">
+                            <span class="card-top-badge teal">22 km • 45 Mins</span>
+                            <button class="card-heart-btn" data-fav-id="nearby-bhimtal" onclick="toggleFavorite('nearby-bhimtal', 'Bhimtal Lake & Island', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80', 'Nearby', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Bhimtal Lake & Island</h4>
+                            <span class="card-meta-pill">🏝️ Island Aquarium • Kayaking</span>
+                            <p>Larger than Naini Lake with a scenic island in the center, boating, and cafes.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Bhimtal Lake', 29.3460, 79.5530, 'Bhimtal, Uttarakhand 263136')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Bhimtal Lake Day Trip')">🚗 Book Cab</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nearby 2: Sattal -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Sattal Lakes" loading="lazy">
+                            <span class="card-top-badge">23 km • 50 Mins</span>
+                            <button class="card-heart-btn" data-fav-id="nearby-sattal" onclick="toggleFavorite('nearby-sattal', 'Sattal Seven Lakes', 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80', 'Nearby', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Sattal (Seven Lakes Circuit)</h4>
+                            <span class="card-meta-pill">🌲 Dense Oak Woods • Pure Nature</span>
+                            <p>Cluster of seven interconnected freshwater lakes surrounded by pristine silence.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Sattal Lakes', 29.3560, 79.5330, 'Sattal, Uttarakhand 263136')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Sattal Lakes Tour')">🚗 Book Cab</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nearby 3: Naukuchiatal -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="Naukuchiatal" loading="lazy">
+                            <span class="card-top-badge orange">🪂 Paragliding Hub</span>
+                            <button class="card-heart-btn" data-fav-id="nearby-naukuchia" onclick="toggleFavorite('nearby-naukuchia', 'Naukuchiatal Nine Corner Lake', 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80', 'Nearby', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Naukuchiatal (9-Corner Lake)</h4>
+                            <span class="card-meta-pill">26 km • 1 Hr • Tandem Flights</span>
+                            <p>Deepest lake in Kumaon and prime destination for paragliding flights.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Naukuchiatal Lake', 29.3200, 79.5840, 'Naukuchiatal, Uttarakhand 263136')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Naukuchiatal Lake')">🚗 Book Cab</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nearby 4: Mukteshwar -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80" alt="Mukteshwar" loading="lazy">
+                            <span class="card-top-badge teal">50 km • 1.5 Hrs</span>
+                            <button class="card-heart-btn" data-fav-id="nearby-mukteshwar" onclick="toggleFavorite('nearby-mukteshwar', 'Mukteshwar Chauli Ki Jali', 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80', 'Nearby', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Mukteshwar & Chauli Ki Jali</h4>
+                            <span class="card-meta-pill">🧗 Cliff Climbing • Apple Orchards</span>
+                            <p>180-degree Himalayan views, fruit orchards, and dramatic rock-climbing cliffs.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Mukteshwar', 29.4720, 79.6470, 'Mukteshwar, Uttarakhand 263138')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Mukteshwar Sightseeing')">🚗 Book Cab</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TEMPLES & SACRED TRAIL (CATEGORY 8 PRESERVED) ================= -->
+        <section id="temples" class="compact-section" style="background: #f8fafc;">
+            <div class="container">
+                <div class="compact-section-header">
+                    <div class="section-title-wrap">
+                        <h3>🛕 Sacred Temples & Ashrams</h3>
+                        <p>51 Shakti Peethas and blessed spiritual ashrams in the Kumaon hills</p>
+                    </div>
+                    <a href="temples.html" class="see-all-link">All Temples →</a>
+                </div>
+
+                <div class="cards-scroll-track">
+                    <!-- Temple 1: Naina Devi -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="images/naina_devi_1789405033629.jpg" alt="Maa Naina Devi" loading="lazy">
+                            <span class="card-top-badge orange">51 Shakti Peeth</span>
+                            <button class="card-heart-btn" data-fav-id="temple-naina" onclick="toggleFavorite('temple-naina', 'Maa Naina Devi Temple', 'images/naina_devi_1789405033629.jpg', 'Temples', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Maa Naina Devi Temple</h4>
+                            <span class="card-meta-pill">📍 Mallital Flatts • 6 AM - 9 PM</span>
+                            <p>Legendary shrine on the northern shore of Naini Lake where Goddess Sati's eyes fell.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Maa Naina Devi Temple', 29.3940, 79.4540, 'Mallital, Nainital, Uttarakhand 263001')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Naina Devi Temple')">🚗 Book Cab</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Temple 2: Kainchi Dham -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="images/kainchi_dham_1789405052626.jpg" alt="Kainchi Dham Ashram" loading="lazy">
+                            <span class="card-top-badge teal">17 km • Global Ashram</span>
+                            <button class="card-heart-btn" data-fav-id="temple-kainchi" onclick="toggleFavorite('temple-kainchi', 'Kainchi Dham Neem Karoli Baba', 'images/kainchi_dham_1789405052626.jpg', 'Temples', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Kainchi Dham (Neem Karoli Baba)</h4>
+                            <span class="card-meta-pill">📍 Bhowali Highway • 6:30 AM - 7 PM</span>
+                            <p>Spiritual ashram visited by millions worldwide, including Steve Jobs & Mark Zuckerberg.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Kainchi Dham Ashram', 29.4230, 79.5160, 'Kainchi Dham, Uttarakhand 263132')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Kainchi Dham Ashram')">🚗 Book Cab</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Temple 3: Hanuman Garhi -->
+                    <div class="compact-dest-card">
+                        <div class="compact-card-media">
+                            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80" alt="Hanuman Garhi" loading="lazy">
+                            <span class="card-top-badge">3.5 km • Sunset Point</span>
+                            <button class="card-heart-btn" data-fav-id="temple-hanuman" onclick="toggleFavorite('temple-hanuman', 'Hanuman Garhi Temple', 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80', 'Temples', event)" aria-label="Add to Favourites">🤍</button>
+                        </div>
+                        <div class="compact-card-body">
+                            <h4>Hanuman Garhi Temple</h4>
+                            <span class="card-meta-pill">📍 Tallital Ridge • 70ft Idol</span>
+                            <p>Renowned for sunset vistas and the monumental Lord Hanuman statue built in 1950.</p>
+                            <div class="compact-card-actions">
+                                <button class="btn-card-track" onclick="openMapModal('Hanuman Garhi Temple', 29.3700, 79.4600, 'Hanuman Garhi, Nainital, Uttarakhand 263002')">📍 Track</button>
+                                <button class="btn-card-book" onclick="prefillRideDestination('Hanuman Garhi Temple')">🚗 Book Cab</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION J: BOATING & ACTIVITIES ================= -->
+        <section id="boating" class="compact-section" style="background: #ffffff;">
+            <div class="container">
+                <div class="compact-section-header">
+                    <div class="section-title-wrap">
+                        <h3>🚤 Boating & Thrilling Mountain Activities</h3>
+                        <p>Verified government guidelines and official charges for Lake City activities</p>
+                    </div>
+                    <a href="activities.html" class="see-all-link">All Activities →</a>
+                </div>
+
+                <div class="cards-scroll-track">
+                    <div class="compact-dest-card" style="padding: 14px;">
+                        <span style="font-size: 1.8rem; margin-bottom: 6px; display: block;">🚣</span>
+                        <h4>Naini Lake Row Boating</h4>
+                        <p>Traditional wooden boat rowed by licensed boatmen. Ideal for photographs.</p>
+                        <strong style="color: #15803d; font-size: 0.88rem; margin-top: auto;">₹210 Half • ₹420 Full</strong>
+                        <small style="color: #64748b; margin-top: 4px;">Mallital & Tallital stands</small>
+                    </div>
+
+                    <div class="compact-dest-card" style="padding: 14px;">
+                        <span style="font-size: 1.8rem; margin-bottom: 6px; display: block;">🛶</span>
+                        <h4>Self-Drive Pedal Boating</h4>
+                        <p>2-seater and 4-seater pedal boats. Great fun for friends & couples with life jackets.</p>
+                        <strong style="color: #15803d; font-size: 0.88rem; margin-top: auto;">₹150 - ₹250 / 30 Mins</strong>
+                        <small style="color: #64748b; margin-top: 4px;">Life jackets mandatory</small>
+                    </div>
+
+                    <div class="compact-dest-card" style="padding: 14px;">
+                        <span style="font-size: 1.8rem; margin-bottom: 6px; display: block;">🚠</span>
+                        <h4>Aerial Ropeway Cable Car</h4>
+                        <p>Connects Mallital to Snow View Point (2,270m) in 3 scenic minutes.</p>
+                        <strong style="color: #15803d; font-size: 0.88rem; margin-top: auto;">₹300 Adults (Both ways)</strong>
+                        <small style="color: #64748b; margin-top: 4px;">10:00 AM - 4:00 PM</small>
+                    </div>
+
+                    <div class="compact-dest-card" style="padding: 14px;">
+                        <span style="font-size: 1.8rem; margin-bottom: 6px; display: block;">🪂</span>
+                        <h4>Paragliding in Naukuchiatal</h4>
+                        <p>Tandem flight over the 9-cornered lake with GoPro video recording.</p>
+                        <strong style="color: #15803d; font-size: 0.88rem; margin-top: auto;">₹1,500 - ₹3,000 / Flight</strong>
+                        <small style="color: #64748b; margin-top: 4px;">26 km from Nainital</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION K: SMART TRIP PLANNER ================= -->
+        <section id="planner" class="compact-section" style="background: #f8fafc;">
+            <div class="container">
+                <div class="compact-section-header">
+                    <div class="section-title-wrap">
+                        <h3>🗺️ Smart Nainital Trip Planner</h3>
+                        <p>Select your trip duration to preview an optimized day-by-day plan</p>
+                    </div>
+                    <a href="planner.html" class="see-all-link">Custom Planner →</a>
+                </div>
+
+                <div class="compact-booking-box">
+                    <!-- Itinerary Tabs -->
+                    <div class="vehicle-type-tabs-pill">
+                        <button class="v-pill-btn active" id="tabItin1" onclick="loadItinerary(1)">⚡ 1-Day Express</button>
+                        <button class="v-pill-btn" id="tabItin2" onclick="loadItinerary(2)">🌟 2-Days Classic</button>
+                        <button class="v-pill-btn" id="tabItin3" onclick="loadItinerary(3)">🏔️ 3-Days Explorer</button>
+                    </div>
+
+                    <div style="margin-bottom: 12px;">
+                        <h4 id="itinTitle" style="color: #0d3b32; font-size: 1.05rem; margin-bottom: 2px;">1-Day Express Nainital Highlights</h4>
+                        <span id="itinMeta" style="font-size: 0.76rem; color: #64748b; font-weight: 600;">⭐ Perfect for day-trippers & weekend visits</span>
+                    </div>
+
+                    <div id="itinTimeline" style="padding-left: 20px; border-left: 2px solid #cbd5e1; margin-left: 10px;">
+                        <!-- Dynamically filled by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION L: LIVE GPS ROUTE & LOCATION TRACKING ================= -->
+        <section id="tracking" class="compact-section" style="background: #ffffff;">
+            <div class="container">
+                <div class="compact-section-header">
+                    <div class="section-title-wrap">
+                        <h3>🧭 Live Route & GPS Location Tracker</h3>
+                        <p>Real-time satellite coordinates, elevation, and 1-click Google Maps app directions</p>
+                    </div>
+                    <a href="tracking.html" class="see-all-link">Open Full Tracker →</a>
+                </div>
+
+                <div class="compact-booking-box">
+                    <!-- Location Selector Chips for Tracking -->
+                    <div class="search-chips-strip" style="margin-bottom: 12px;">
+                        <button class="popular-chip-pill active" onclick="switchLiveTrackPlace('naini-lake')">🌊 Naini Lake</button>
+                        <button class="popular-chip-pill" onclick="switchLiveTrackPlace('snow-view')">🏔️ Snow View</button>
+                        <button class="popular-chip-pill" onclick="switchLiveTrackPlace('kainchi-dham')">🙏 Kainchi Dham</button>
+                        <button class="popular-chip-pill" onclick="switchLiveTrackPlace('eco-caves')">🦇 Cave Gardens</button>
+                        <button class="popular-chip-pill" onclick="switchLiveTrackPlace('tiffin-top')">🌄 Tiffin Top</button>
+                        <button class="popular-chip-pill" onclick="switchLiveTrackPlace('bhimtal')">🏝️ Bhimtal Lake</button>
+                        <button class="popular-chip-pill" onclick="switchLiveTrackPlace('pangot')">🕊️ Pangot</button>
+                    </div>
+
+                    <!-- Telemetry Data Strip -->
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                        <div>
+                            <h4 id="livePlaceHeading" style="color: #0d3b32; font-size: 1rem; margin: 0 0 2px;">Naini Lake (Nainital Jheel)</h4>
+                            <small id="livePlaceSub" style="color: #64748b;">Mallital/Tallital, Nainital, Uttarakhand 263002</small>
+                        </div>
+                        <span style="background: #e0f2fe; color: #0284c7; padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700;" id="liveLat">29.3803° N, 79.4636° E</span>
+                    </div>
+
+                    <!-- Live Embedded Map Frame -->
+                    <div style="border-radius: 12px; overflow: hidden; margin-bottom: 12px; height: 260px; background: #e2e8f0;">
+                        <iframe id="liveMapIframe" src="https://maps.google.com/maps?q=29.3803,79.4636&hl=en&z=15&output=embed" width="100%" height="260" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button onclick="openSelectedInGoogleMaps()" class="btn-promo-primary" style="flex: 1; min-width: 200px; padding: 10px; text-align: center; border: none; cursor: pointer;">
+                            🗺️ Open in Google Maps App (Directions) →
+                        </button>
+                        <button onclick="prefillRideDestination('Naini Lake')" class="btn-promo-secondary" style="flex: 0.8; min-width: 160px; padding: 10px; background: #0d3b32; border: none; cursor: pointer;">
+                            🚗 Book Cab to Spot
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION M: MY BOOKINGS AND FAVOURITES ================= -->
+        <section id="my-activities" class="compact-section" style="background: #f8fafc;">
+            <div class="container">
+                <div class="compact-section-header">
+                    <div class="section-title-wrap">
+                        <h3>❤️ My Favourites & Recent Bookings</h3>
+                        <p>Your saved bucket list spots and confirmed ride vouchers</p>
+                    </div>
+                </div>
+
+                <div class="my-activities-box">
+                    <div class="activity-tab-buttons">
+                        <button class="act-tab-btn active" id="tabBtnFav" onclick="switchMyActivityTab('favourites')">
+                            ❤️ Saved Favourites (<span id="tabFavCount">0</span>)
+                        </button>
+                        <button class="act-tab-btn" id="tabBtnBook" onclick="switchMyActivityTab('bookings')">
+                            📋 My Bookings (<span id="tabBookingCount">0</span>)
+                        </button>
+                    </div>
+
+                    <!-- Favourites Container -->
+                    <div id="favoritesTabContent">
+                        <div id="favoritesListContainer">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Bookings Container -->
+                    <div id="bookingsTabContent" style="display: none;">
+                        <div id="userBookingsContainer">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT / HELPDESK ================= -->
+        <section id="contact" class="compact-section" style="background: #ffffff;">
+            <div class="container">
+                <div class="compact-section-header">
+                    <div class="section-title-wrap">
+                        <h3>📞 24x7 Tourist Helpline & Queries</h3>
+                        <p>Ask customized tour inquiries, group bookings or hotel recommendations</p>
+                    </div>
+                    <a href="contact.html" class="see-all-link">Helpline Page →</a>
+                </div>
+
+                <div class="compact-booking-box">
+                    <form onsubmit="handleContactSubmit(event)">
+                        <div class="compact-form-grid three-cols">
+                            <div class="compact-form-group">
+                                <label for="contactName">Your Name</label>
+                                <input type="text" id="contactName" placeholder="e.g. Rahul Sharma" required>
+                            </div>
+                            <div class="compact-form-group">
+                                <label for="contactPhone">Phone Number</label>
+                                <input type="tel" id="contactPhone" placeholder="10-digit mobile" required>
+                            </div>
+                            <div class="compact-form-group">
+                                <label for="contactEmail">Email Address</label>
+                                <input type="email" id="contactEmail" placeholder="rahul@gmail.com" required>
+                            </div>
+                        </div>
+
+                        <div class="compact-form-group" style="margin-bottom: 12px;">
+                            <label for="contactSubject">Inquiry Topic</label>
+                            <select id="contactSubject">
+                                <option value="Cab / Bike Booking">🚗 Cab / Bike Rental Inquiry</option>
+                                <option value="Custom Itinerary Planning">🗺️ Custom Trip Itinerary</option>
+                                <option value="Hotel & Homestay Booking">🏨 Hotel Recommendation</option>
+                                <option value="General Travel Question">❓ General Travel Question</option>
+                            </select>
+                        </div>
+
+                        <div class="compact-form-group" style="margin-bottom: 14px;">
+                            <label for="contactMessage">Your Message / Travel Dates</label>
+                            <textarea id="contactMessage" rows="3" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 0.85rem;" placeholder="Tell us your dates, group size, or requests..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-promo-primary" style="border: none; padding: 10px 18px; cursor: pointer;">
+                            <span>Send Inquiry to Helpdesk →</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= SECTION N: COMPACT FOOTER ================= -->
+    <footer class="footer" style="padding: 40px 0 24px; background: #07251f; color: #cbd5e1;">
+        <div class="container footer-container">
+            <div class="footer-col brand-col">
+                <a href="#home" class="footer-logo">
+                    <span class="logo-icon" style="background: #165a4d;">N</span>
+                    <div>
+                        <strong style="color: #ffffff;">FindNainital</strong>
+                        <small style="color: #ffd1a8;">“Find Nainital. Your Way.”</small>
+                    </div>
+                </a>
+                <p class="footer-desc" style="font-size: 0.82rem; color: #94a3b8; margin: 10px 0 14px;">
+                    Smart travel discovery and instant vehicle booking engine for Nainital and the Kumaon Lake District.
+                </p>
+                <div class="academic-credit-box" style="background: rgba(255, 255, 255, 0.05); padding: 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <small style="color: #ffd1a8; font-weight: 700; display: block; margin-bottom: 2px;">🎓 DIPLOMA FINAL YEAR PROJECT</small>
+                    <small style="display: block; color: #cbd5e1;"><strong>Developed By:</strong> Priyanshu Kumar (Roll No. 19)</small>
+                    <small style="display: block; color: #94a3b8;">Uttarakhand Government Institute of Polytechnic, Nainital</small>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 10px;">Quick Links</h4>
+                <ul class="footer-links-list" style="font-size: 0.82rem; list-style: none;">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#places">Tourist Places</a></li>
+                    <li><a href="#hidden-places">Hidden Gems</a></li>
+                    <li><a href="#booking">Cab & Bike Booking</a></li>
+                    <li><a href="#hotels">Hotels & Stays</a></li>
+                    <li><a href="#tracking">GPS Live Tracking</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 10px;">24x7 Helplines</h4>
+                <ul class="footer-links-list" style="font-size: 0.82rem; list-style: none;">
+                    <li>👮 Police Control: <strong>112 / 05942-235348</strong></li>
+                    <li>🏥 BD Pandey Hospital: <strong>108 / 05942-235022</strong></li>
+                    <li>ℹ️ UK Tourism Helpline: <strong>1364</strong></li>
+                    <li>🚖 Rides Helpdesk: <strong>+91 9456168611</strong></li>
+                    <li>✉️ Support: <strong>contact@findnainital.in</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom" style="margin-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px;">
+            <div class="container footer-bottom-content" style="display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: #94a3b8;">
+                <p>© 2026 FindNainital (NTL). All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#home" style="color: #ffd1a8;">Back to Top ↑</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= FIXED MOBILE BOTTOM NAVIGATION BAR ================= -->
+    <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+        <a href="#home" class="bottom-nav-item active">
+            <span class="bottom-nav-icon">🏠</span>
+            <span class="bottom-nav-label">Home</span>
+        </a>
+        <a href="services.html" class="bottom-nav-item">
+            <span class="bottom-nav-icon">⚡</span>
+            <span class="bottom-nav-label">Functions</span>
+        </a>
+        <a href="#booking" class="bottom-nav-item">
+            <span class="bottom-nav-icon">
+                🚗
+                <span class="bottom-badge-counter green" id="mobileBookingBadge" style="display:none;">0</span>
+            </span>
+            <span class="bottom-nav-label">Bookings</span>
+        </a>
+        <a href="#my-activities" onclick="switchMyActivityTab('favourites')" class="bottom-nav-item">
+            <span class="bottom-nav-icon">
+                ❤️
+                <span class="bottom-badge-counter" id="mobileFavBadge" style="display:none;">0</span>
+            </span>
+            <span class="bottom-nav-label">Favourites</span>
+        </a>
+        <a href="javascript:void(0)" onclick="openProfileModal()" class="bottom-nav-item">
+            <span class="bottom-nav-icon">👤</span>
+            <span class="bottom-nav-label">Profile</span>
+        </a>
+    </nav>
+
+    <!-- ================= MODAL: TOURIST PROFILE & HELPDESK ================= -->
+    <div class="modal-backdrop" id="profileModal" onclick="closeProfileModal(event)">
+        <div class="modal-container profile-modal-card" onclick="event.stopPropagation()">
+            <div class="profile-card-header">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <h3>👤 Tourist Assistance Profile</h3>
+                        <p>FindNainital Lake City Companion</p>
+                    </div>
+                    <button class="btn-close-modal" onclick="closeProfileModal()" style="color: white; background: none; border: none; font-size: 1.4rem; cursor: pointer;">&times;</button>
+                </div>
+            </div>
+            <div class="profile-body-content">
+                <a href="https://wa.me/919456168611?text=Namaste%20Priyanshu%20ji!%20I%20need%20assistance%20in%20Nainital." target="_blank" class="profile-feature-tile">
+                    <span class="tile-icon">💬</span>
+                    <div class="tile-info">
+                        <strong>Chat on WhatsApp Support</strong>
+                        <small>Direct assistant: Priyanshu Kumar (+91 9456168611)</small>
+                    </div>
+                </a>
+
+                <a href="tel:9456168611" class="profile-feature-tile">
+                    <span class="tile-icon">📞</span>
+                    <div class="tile-info">
+                        <strong>24x7 Cab & Ride Dispatch Helpline</strong>
+                        <small>Call +91 9456168611 for instant pickup</small>
+                    </div>
+                </a>
+
+                <a href="#my-activities" onclick="closeProfileModal(); switchMyActivityTab('bookings');" class="profile-feature-tile">
+                    <span class="tile-icon">📋</span>
+                    <div class="tile-info">
+                        <strong>My Confirmed Bookings</strong>
+                        <small>View ride status and receipt slips</small>
+                    </div>
+                </a>
+
+                <a href="#my-activities" onclick="closeProfileModal(); switchMyActivityTab('favourites');" class="profile-feature-tile">
+                    <span class="tile-icon">❤️</span>
+                    <div class="tile-info">
+                        <strong>Saved Bucket List Spots</strong>
+                        <small>Your personalized places to visit</small>
+                    </div>
+                </a>
+
+                <button onclick="closeProfileModal(); openAdminModal();" class="profile-feature-tile" style="width: 100%; border: 1px solid #bfdbfe; background: #eff6ff; cursor: pointer; text-align: left;">
+                    <span class="tile-icon">🔐</span>
+                    <div class="tile-info">
+                        <strong>Admin & Driver Booking Dashboard</strong>
+                        <small>Manage received bookings & notification settings</small>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: TRACK LOCATION (Google Maps Embed) ================= -->
+    <div class="modal-backdrop" id="mapModal" onclick="closeMapModal(event)">
+        <div class="modal-container map-modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div>
+                    <h3 id="modalPlaceTitle">📍 Location Tracking</h3>
+                    <p id="modalPlaceAddress">Nainital, Uttarakhand</p>
+                </div>
+                <button class="btn-close-modal" onclick="closeMapModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="map-embed-wrapper" id="mapEmbedWrapper">
+                    <iframe id="googleMapIframe" src="" width="100%" height="320" style="border:0;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="modal-map-actions">
+                    <a id="directGoogleMapsLink" href="#" target="_blank" class="btn-open-google-maps">
+                        🗺️ Open in Google Maps App (Directions) →
+                    </a>
+                    <button class="btn-modal-book-cab" id="modalBookCabBtn" onclick="bookCabFromModal()">
+                        🚗 Book a Cab to this Spot
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: BOOKING CONFIRMATION RECEIPT ================= -->
+    <div class="modal-backdrop" id="bookingConfirmationModal" onclick="closeBookingModal(event)">
+        <div class="modal-container booking-receipt-content" onclick="event.stopPropagation()">
+            <div class="modal-header success-header">
+                <div class="success-icon-badge">✓</div>
+                <div>
+                    <h3>Booking Request Confirmed!</h3>
+                    <p>Booking ID: <strong id="receiptBookingId">NTL-94821</strong></p>
+                </div>
+                <button class="btn-close-modal" onclick="closeBookingModal()">&times;</button>
+            </div>
+            <div class="modal-body receipt-body">
+                <div class="receipt-box">
+                    <div class="receipt-row">
+                        <span>Passenger Name:</span>
+                        <strong id="receiptName">Priyanshu Kumar</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Contact Number:</span>
+                        <strong id="receiptPhone">+91 9876543210</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Email Address:</span>
+                        <strong id="receiptEmail">priyanshu@gmail.com</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Selected Vehicle:</span>
+                        <strong id="receiptVehicle">Maruti Dzire / Etios</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Pickup Location:</span>
+                        <strong id="receiptPickup">Mallital (Nainital)</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Destination / Tour:</span>
+                        <strong id="receiptDestination">Nainital Sightseeing (Full Day)</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Pickup Date & Time:</span>
+                        <strong id="receiptDateTime">2026-10-15 at 09:30 AM</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Tour Duration:</span>
+                        <strong id="receiptDuration">1 Day (Same Day)</strong>
+                    </div>
+                    <div class="receipt-email-status" id="receiptEmailStatus">
+                        <span>📧 Notification Status:</span>
+                        <strong id="emailStatusBadge" style="color: #059669;">Dispatched to Owner's WhatsApp & Gmail</strong>
+                    </div>
+                    <hr>
+                    <div class="receipt-row total-row">
+                        <span>Estimated Fare:</span>
+                        <strong class="receipt-total" id="receiptFare">₹1,800</strong>
+                    </div>
+                </div>
+
+                <div class="receipt-note" style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 12px 16px; margin: 16px 0;">
+                    <p style="margin: 0; font-size: 0.88rem; color: #166534;">
+                        📱 <strong>Instant Alert Dispatched:</strong> Your booking details have been registered. The owner (Priyanshu Kumar) has been notified on WhatsApp (<strong>+91 9456168611</strong>) & Gmail (<strong>priyanshukumar9916@gmail.com</strong>).
+                    </p>
+                </div>
+
+                <div class="modal-receipt-actions">
+                    <a id="btnSendWhatsApp" href="https://wa.me/919456168611" target="_blank" class="btn-whatsapp-confirm" style="background: #25d366; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-size: 1.05rem; padding: 14px 20px; border-radius: 10px; color: white;">
+                        💬 Confirm on WhatsApp (+91 9456168611) →
+                    </a>
+                    
+                    <div class="secondary-receipt-actions" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                        <a id="btnSendEmailFallback" href="mailto:priyanshukumar9916@gmail.com" class="btn-print-receipt" style="text-decoration: none; text-align: center; flex: 1; min-width: 140px; background: #ea4335; color: white; border: none; font-weight: 600; padding: 10px 14px; border-radius: 8px;">
+                            ✉️ Send via Gmail
+                        </a>
+                        <a href="tel:9456168611" class="btn-print-receipt" style="text-decoration: none; text-align: center; flex: 1; min-width: 140px; background: #0284c7; color: white; border: none; font-weight: 600; padding: 10px 14px; border-radius: 8px;">
+                            📞 Call Priyanshu
+                        </a>
+                        <button class="btn-print-receipt" onclick="window.print()" style="flex: 1; min-width: 120px;">🖨️ Print Slip</button>
+                        <button class="btn-done-receipt" onclick="closeBookingModal()" style="flex: 1; min-width: 100px;">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: ADMIN / DRIVER BOOKING MANAGER DASHBOARD ================= -->
+    <div class="modal-backdrop" id="adminBookingsModal" onclick="closeAdminModal(event)">
+        <div class="modal-container admin-dashboard-content" onclick="event.stopPropagation()">
+            <div class="modal-header admin-header">
+                <div>
+                    <h3>🔐 Admin & Driver Booking Dashboard</h3>
+                    <p>Real-time customer ride bookings, Gmail alerts & WhatsApp response manager</p>
+                </div>
+                <button class="btn-close-modal" onclick="closeAdminModal()">&times;</button>
+            </div>
+            <div class="modal-body admin-body">
+                <!-- Owner Gmail Notification Settings Box -->
+                <div class="admin-settings-box" style="margin-bottom: 12px; background: #eff6ff; border-color: #bfdbfe;">
+                    <div class="settings-title">
+                        <span>📧 <strong>Owner Gmail Notification Address</strong></span>
+                        <small style="color: var(--text-muted); display: block;">All car & bike booking details will be sent to this Gmail inbox.</small>
+                    </div>
+                    <div class="settings-input-group">
+                        <input type="email" id="adminEmailInput" placeholder="Enter Gmail (e.g. yourname@gmail.com)" class="admin-input-phone" style="flex: 2;">
+                        <button class="btn-save-phone" onclick="saveAdminEmail()" style="background: #2563eb;">💾 Save Gmail</button>
+                    </div>
+                </div>
+
+                <!-- Owner WhatsApp Notification Settings Box -->
+                <div class="admin-settings-box">
+                    <div class="settings-title">
+                        <span>📱 <strong>Owner / Driver WhatsApp Number</strong></span>
+                        <small style="color: var(--text-muted); display: block;">Customers will automatically send their 1-click confirmation message to this number.</small>
+                    </div>
+                    <div class="settings-input-group">
+                        <span class="phone-prefix">+91</span>
+                        <input type="tel" id="adminPhoneInput" placeholder="Enter 10-digit mobile number" class="admin-input-phone" maxlength="10">
+                        <button class="btn-save-phone" onclick="saveAdminPhoneNumber()">💾 Save Phone</button>
+                    </div>
+                </div>
+
+                <div class="admin-stats-strip">
+                    <div class="admin-stat-item">
+                        <span class="stat-title">Total Bookings</span>
+                        <strong id="adminTotalCount">0</strong>
+                    </div>
+                    <div class="admin-stat-item">
+                        <span class="stat-title">Pending Confirmation</span>
+                        <strong id="adminPendingCount" style="color: #d97706;">0</strong>
+                    </div>
+                    <button class="btn-test-sound" onclick="playBookingChime()" title="Test Alert Sound">🔔 Test Sound</button>
+                    <button class="btn-clear-bookings" onclick="clearAllBookings()">🗑️ Clear History</button>
+                </div>
+
+                <div class="admin-bookings-list" id="adminBookingsList">
+                    <div class="no-bookings-msg">No ride bookings yet. Fill the booking form to see live requests here!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Admin Trigger Button (Bottom Left) -->
+    <button class="btn-floating-admin" onclick="openAdminModal()" title="View Received Bookings Dashboard">
+        <span>📋</span>
+        <span class="admin-btn-label">Bookings (<span id="floatingBookingBadge">0</span>)</span>
+    </button>
+
+    <!-- Toast Notification Popup -->
+    <div id="toast" class="toast-popup">
+        <span class="toast-icon">ℹ️</span>
+        <span class="toast-text" id="toastMessage">Welcome to FindNainital!</span>
+    </div>
+
+    <!-- Main Unified JavaScript Logic -->
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby Hill Stations & Excursions | FindNainital (NTL)</title>
+    <meta name="description" content="Explore scenic day trips and weekend hill stations near Nainital including Bhimtal, Sattal, Naukuchiatal, Mukteshwar, Almora, Ranikhet, and Ramgarh.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-left">
+                <span>📍 <strong>Live Weather:</strong> 16°C | Pleasant & Clear Skies in Nainital</span>
+            </div>
+            <div class="top-bar-right">
+                <span>📞 24x7 Tourist Helpline: <a href="tel:1364">1364</a></span>
+                <span>🚨 Emergency Cabs: <a href="tel:9456168611">+91 9456168611</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">N</span>
+                <div class="logo-text">
+                    <strong>FindNainital</strong>
+                    <small>NTL Tourism Guide</small>
+                </div>
+            </a>
+
+            <div class="header-search">
+                <input type="text" id="globalSearchInput" placeholder="Search places, rides, hotels, temples..." oninput="handleGlobalSearch(event)">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+                <a href="services.html" class="nav-link" onclick="closeMenu()">⚡ All Functions</a>
+                <a href="booking.html" class="nav-link" onclick="closeMenu()">🚗 Rides & Booking</a>
+                <a href="places.html" class="nav-link" onclick="closeMenu()">Places</a>
+                <a href="hidden-places.html" class="nav-link" onclick="closeMenu()">💎 Hidden Places</a>
+                <a href="tracking.html" class="nav-link" onclick="closeMenu()">🧭 Live Tracking</a>
+                <a href="temples.html" class="nav-link" onclick="closeMenu()">Temples</a>
+                <a href="hotels.html" class="nav-link" onclick="closeMenu()">Hotels</a>
+                <a href="food.html" class="nav-link" onclick="closeMenu()">Food & Cafes</a>
+                <a href="activities.html" class="nav-link" onclick="closeMenu()">Boating & Fun</a>
+                <a href="planner.html" class="nav-link" onclick="closeMenu()">Planner</a>
+                <a href="nearby.html" class="nav-link active" onclick="closeMenu()">Nearby</a>
+                <a href="contact.html" class="nav-link" onclick="closeMenu()">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="booking.html" class="btn-book-nav">🚗 Book a Ride</a>
+                <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleMenu()"></div>
+
+    <!-- Page Banner -->
+    <div style="background: linear-gradient(135deg, #15803d 0%, #16a34a 50%, #22c55e 100%); color: white; padding: 45px 0 35px; text-align: center;">
+        <div class="container">
+            <span style="background: rgba(255,255,255,0.2); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; color: #dcfce7;">KUMAON HIMALAYAN EXCURSIONS</span>
+            <h1 style="color: white; font-size: 2.4rem; margin: 12px 0 8px;">🌄 Nearby Hill Stations & Day Trips</h1>
+            <p style="color: #f0fdf4; max-width: 680px; margin: 0 auto; font-size: 1rem;">Extend your holiday beyond Nainital and discover tranquil lake districts, apple orchard valleys, and snow peak panoramas.</p>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="nearby-section section-padding" style="background: #f8fafc;">
+        <div class="container">
+            
+            <div class="section-header" style="margin-bottom: 35px;">
+                <span class="section-tag" style="background: #dcfce7; color: #15803d;">TOP OUTSTATION DESTINATIONS</span>
+                <h2>Scenic Gateways Within Short Driving Distance</h2>
+                <p>All destinations are easily accessible by private cabs and rental bikes from FindNainital.</p>
+            </div>
+
+            <!-- Nearby Cards Grid -->
+            <div class="places-cards-grid">
+
+                <!-- Excursion 1: Bhimtal -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Bhimtal Lake" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #0284c7;">Largest Lake in Kumaon</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 22 km (45 Mins Drive)</span>
+                            <span>🏔️ Altitude: 1,370 m</span>
+                        </div>
+                        <h3>Bhimtal Lake & Island</h3>
+                        <p>Named after the Mahabharata legend Bhima. Boasts a charming island in the center with an aquarium cafe reachable by boat. Less crowded and larger than Naini Lake.</p>
+                        
+                        <div class="place-features">
+                            <span>🏝️ Island Aquarium Cafe</span>
+                            <span>🚣 Boating & Zorbing</span>
+                            <span>🧱 1883 Victorian Masonry Dam</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Bhimtal Lake', 29.3480, 79.5540, 'Bhimtal, Nainital District, Uttarakhand 263136')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹1,400)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Excursion 2: Sattal -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=800&q=80" alt="Sattal Seven Lakes" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #059669;">Pristine Nature</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 24 km (50 Mins Drive)</span>
+                            <span>🏔️ Altitude: 1,370 m</span>
+                        </div>
+                        <h3>Sattal (Cluster of 7 Lakes)</h3>
+                        <p>An idyllic interconnected cluster of 7 natural freshwater lakes (Ram, Sita, Laxman, Panna, Nal-Damyanti, Sukha, Garud Tal) enveloped by dense oak and pine woods.</p>
+                        
+                        <div class="place-features">
+                            <span>🚣 Kayaking & Rafting</span>
+                            <span>⛺ Forest Camping</span>
+                            <span>🦋 Butterfly Museum</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Sattal Lakes', 29.3510, 79.5310, 'Sattal, Bhimtal, Uttarakhand 263136')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹1,600)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Excursion 3: Naukuchiatal -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?auto=format&fit=crop&w=800&q=80" alt="Naukuchiatal Lake" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #ea580c;">Nine-Cornered Lake</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 26 km (55 Mins Drive)</span>
+                            <span>🏔️ Altitude: 1,220 m</span>
+                        </div>
+                        <h3>Naukuchiatal (Lake of 9 Corners)</h3>
+                        <p>The deepest lake in the region with 9 distinct corners. Legend says anyone who sees all 9 corners from one spot attains enlightenment. Famous for tandem paragliding.</p>
+                        
+                        <div class="place-features">
+                            <span>🪂 Paragliding Flights</span>
+                            <span>🎣 Angling & Yachting</span>
+                            <span>🌿 Peaceful Valley Slopes</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Naukuchiatal Lake', 29.3170, 79.5820, 'Naukuchiatal, Bhimtal, Uttarakhand 263136')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹1,600)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Excursion 4: Mukteshwar -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Mukteshwar Valley" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #7c2d12;">Apple Orchards & Peaks</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 50 km (1.5 Hrs Drive)</span>
+                            <span>🏔️ Altitude: 2,312 m</span>
+                        </div>
+                        <h3>Mukteshwar & Chauli Ki Jali</h3>
+                        <p>A hilltop paradise offering unhindered 180-degree Himalayan views from Nanda Devi to Trishul. Famous for apple and peach orchards, 350-yr Shiva Temple, and Chauli Ki Jali cliff.</p>
+                        
+                        <div class="place-features">
+                            <span>🧗 Rock Rappelling</span>
+                            <span>🍎 Apple & Plum Orchards</span>
+                            <span>🏔️ Majestic Snow Peaks</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Mukteshwar', 29.4722, 79.6480, 'Mukteshwar, Uttarakhand 263138')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Day Cab (₹2,800)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Excursion 5: Almora & Kasar Devi -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Almora Hill Town" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #9333ea;">Cultural Capital</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 66 km (2.5 Hrs Drive)</span>
+                            <span>🏔️ Altitude: 1,638 m</span>
+                        </div>
+                        <h3>Almora & Kasar Devi Temple</h3>
+                        <p>The cultural heart of Kumaon. Kasar Devi on Crank's Ridge is located within a geomagnetic cosmic radiation field (like Machu Picchu and Stonehenge), celebrated for deep meditation.</p>
+                        
+                        <div class="place-features">
+                            <span>🧘 Cosmic Energy Field</span>
+                            <span>🍬 Authentic Bal Mithai</span>
+                            <span>🏛️ Heritage Cobblestone Streets</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Kasar Devi Temple Almora', 29.6380, 79.6640, 'Kasar Devi, Almora, Uttarakhand 263601')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Outstation Cab (₹3,500)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Excursion 6: Ranikhet (Queen's Meadow) -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" alt="Ranikhet Golf Course" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #15803d;">Cantonment Charm</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 60 km (2.2 Hrs Drive)</span>
+                            <span>🏔️ Altitude: 1,869 m</span>
+                        </div>
+                        <h3>Ranikhet (Queen's Meadow)</h3>
+                        <p>Serene cantonment hill station founded by the British. Features the 9-hole Asia's highest natural Golf Course, Chaubatia fruit gardens, and Kumaon Regimental Centre Museum.</p>
+                        
+                        <div class="place-features">
+                            <span>⛳ 9-Hole Golf Grounds</span>
+                            <span>🌲 Chaubatia Fruit Gardens</span>
+                            <span>🎖️ KRC Army Heritage</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Ranikhet Golf Course', 29.6430, 79.4260, 'Ranikhet, Almora District, Uttarakhand 263645')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Outstation Cab (₹3,200)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <div class="logo">
+                    <span class="logo-icon">N</span>
+                    <div class="logo-text">
+                        <strong>FindNainital</strong>
+                        <small>NTL Tourism Guide</small>
+                    </div>
+                </div>
+                <p>Uttarakhand Tourism Assistance & Vehicle Booking Portal. Built with dedication for travelers exploring the Lake District of India.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home Hub</a></li>
+                    <li><a href="booking.html">🚗 Car & Bike Booking</a></li>
+                    <li><a href="places.html">📍 Sightseeing Places</a></li>
+                    <li><a href="hidden-places.html">💎 Hidden Spots</a></li>
+                    <li><a href="temples.html">🛕 Temples & Pilgrimage</a></li>
+                    <li><a href="tracking.html">🧭 Live GPS Tracker</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services & Support</h4>
+                <ul>
+                    <li><a href="hotels.html">🏨 Hotels & Stays</a></li>
+                    <li><a href="food.html">🍴 Food & Cafes</a></li>
+                    <li><a href="activities.html">🚣 Boating & Fun</a></li>
+                    <li><a href="planner.html">🗺️ Trip Planner</a></li>
+                    <li><a href="nearby.html">🌄 Nearby Destinations</a></li>
+                    <li><a href="contact.html">📞 24x7 Helpline</a></li>
+                    <li><a href="admin.html">🛠️ Admin Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Emergency Contact</h4>
+                <p>📍 Mallital / Tallital, Nainital, Uttarakhand 263001</p>
+                <p>📞 Helpline: <a href="tel:1364">1364</a> | <a href="tel:9456168611">+91 9456168611</a></p>
+                <p>✉️ <a href="mailto:priyanshukumar9916@gmail.com">priyanshukumar9916@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>© 2026 FindNainital (NTL). Developed by <strong>Priyanshu Kumar</strong>, Uttarakhand Government Institute of Polytechnic, Nainital.</p>
+                <div class="footer-links">
+                    <a href="index.html">Privacy</a>
+                    <a href="contact.html">Support</a>
+                    <a href="admin.html">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GPS Map Modal -->
+    <div class="map-modal-backdrop" id="mapModalBackdrop" onclick="closeMapModal(event)">
+        <div class="map-modal-card" onclick="event.stopPropagation()">
+            <div class="map-modal-header">
+                <div>
+                    <h3 id="modalPlaceTitle">Location Tracker</h3>
+                    <p id="modalPlaceAddress" style="font-size: 0.85rem; color: #64748b; margin: 0;">Nainital, Uttarakhand</p>
+                </div>
+                <button class="modal-close-btn" onclick="closeMapModal(event)">✕</button>
+            </div>
+            <div class="map-modal-body">
+                <div class="map-coordinates-bar">
+                    <span>GPS Coordinates: <strong id="modalCoordinatesText">29.3803° N, 79.4636° E</strong></span>
+                    <span class="badge-live-gps">● Satellite Linked</span>
+                </div>
+                <div class="map-embed-wrapper" id="modalMapFrameHolder">
+                    <!-- Map dynamically inserted by script.js -->
+                </div>
+            </div>
+            <div class="map-modal-footer">
+                <button class="btn-open-gmaps" id="modalGmapsBtn" onclick="window.open(this.dataset.url, '_blank')">
+                    🗺️ Open in Google Maps App
+                </button>
+                <button class="btn-modal-book" onclick="bookCabFromModal()">
+                    🚗 Dispatch Cab to This Place
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

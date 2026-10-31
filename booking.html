@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car & Bike Rental Booking | FindNainital (NTL)</title>
+    <meta name="description" content="Book cabs, taxis, self-drive bikes, Royal Enfield & scooties in Nainital. Instant fare calculator, transparent rates, and direct Gmail & WhatsApp booking.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-left">
+                <span>📍 <strong>Live Weather:</strong> 16°C | Pleasant & Clear Skies in Nainital</span>
+            </div>
+            <div class="top-bar-right">
+                <span>📞 24x7 Tourist Helpline: <a href="tel:1364">1364</a></span>
+                <span>🚨 Emergency Cabs & Rides: <a href="tel:9456168611">+91 9456168611</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">N</span>
+                <div class="logo-text">
+                    <strong>FindNainital</strong>
+                    <small>FindNainital. Your Way.</small>
+                </div>
+            </a>
+
+            <!-- Search Quick Bar -->
+            <div class="header-search">
+                <input type="text" id="globalSearchInput" placeholder="Search places, rides, hotels, temples..." oninput="handleGlobalSearch(event)">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+                <a href="services.html" class="nav-link" onclick="closeMenu()">⚡ All Functions</a>
+                <a href="booking.html" class="nav-link active" onclick="closeMenu()">🚗 Rides & Booking</a>
+                <a href="places.html" class="nav-link" onclick="closeMenu()">Places</a>
+                <a href="hidden-places.html" class="nav-link" onclick="closeMenu()">💎 Hidden Places</a>
+                <a href="tracking.html" class="nav-link" onclick="closeMenu()">🧭 Live Tracking</a>
+                <a href="temples.html" class="nav-link" onclick="closeMenu()">Temples</a>
+                <a href="hotels.html" class="nav-link" onclick="closeMenu()">Hotels</a>
+                <a href="food.html" class="nav-link" onclick="closeMenu()">Food & Cafes</a>
+                <a href="activities.html" class="nav-link" onclick="closeMenu()">Boating & Fun</a>
+                <a href="planner.html" class="nav-link" onclick="closeMenu()">Planner</a>
+                <a href="nearby.html" class="nav-link" onclick="closeMenu()">Nearby</a>
+                <a href="contact.html" class="nav-link" onclick="closeMenu()">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="booking.html" class="btn-book-nav">🚗 Book a Ride</a>
+                <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleMenu()"></div>
+
+    <!-- Page Header Banner -->
+    <div style="background: linear-gradient(135deg, #07251f 0%, #0d3b32 100%); color: white; padding: 45px 0 35px; text-align: center;">
+        <div class="container">
+            <span style="background: rgba(255,255,255,0.15); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; color: #ffd1a8;">VERIFIED FLEET & TRANSPARENT PRICING</span>
+            <h1 style="color: white; font-size: 2.4rem; margin: 12px 0 8px;">Car & Bike Rentals in Nainital</h1>
+            <p style="color: #cbd5e1; max-width: 650px; margin: 0 auto; font-size: 1rem;">Choose between self-drive bikes/scooters or chauffeured cabs for local sightseeing, Kainchi Dham, and outstation trips.</p>
+        </div>
+    </div>
+
+    <!-- Main Booking Section -->
+    <section class="booking-section section-padding" style="padding-top: 40px;">
+        <div class="container">
+            <div class="booking-wrapper">
+                <!-- Left: Booking Form -->
+                <div class="booking-form-card">
+                    <!-- Vehicle Type Tabs -->
+                    <div class="vehicle-tabs">
+                        <button class="v-tab active" id="tabCar" onclick="switchVehicleTab('car')">
+                            🚗 Car / Cab Rental
+                        </button>
+                        <button class="v-tab" id="tabBike" onclick="switchVehicleTab('bike')">
+                            🏍️ Bike & Scooty
+                        </button>
+                    </div>
+
+                    <form id="vehicleBookingForm" onsubmit="handleVehicleBooking(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="pickupLocation">📍 Pickup Location</label>
+                                <select id="pickupLocation" required onchange="calculateEstimatedFare()">
+                                    <option value="">Select Pickup Spot</option>
+                                    <option value="Mallital (Nainital)">Mallital (Nainital)</option>
+                                    <option value="Tallital Bus Stand (Nainital)">Tallital Bus Stand (Nainital)</option>
+                                    <option value="Kathgodam Railway Station">Kathgodam Railway Station (35 km)</option>
+                                    <option value="Pantnagar Airport">Pantnagar Airport (70 km)</option>
+                                    <option value="Bhimtal">Bhimtal</option>
+                                    <option value="Custom Hotel Pickup">My Hotel / Resort</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dropDestination">🏁 Trip Type / Destination</label>
+                                <select id="dropDestination" required onchange="calculateEstimatedFare()">
+                                    <option value="">Select Destination / Package</option>
+                                    <option value="Nainital Local Sightseeing (Full Day 8 Hrs)">Nainital Local Sightseeing (8 Hrs)</option>
+                                    <option value="Kainchi Dham Darshan (Neem Karoli Ashram)">Kainchi Dham Darshan (Round Trip)</option>
+                                    <option value="Lake Tour (Bhimtal, Sattal, Naukuchiatal)">Lake Tour (Bhimtal, Sattal, Naukuchiatal)</option>
+                                    <option value="Mukteshwar Sightseeing Day Trip">Mukteshwar Day Trip (Chauli Ki Jali)</option>
+                                    <option value="Kathgodam Drop / Pickup">Kathgodam Station Drop / Pickup</option>
+                                    <option value="24 Hours Self-Drive Rental">24 Hours Daily Rental</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-grid three-col">
+                            <div class="form-group">
+                                <label for="bookingDate">📅 Pickup Date</label>
+                                <input type="date" id="bookingDate" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bookingTime">⏰ Pickup Time</label>
+                                <input type="time" id="bookingTime" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tourDuration">⏳ Tour Duration</label>
+                                <select id="tourDuration" onchange="calculateEstimatedFare()">
+                                    <option value="1" selected>1 Day (Same Day)</option>
+                                    <option value="2">2 Days Tour</option>
+                                    <option value="3">3 Days Tour</option>
+                                    <option value="4">4 Days Tour</option>
+                                    <option value="5">5 Days Tour</option>
+                                    <option value="7">7 Days (Full Week)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Vehicle and Passengers Grid -->
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="vehicleModel">🚘 Selected Vehicle Model</label>
+                                <select id="vehicleModel" required onchange="calculateEstimatedFare()">
+                                    <option value="Maruti Dzire / Etios (Sedan)" data-base="1800">Maruti Dzire / Etios (AC Sedan - 4 Seater) • ₹1,800/day</option>
+                                    <option value="Maruti Ertiga (6 Seater)" data-base="2600">Maruti Ertiga (AC MUV - 6 Seater) • ₹2,600/day</option>
+                                    <option value="Toyota Innova Crysta (Luxury)" data-base="3800">Toyota Innova Crysta (Luxury SUV - 7 Seater) • ₹3,800/day</option>
+                                    <option value="Mahindra Thar 4x4 (Offroad)" data-base="4500">Mahindra Thar 4x4 (Mountain Explorer) • ₹4,500/day</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="passengerCount" id="passengersLabel">👥 Passengers</label>
+                                <select id="passengerCount" onchange="calculateEstimatedFare()">
+                                    <option value="1">1 Person</option>
+                                    <option value="2">2 Persons</option>
+                                    <option value="4" selected>4 Persons</option>
+                                    <option value="6">6-7 Persons (SUV)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- User Contact Info (Name, Phone, Email) -->
+                        <div class="form-grid three-col">
+                            <div class="form-group">
+                                <label for="customerName">👤 Your Full Name</label>
+                                <input type="text" id="customerName" placeholder="e.g. Priyanshu Kumar" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerPhone">📞 Phone Number</label>
+                                <input type="tel" id="customerPhone" placeholder="e.g. 9876543210" pattern="[0-9]{10}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerEmail">✉️ Email (for Confirmation)</label>
+                                <input type="email" id="customerEmail" placeholder="e.g. your@gmail.com" required>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Fare Estimation Bar -->
+                        <div class="fare-estimation-box">
+                            <div class="fare-details">
+                                <span class="fare-label">Estimated Total Fare:</span>
+                                <span class="fare-price" id="estimatedFareText">₹1,800</span>
+                            </div>
+                            <small class="fare-note">✓ Fuel included • Driver allowance included • Calculated for selected tour days</small>
+                        </div>
+
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 15px;">
+                            <button type="submit" class="btn-submit-booking" id="btnSubmitBooking" style="flex: 1.2; min-width: 240px;">
+                                <span>🚀 Confirm Booking & Dispatch Alerts</span>
+                                <span class="btn-arrow">→</span>
+                            </button>
+                            <button type="button" class="btn-submit-booking" onclick="quickBookOnWhatsApp()" style="background: #25d366; color: white; flex: 1; min-width: 220px; border-color: #1eb956;" title="Instant WhatsApp Booking to 9456168611">
+                                <span>💬 1-Click WhatsApp Book</span>
+                                <span class="btn-arrow">⚡</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right: Fleet Overview & Features -->
+                <div class="fleet-overview">
+                    <div class="fleet-header">
+                        <h3>⭐ Top Recommended Fleet</h3>
+                        <p>Well-maintained mountain-ready vehicles with verified local drivers.</p>
+                    </div>
+
+                    <div class="fleet-cards-list" id="fleetCardsList">
+                        <!-- Car Cards -->
+                        <div class="mini-fleet-card" onclick="selectFleetModel('Maruti Dzire / Etios (Sedan)')">
+                            <img src="images/taxi_service_1789405107846.jpg" alt="Maruti Dzire Taxi" class="mini-fleet-thumb">
+                            <div class="mini-fleet-info">
+                                <h4>Maruti Dzire / Etios</h4>
+                                <span>4 Seats • AC • Best for Nainital Local & Sightseeing</span>
+                            </div>
+                            <div class="mini-fleet-price">₹1,800<small>/day</small></div>
+                        </div>
+
+                        <div class="mini-fleet-card" onclick="selectFleetModel('Toyota Innova Crysta (Luxury)')">
+                            <img src="images/taxi_service_1789405107846.jpg" alt="Innova Crysta Taxi" class="mini-fleet-thumb">
+                            <div class="mini-fleet-info">
+                                <h4>Innova Crysta Luxury</h4>
+                                <span>7 Seats • Spacious • Hill specialized driver</span>
+                            </div>
+                            <div class="mini-fleet-price">₹3,800<small>/day</small></div>
+                        </div>
+
+                        <div class="mini-fleet-card" onclick="selectFleetModel('Royal Enfield Classic 350')">
+                            <img src="images/bike_rental_1789405078146.jpg" alt="Royal Enfield Rental Nainital" class="mini-fleet-thumb">
+                            <div class="mini-fleet-info">
+                                <h4>Royal Enfield Classic 350</h4>
+                                <span>Self-drive • 2 Helmets included • Hill beast</span>
+                            </div>
+                            <div class="mini-fleet-price">₹1,200<small>/day</small></div>
+                        </div>
+
+                        <div class="mini-fleet-card" onclick="selectFleetModel('Honda Activa 6G')">
+                            <img src="images/bike_rental_1789405078146.jpg" alt="Honda Activa Rental Nainital" class="mini-fleet-thumb">
+                            <div class="mini-fleet-info">
+                                <h4>Honda Activa 6G</h4>
+                                <span>Easy ride • Automatic • Perfect for Mall Road & Lake</span>
+                            </div>
+                            <div class="mini-fleet-price">₹600<small>/day</small></div>
+                        </div>
+                    </div>
+
+                    <!-- Safety Badges -->
+                    <div class="booking-trust-badges">
+                        <div class="trust-badge">🛡️ Verified Hill Drivers</div>
+                        <div class="trust-badge">💬 Instant WhatsApp: +91 9456168611</div>
+                        <div class="trust-badge">📧 Alerts to priyanshukumar9916@gmail.com</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal: Confirmation Receipt -->
+    <div class="modal-backdrop" id="bookingConfirmationModal" onclick="closeBookingModal(event)">
+        <div class="modal-container booking-receipt-content" onclick="event.stopPropagation()">
+            <div class="modal-header success-header">
+                <div class="success-icon-badge">✓</div>
+                <div>
+                    <h3>Booking Request Confirmed!</h3>
+                    <p>Booking ID: <strong id="receiptBookingId">NTL-94821</strong></p>
+                </div>
+                <button class="btn-close-modal" onclick="closeBookingModal()">&times;</button>
+            </div>
+            <div class="modal-body receipt-body">
+                <div class="receipt-box">
+                    <div class="receipt-row">
+                        <span>Passenger Name:</span>
+                        <strong id="receiptName">Priyanshu Kumar</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Contact Number:</span>
+                        <strong id="receiptPhone">+91 9876543210</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Email Address:</span>
+                        <strong id="receiptEmail">priyanshu@gmail.com</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Selected Vehicle:</span>
+                        <strong id="receiptVehicle">Maruti Dzire / Etios</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Pickup Location:</span>
+                        <strong id="receiptPickup">Mallital (Nainital)</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Destination / Tour:</span>
+                        <strong id="receiptDestination">Nainital Sightseeing (Full Day)</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Pickup Date & Time:</span>
+                        <strong id="receiptDateTime">2026-10-15 at 09:30 AM</strong>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Tour Duration:</span>
+                        <strong id="receiptDuration">1 Day (Same Day)</strong>
+                    </div>
+                    <div class="receipt-email-status" id="receiptEmailStatus">
+                        <span>📧 Notification Status:</span>
+                        <strong id="emailStatusBadge" style="color: #059669;">Dispatched to Owner's WhatsApp & Gmail</strong>
+                    </div>
+                    <hr>
+                    <div class="receipt-row total-row">
+                        <span>Estimated Fare:</span>
+                        <strong class="receipt-total" id="receiptFare">₹1,800</strong>
+                    </div>
+                </div>
+
+                <div class="receipt-note" style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 12px 16px; margin: 16px 0;">
+                    <p style="margin: 0; font-size: 0.88rem; color: #166534;">
+                        📱 <strong>Instant Alert Dispatched:</strong> Your booking details have been registered. The owner (Priyanshu Kumar) has been notified on WhatsApp (<strong>+91 9456168611</strong>) & Gmail (<strong>priyanshukumar9916@gmail.com</strong>).
+                    </p>
+                </div>
+
+                <div class="modal-receipt-actions">
+                    <a id="btnSendWhatsApp" href="https://wa.me/919456168611" target="_blank" class="btn-whatsapp-confirm" style="background: #25d366; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-size: 1.05rem; padding: 14px 20px; border-radius: 10px; color: white;">
+                        💬 Confirm on WhatsApp (+91 9456168611) →
+                    </a>
+                    
+                    <div class="secondary-receipt-actions" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                        <a id="btnSendEmailFallback" href="mailto:priyanshukumar9916@gmail.com" class="btn-print-receipt" style="text-decoration: none; text-align: center; flex: 1; min-width: 140px; background: #ea4335; color: white; border: none; font-weight: 600; padding: 10px 14px; border-radius: 8px;">
+                            ✉️ Send via Gmail
+                        </a>
+                        <a href="tel:9456168611" class="btn-print-receipt" style="text-decoration: none; text-align: center; flex: 1; min-width: 140px; background: #0284c7; color: white; border: none; font-weight: 600; padding: 10px 14px; border-radius: 8px;">
+                            📞 Call Priyanshu
+                        </a>
+                        <button class="btn-print-receipt" onclick="window.print()" style="flex: 1; min-width: 120px;">🖨️ Print Slip</button>
+                        <button class="btn-done-receipt" onclick="closeBookingModal()" style="flex: 1; min-width: 100px;">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Admin Dashboard -->
+    <div class="modal-backdrop" id="adminBookingsModal" onclick="closeAdminModal(event)">
+        <div class="modal-container admin-dashboard-content" onclick="event.stopPropagation()">
+            <div class="modal-header admin-header">
+                <div>
+                    <h3>🔐 Admin & Driver Booking Dashboard</h3>
+                    <p>Real-time customer ride bookings, Gmail alerts & WhatsApp response manager</p>
+                </div>
+                <button class="btn-close-modal" onclick="closeAdminModal()">&times;</button>
+            </div>
+            <div class="modal-body admin-body">
+                <!-- Owner Gmail Notification Settings Box -->
+                <div class="admin-settings-box" style="margin-bottom: 12px; background: #eff6ff; border-color: #bfdbfe;">
+                    <div class="settings-title">
+                        <span>📧 <strong>Owner Gmail Notification Address</strong></span>
+                        <small style="color: var(--text-muted); display: block;">All car & bike booking details (Pick-up date, location, duration, fare) will be sent straight to this Gmail inbox.</small>
+                    </div>
+                    <div class="settings-input-group">
+                        <input type="email" id="adminEmailInput" placeholder="Enter your Gmail (e.g. yourname@gmail.com)" class="admin-input-phone" style="flex: 2;">
+                        <button class="btn-save-phone" onclick="saveAdminEmail()" style="background: #2563eb;">💾 Save Gmail</button>
+                        <button class="btn-test-sound" onclick="testAdminEmail()" style="background: #ffffff; border-color: #93c5fd;">🧪 Test Email</button>
+                    </div>
+                </div>
+
+                <!-- Owner WhatsApp Notification Settings Box -->
+                <div class="admin-settings-box">
+                    <div class="settings-title">
+                        <span>📱 <strong>Owner / Driver WhatsApp Number</strong></span>
+                        <small style="color: var(--text-muted); display: block;">Customers will automatically send their 1-click confirmation message to this WhatsApp number.</small>
+                    </div>
+                    <div class="settings-input-group">
+                        <span class="phone-prefix">+91</span>
+                        <input type="tel" id="adminPhoneInput" placeholder="Enter 10-digit mobile number" class="admin-input-phone" maxlength="10">
+                        <button class="btn-save-phone" onclick="saveAdminPhoneNumber()">💾 Save Phone</button>
+                    </div>
+                </div>
+
+                <div class="admin-stats-strip">
+                    <div class="admin-stat-item">
+                        <span class="stat-title">Total Bookings</span>
+                        <strong id="adminTotalCount">0</strong>
+                    </div>
+                    <div class="admin-stat-item">
+                        <span class="stat-title">Pending Confirmation</span>
+                        <strong id="adminPendingCount" style="color: #d97706;">0</strong>
+                    </div>
+                    <button class="btn-test-sound" onclick="playBookingChime()" title="Test Notification Sound">🔔 Test Alert Sound</button>
+                    <button class="btn-clear-bookings" onclick="clearAllBookings()">🗑️ Clear History</button>
+                </div>
+
+                <div class="admin-bookings-list" id="adminBookingsList">
+                    <div class="no-bookings-msg">No ride bookings yet. Fill the booking form to see live requests here!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Admin Trigger Button -->
+    <button class="btn-floating-admin" onclick="openAdminModal()" title="View Received Bookings Dashboard">
+        <span>📋</span>
+        <span class="admin-btn-label">Bookings (<span id="floatingBookingBadge">0</span>)</span>
+    </button>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <div class="mobile-bottom-bar">
+        <a href="index.html" class="m-bar-btn">
+            <span class="m-bar-icon">🏠</span>
+            <span class="m-bar-label">Home</span>
+        </a>
+        <a href="booking.html" class="m-bar-btn active">
+            <span class="m-bar-icon">🚗</span>
+            <span class="m-bar-label">Rides</span>
+        </a>
+        <a href="places.html" class="m-bar-btn">
+            <span class="m-bar-icon">📍</span>
+            <span class="m-bar-label">Places</span>
+        </a>
+        <a href="hidden-places.html" class="m-bar-btn">
+            <span class="m-bar-icon">💎</span>
+            <span class="m-bar-label">Hidden</span>
+        </a>
+        <a href="tracking.html" class="m-bar-btn">
+            <span class="m-bar-icon">🧭</span>
+            <span class="m-bar-label">Track</span>
+        </a>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast-popup">
+        <span class="toast-icon">ℹ️</span>
+        <span class="toast-text" id="toastMessage">Welcome to FindNainital!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="footer-logo">
+                    <span class="logo-icon">N</span>
+                    <div>
+                        <strong>FindNainital</strong>
+                        <small>“FindNainital. Your Way.”</small>
+                    </div>
+                </a>
+                <p class="footer-desc">
+                    A comprehensive smart tourism assistance and vehicle booking platform designed to make exploring Nainital and surrounding Kumaon destinations effortless.
+                </p>
+                <div class="academic-credit-box">
+                    <div class="academic-badge">🎓 DIPLOMA FINAL YEAR PROJECT</div>
+                    <p><strong>Developed By:</strong> Priyanshu Kumar (Roll No. 19)</p>
+                    <p><strong>Branch:</strong> Information Technology (IT)</p>
+                    <p><strong>Institute:</strong> Uttarakhand Government Institute of Polytechnic, Nainital</p>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Explore Features</h4>
+                <ul class="footer-links-list">
+                    <li><a href="booking.html">Car & Bike Rentals</a></li>
+                    <li><a href="places.html">Famous Tourist Places</a></li>
+                    <li><a href="hidden-places.html">💎 Hidden Gems of Nainital</a></li>
+                    <li><a href="tracking.html">Live GPS Route Tracking</a></li>
+                    <li><a href="hotels.html">Hotels & Stays</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>More Guides</h4>
+                <ul class="footer-links-list">
+                    <li><a href="temples.html">Sacred Temples & Ashrams</a></li>
+                    <li><a href="food.html">Cafes & Kumaoni Cuisine</a></li>
+                    <li><a href="activities.html">Boating & Adventures</a></li>
+                    <li><a href="planner.html">Smart Trip Planner</a></li>
+                    <li><a href="nearby.html">Nearby Excursions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h4>Emergency Help</h4>
+                <p>🚨 Police Control: <a href="tel:112">112</a></p>
+                <p>🏥 BD Pandey Hospital: <a href="tel:05942235012">05942-235012</a></p>
+                <p>📍 Gov. Polytechnic, Nainital</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>© 2026 FindNainital. All rights reserved. Uttarakhand Tourism Assistance Project.</p>
+                <p>Designed with ❤️ in Nainital, Uttarakhand</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

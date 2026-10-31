@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels, Resorts & Homestays Guide | FindNainital (NTL)</title>
+    <meta name="description" content="Explore and book top hotels, luxury lakeside resorts, budget stays, and peaceful mountain homestays in Nainital with real-time inquiries and verified rates.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-left">
+                <span>📍 <strong>Live Weather:</strong> 16°C | Pleasant & Clear Skies in Nainital</span>
+            </div>
+            <div class="top-bar-right">
+                <span>📞 24x7 Tourist Helpline: <a href="tel:1364">1364</a></span>
+                <span>🚨 Emergency Cabs: <a href="tel:9456168611">+91 9456168611</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">N</span>
+                <div class="logo-text">
+                    <strong>FindNainital</strong>
+                    <small>FindNainital. Your Way.</small>
+                </div>
+            </a>
+
+            <div class="header-search">
+                <input type="text" id="globalSearchInput" placeholder="Search places, rides, hotels, temples..." oninput="handleGlobalSearch(event)">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+                <a href="services.html" class="nav-link" onclick="closeMenu()">⚡ All Functions</a>
+                <a href="booking.html" class="nav-link" onclick="closeMenu()">🚗 Rides & Booking</a>
+                <a href="places.html" class="nav-link" onclick="closeMenu()">Places</a>
+                <a href="hidden-places.html" class="nav-link" onclick="closeMenu()">💎 Hidden Places</a>
+                <a href="tracking.html" class="nav-link" onclick="closeMenu()">🧭 Live Tracking</a>
+                <a href="temples.html" class="nav-link" onclick="closeMenu()">Temples</a>
+                <a href="hotels.html" class="nav-link active" onclick="closeMenu()">Hotels</a>
+                <a href="food.html" class="nav-link" onclick="closeMenu()">Food & Cafes</a>
+                <a href="activities.html" class="nav-link" onclick="closeMenu()">Boating & Fun</a>
+                <a href="planner.html" class="nav-link" onclick="closeMenu()">Planner</a>
+                <a href="nearby.html" class="nav-link" onclick="closeMenu()">Nearby</a>
+                <a href="contact.html" class="nav-link" onclick="closeMenu()">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="booking.html" class="btn-book-nav">🚗 Book a Ride</a>
+                <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleMenu()"></div>
+
+    <!-- Page Banner -->
+    <div style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%); color: white; padding: 45px 0 35px; text-align: center;">
+        <div class="container">
+            <span style="background: rgba(255,255,255,0.2); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; color: #bfdbfe;">VERIFIED STAYS & RESORTS</span>
+            <h1 style="color: white; font-size: 2.4rem; margin: 12px 0 8px;">🏨 Nainital Hotels & Mountain Homestays</h1>
+            <p style="color: #dbeafe; max-width: 680px; margin: 0 auto; font-size: 1rem;">From luxury heritage lakeside retreats to cozy budget mountain homestays with breathtaking Himalayan views.</p>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="hotels-section section-padding" style="background: #f8fafc;">
+        <div class="container">
+            
+            <!-- Category Filter Tabs -->
+            <div class="place-filters">
+                <button class="filter-btn active" onclick="filterHotels('all')">All Stays</button>
+                <button class="filter-btn" onclick="filterHotels('luxury')">⭐ Lakeside Luxury</button>
+                <button class="filter-btn" onclick="filterHotels('budget')">💰 Budget Friendly</button>
+                <button class="filter-btn" onclick="filterHotels('heritage')">🏰 Heritage & Boutique</button>
+                <button class="filter-btn" onclick="filterHotels('homestay')">🏡 Mountain Homestays</button>
+            </div>
+
+            <!-- Hotels Grid -->
+            <div class="places-cards-grid" id="hotelsGrid">
+
+                <!-- Hotel 1: The Manu Maharani -->
+                <div class="place-card" data-category="luxury">
+                    <div class="place-img-holder">
+                        <img src="images/hotel_lakeview_1789405137728.jpg" alt="The Manu Maharani Hotel" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #1d4ed8;">5-Star Luxury</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 Grassmere Estate, Mallital</span>
+                            <span>⭐ 4.8 / 5.0 (1,200+ Reviews)</span>
+                        </div>
+                        <h3>The Manu Maharani Resort</h3>
+                        <p>Premier luxury resort overlooking the scenic valley and Naini Lake. Features olive bar, luxury spa, garden lawn, and world-class hospitality.</p>
+                        
+                        <div class="place-features">
+                            <span>🏊 Spa & Sauna</span>
+                            <span>🍽️ Multi-cuisine Dining</span>
+                            <span>📶 Free High Speed Wi-Fi</span>
+                        </div>
+
+                        <div style="margin: 15px 0 10px; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; color: #64748b;">Starting from</span>
+                            <span style="font-size: 1.3rem; font-weight: 800; color: #0f172a;">₹7,500 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/night</small></span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="inquireHotel('The Manu Maharani', '+915942237342')">
+                                📞 Call & Inquire
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab to Hotel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel 2: The Naini Retreat (Heritage) -->
+                <div class="place-card" data-category="heritage">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="The Naini Retreat Heritage Hotel" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #7c2d12;">Royal Heritage</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 Ayarpatta Slopes</span>
+                            <span>⭐ 4.7 / 5.0 (950+ Reviews)</span>
+                        </div>
+                        <h3>The Naini Retreat Heritage</h3>
+                        <p>Historical royal residence of the Maharaja of Pilibhit at 1,995m. Tudor-style architecture, wood-panelled rooms, roaring fire pits, and colonial grandeur.</p>
+                        
+                        <div class="place-features">
+                            <span>🔥 Roaring Fireplace</span>
+                            <span>🌲 Forest Views</span>
+                            <span>🍷 Heritage Lounge</span>
+                        </div>
+
+                        <div style="margin: 15px 0 10px; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; color: #64748b;">Starting from</span>
+                            <span style="font-size: 1.3rem; font-weight: 800; color: #0f172a;">₹8,200 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/night</small></span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="inquireHotel('The Naini Retreat', '+915942235105')">
+                                📞 Call & Inquire
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab to Hotel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel 3: Shervani Hilltop -->
+                <div class="place-card" data-category="luxury">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80" alt="Shervani Hilltop Resort" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #0284c7;">Mountain Resort</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 Mallital, 2 km from Lake</span>
+                            <span>⭐ 4.6 / 5.0 (820+ Reviews)</span>
+                        </div>
+                        <h3>Shervani Hilltop Resort</h3>
+                        <p>Boutique 4-star mountain lodge surrounded by pine and oak greenery. Offers private balconies, live barbecue sessions, and free Lake shuttle services.</p>
+                        
+                        <div class="place-features">
+                            <span>🍖 Live Garden BBQ</span>
+                            <span>🚐 Free Lake Shuttle</span>
+                            <span>🏓 Activity Zone</span>
+                        </div>
+
+                        <div style="margin: 15px 0 10px; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; color: #64748b;">Starting from</span>
+                            <span style="font-size: 1.3rem; font-weight: 800; color: #0f172a;">₹6,000 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/night</small></span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="inquireHotel('Shervani Hilltop', '+915942236128')">
+                                📞 Call & Inquire
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab to Hotel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel 4: Hotel Lake View & Rest -->
+                <div class="place-card" data-category="budget">
+                    <div class="place-img-holder">
+                        <img src="images/hotel_lakeview_1789405137728.jpg" alt="Hotel Lake View" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #16a34a;">Best Value</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 The Mall Road (Lakeside)</span>
+                            <span>⭐ 4.3 / 5.0 (650+ Reviews)</span>
+                        </div>
+                        <h3>Hotel Lake View Palace</h3>
+                        <p>Conveniently located on Mall Road with direct walking access to Naini Lake boats and evening promenade. Clean rooms, hot geysers, and room service.</p>
+                        
+                        <div class="place-features">
+                            <span>🌊 Direct Lake Front</span>
+                            <span>♨️ 24x7 Hot Water</span>
+                            <span>🛎️ Room Service</span>
+                        </div>
+
+                        <div style="margin: 15px 0 10px; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; color: #64748b;">Starting from</span>
+                            <span style="font-size: 1.3rem; font-weight: 800; color: #0f172a;">₹2,200 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/night</small></span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="inquireHotel('Hotel Lake View', '+919876543210')">
+                                📞 Call & Inquire
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab to Hotel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel 5: Swiss Hotel Nainital -->
+                <div class="place-card" data-category="heritage">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" alt="Swiss Hotel Nainital" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #9333ea;">Colonial Era</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 Mallital, Sukhatal Road</span>
+                            <span>⭐ 4.5 / 5.0 (510+ Reviews)</span>
+                        </div>
+                        <h3>Swiss Hotel (Since 1910)</h3>
+                        <p>One of Nainital's oldest British-era chalets surrounded by quiet gardens. High ceilings, wooden flooring, vintage fireplaces, and home-cooked Kumaoni meals.</p>
+                        
+                        <div class="place-features">
+                            <span>☕ Garden High Tea</span>
+                            <span>🪵 Antique Wooden Decor</span>
+                            <span>🐾 Pet Friendly</span>
+                        </div>
+
+                        <div style="margin: 15px 0 10px; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; color: #64748b;">Starting from</span>
+                            <span style="font-size: 1.3rem; font-weight: 800; color: #0f172a;">₹4,200 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/night</small></span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="inquireHotel('Swiss Hotel', '+915942236049')">
+                                📞 Call & Inquire
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab to Hotel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hotel 6: Pangot Birding Valley Homestay -->
+                <div class="place-card" data-category="homestay">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=800&q=80" alt="Pangot Homestay" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #059669;">Peaceful Nature</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 Pangot Village (15 km)</span>
+                            <span>⭐ 4.9 / 5.0 (340+ Reviews)</span>
+                        </div>
+                        <h3>Pangot Himalayan Homestay</h3>
+                        <p>Authentic Kumaoni stone cottage in the heart of the bird sanctuary. Experience traditional home dining (Bhatt ki Churkani), star gazing, and guided forest trails.</p>
+                        
+                        <div class="place-features">
+                            <span>🍲 Homemade Kumaoni Meals</span>
+                            <span>✨ Stargazing Sky</span>
+                            <span>🥾 Forest Guided Walk</span>
+                        </div>
+
+                        <div style="margin: 15px 0 10px; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; color: #64748b;">Starting from</span>
+                            <span style="font-size: 1.3rem; font-weight: 800; color: #0f172a;">₹2,500 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/night</small></span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="inquireHotel('Pangot Homestay', '+919456168611')">
+                                📞 Call & Inquire
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab to Homestay
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <div class="logo">
+                    <span class="logo-icon">N</span>
+                    <div class="logo-text">
+                        <strong>FindNainital</strong>
+                        <small>FindNainital. Your Way.</small>
+                    </div>
+                </div>
+                <p>Uttarakhand Tourism Assistance & Vehicle Booking Portal. Built with dedication for travelers exploring the Lake District of India.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home Hub</a></li>
+                    <li><a href="booking.html">🚗 Car & Bike Booking</a></li>
+                    <li><a href="places.html">📍 Sightseeing Places</a></li>
+                    <li><a href="hidden-places.html">💎 Hidden Spots</a></li>
+                    <li><a href="temples.html">🛕 Temples & Pilgrimage</a></li>
+                    <li><a href="tracking.html">🧭 Live GPS Tracker</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services & Support</h4>
+                <ul>
+                    <li><a href="hotels.html">🏨 Hotels & Stays</a></li>
+                    <li><a href="food.html">🍴 Food & Cafes</a></li>
+                    <li><a href="activities.html">🚣 Boating & Fun</a></li>
+                    <li><a href="planner.html">🗺️ Trip Planner</a></li>
+                    <li><a href="nearby.html">🌄 Nearby Destinations</a></li>
+                    <li><a href="contact.html">📞 24x7 Helpline</a></li>
+                    <li><a href="admin.html">🛠️ Admin Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Emergency Contact</h4>
+                <p>📍 Mallital / Tallital, Nainital, Uttarakhand 263001</p>
+                <p>📞 Helpline: <a href="tel:1364">1364</a> | <a href="tel:9456168611">+91 9456168611</a></p>
+                <p>✉️ <a href="mailto:priyanshukumar9916@gmail.com">priyanshukumar9916@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>© 2026 FindNainital (NTL). Developed by <strong>Priyanshu Kumar</strong>, Uttarakhand Government Institute of Polytechnic, Nainital.</p>
+                <div class="footer-links">
+                    <a href="index.html">Privacy</a>
+                    <a href="contact.html">Support</a>
+                    <a href="admin.html">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

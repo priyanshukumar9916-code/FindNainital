@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live GPS Route & Location Tracking | FindNainital (NTL)</title>
+    <meta name="description" content="Real-time GPS tracker and interactive route navigator for famous spots, lakes, and mountain peaks in Nainital with coordinates and Google Maps integration.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-left">
+                <span>📍 <strong>Live Weather:</strong> 16°C | Pleasant & Clear Skies in Nainital</span>
+            </div>
+            <div class="top-bar-right">
+                <span>📞 24x7 Tourist Helpline: <a href="tel:1364">1364</a></span>
+                <span>🚨 Emergency Cabs: <a href="tel:9456168611">+91 9456168611</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">N</span>
+                <div class="logo-text">
+                    <strong>FindNainital</strong>
+                    <small>NTL Tourism Guide</small>
+                </div>
+            </a>
+
+            <div class="header-search">
+                <input type="text" id="globalSearchInput" placeholder="Search places, rides, hotels, temples..." oninput="handleGlobalSearch(event)">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+                <a href="services.html" class="nav-link" onclick="closeMenu()">⚡ All Functions</a>
+                <a href="booking.html" class="nav-link" onclick="closeMenu()">🚗 Rides & Booking</a>
+                <a href="places.html" class="nav-link" onclick="closeMenu()">Places</a>
+                <a href="hidden-places.html" class="nav-link" onclick="closeMenu()">💎 Hidden Places</a>
+                <a href="tracking.html" class="nav-link active" onclick="closeMenu()">🧭 Live Tracking</a>
+                <a href="temples.html" class="nav-link" onclick="closeMenu()">Temples</a>
+                <a href="hotels.html" class="nav-link" onclick="closeMenu()">Hotels</a>
+                <a href="food.html" class="nav-link" onclick="closeMenu()">Food & Cafes</a>
+                <a href="activities.html" class="nav-link" onclick="closeMenu()">Boating & Fun</a>
+                <a href="planner.html" class="nav-link" onclick="closeMenu()">Planner</a>
+                <a href="nearby.html" class="nav-link" onclick="closeMenu()">Nearby</a>
+                <a href="contact.html" class="nav-link" onclick="closeMenu()">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="booking.html" class="btn-book-nav">🚗 Book a Ride</a>
+                <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleMenu()"></div>
+
+    <!-- Page Banner -->
+    <div style="background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #075985 100%); color: white; padding: 45px 0 35px; text-align: center;">
+        <div class="container">
+            <span style="background: rgba(255,255,255,0.2); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; color: #bae6fd;">SATELLITE & GPS NAVIGATION HUB</span>
+            <h1 style="color: white; font-size: 2.4rem; margin: 12px 0 8px;">🧭 Live Route & Location Tracking</h1>
+            <p style="color: #e0f2fe; max-width: 680px; margin: 0 auto; font-size: 1rem;">Track elevation, real-time GPS coordinates, driving distance, and open direct turn-by-turn navigation for any mountain destination in Nainital.</p>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="tracking-hub-section section-padding" style="background: #f8fafc;">
+        <div class="container">
+            
+            <div class="tracking-grid-layout" style="display: grid; grid-template-columns: 360px 1fr; gap: 30px; align-items: start;">
+                
+                <!-- Left: Location Selector & Quick Telemetry -->
+                <div class="tracking-sidebar" style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-md);">
+                    <h3 style="margin-bottom: 8px; color: var(--primary-dark); font-size: 1.3rem;">🎯 Select Destination</h3>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px;">Switch between popular lake city destinations to load real-time coordinates.</p>
+
+                    <div class="tracking-places-list" style="display: flex; flex-direction: column; gap: 10px;">
+                        <button class="track-btn active" onclick="switchLiveTrackPlace('naini-lake')" style="text-align:left; padding: 12px 16px; border: 1px solid #0284c7; background: #e0f2fe; border-radius: 10px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                            <span>🌊 Naini Lake & Promenade</span>
+                            <small style="color: #0284c7; font-weight: 700;">2,084 m</small>
+                        </button>
+                        <button class="track-btn" onclick="switchLiveTrackPlace('snow-view')" style="text-align:left; padding: 12px 16px; border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 10px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                            <span>🏔️ Snow View Point</span>
+                            <small style="color: #64748b;">2,270 m</small>
+                        </button>
+                        <button class="track-btn" onclick="switchLiveTrackPlace('kainchi-dham')" style="text-align:left; padding: 12px 16px; border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 10px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                            <span>🙏 Kainchi Dham Ashram</span>
+                            <small style="color: #64748b;">1,400 m</small>
+                        </button>
+                        <button class="track-btn" onclick="switchLiveTrackPlace('eco-caves')" style="text-align:left; padding: 12px 16px; border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 10px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                            <span>🦇 Eco Cave Gardens</span>
+                            <small style="color: #64748b;">2,100 m</small>
+                        </button>
+                        <button class="track-btn" onclick="switchLiveTrackPlace('tiffin-top')" style="text-align:left; padding: 12px 16px; border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 10px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                            <span>🌄 Tiffin Top (Dorothy's Seat)</span>
+                            <small style="color: #64748b;">2,292 m</small>
+                        </button>
+                        <button class="track-btn" onclick="switchLiveTrackPlace('zoo')" style="text-align:left; padding: 12px 16px; border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 10px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                            <span>🐾 High Altitude Himalayan Zoo</span>
+                            <small style="color: #64748b;">2,100 m</small>
+                        </button>
+                        <button class="track-btn" onclick="switchLiveTrackPlace('bhimtal')" style="text-align:left; padding: 12px 16px; border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 10px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                            <span>🏝️ Bhimtal Lake & Island</span>
+                            <small style="color: #64748b;">1,370 m</small>
+                        </button>
+                        <button class="track-btn" onclick="switchLiveTrackPlace('pangot')" style="text-align:left; padding: 12px 16px; border: 1px solid #e2e8f0; background: #f8fafc; border-radius: 10px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                            <span>🦜 Pangot Bird Sanctuary</span>
+                            <small style="color: #64748b;">2,150 m</small>
+                        </button>
+                    </div>
+
+                    <!-- Live Telemetry Card -->
+                    <div style="margin-top: 25px; padding: 16px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <span style="font-size: 0.85rem; font-weight: 700; color: #166534;">📡 GPS Signal Status</span>
+                            <span style="background: #22c55e; color: white; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 10px;">EXCELLENT</span>
+                        </div>
+                        <p style="font-size: 0.8rem; color: #15803d; margin: 0;">Uttarakhand GIS Map Layer connected. Fast route recalculation enabled.</p>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Live Map Display & Controls -->
+                <div class="tracking-display" style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-md);">
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+                        <div>
+                            <span style="font-size: 0.78rem; font-weight: 700; color: #0284c7; background: #e0f2fe; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.5px;">LIVE TELEMETRY VIEW</span>
+                            <h2 id="livePlaceHeading" style="font-size: 1.8rem; margin: 6px 0 4px; color: var(--primary-dark);">Naini Lake (Nainital Jheel)</h2>
+                            <p id="livePlaceSub" style="color: var(--text-muted); font-size: 0.92rem; margin: 0;">Mallital/Tallital, Nainital, Uttarakhand 263002</p>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button id="btnLiveGmaps" class="btn-hero-search" style="padding: 10px 18px; font-size: 0.9rem;" onclick="openSelectedInGoogleMaps()">
+                                🗺️ Navigate on Google Maps →
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Telemetry Stats Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px 16px; border-radius: 10px;">
+                            <small style="color: #64748b; font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Latitude</small>
+                            <div id="liveLat" style="font-size: 1.1rem; font-weight: 700; color: #0f172a;">29.3803° N</div>
+                        </div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px 16px; border-radius: 10px;">
+                            <small style="color: #64748b; font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Longitude</small>
+                            <div id="liveLng" style="font-size: 1.1rem; font-weight: 700; color: #0f172a;">79.4636° E</div>
+                        </div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px 16px; border-radius: 10px;">
+                            <small style="color: #64748b; font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Altitude</small>
+                            <div id="liveAlt" style="font-size: 1.1rem; font-weight: 700; color: #0284c7;">2,084 Meters</div>
+                        </div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px 16px; border-radius: 10px;">
+                            <small style="color: #64748b; font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Distance from Mallital</small>
+                            <div id="liveDist" style="font-size: 1.1rem; font-weight: 700; color: #059669;">0.0 km (Center)</div>
+                        </div>
+                    </div>
+
+                    <!-- Live Embedded Map View -->
+                    <div id="liveMapFrameContainer" style="width: 100%; height: 420px; border-radius: 12px; overflow: hidden; border: 1px solid #cbd5e1; box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);">
+                        <iframe id="liveMapIframe" src="https://maps.google.com/maps?q=29.3803,79.4636&hl=en&z=15&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+
+                    <!-- Bottom Quick Dispatch Action -->
+                    <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; background: #fffbeb; border: 1px solid #fde68a; padding: 16px 20px; border-radius: 12px; flex-wrap: wrap; gap: 15px;">
+                        <div>
+                            <strong style="color: #92400e; font-size: 1rem;">Need a ride to this tracked point?</strong>
+                            <p style="margin: 0; font-size: 0.85rem; color: #b45309;">Our verified cabs & rental bikes are available nearby with upfront pricing.</p>
+                        </div>
+                        <a href="booking.html" class="btn-submit-booking" style="padding: 10px 20px; font-size: 0.92rem; text-decoration: none; width: auto; margin: 0;">
+                            🚗 Book Cab to this Location →
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <div class="logo">
+                    <span class="logo-icon">N</span>
+                    <div class="logo-text">
+                        <strong>FindNainital</strong>
+                        <small>NTL Tourism Guide</small>
+                    </div>
+                </div>
+                <p>Uttarakhand Tourism Assistance & Vehicle Booking Portal. Built with dedication for travelers exploring the Lake District of India.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home Hub</a></li>
+                    <li><a href="booking.html">🚗 Car & Bike Booking</a></li>
+                    <li><a href="places.html">📍 Sightseeing Places</a></li>
+                    <li><a href="hidden-places.html">💎 Hidden Spots</a></li>
+                    <li><a href="temples.html">🛕 Temples & Pilgrimage</a></li>
+                    <li><a href="tracking.html">🧭 Live GPS Tracker</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services & Support</h4>
+                <ul>
+                    <li><a href="hotels.html">🏨 Hotels & Stays</a></li>
+                    <li><a href="food.html">🍴 Food & Cafes</a></li>
+                    <li><a href="activities.html">🚣 Boating & Fun</a></li>
+                    <li><a href="planner.html">🗺️ Trip Planner</a></li>
+                    <li><a href="nearby.html">🌄 Nearby Destinations</a></li>
+                    <li><a href="contact.html">📞 24x7 Helpline</a></li>
+                    <li><a href="admin.html">🛠️ Admin Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Emergency Contact</h4>
+                <p>📍 Mallital / Tallital, Nainital, Uttarakhand 263001</p>
+                <p>📞 Helpline: <a href="tel:1364">1364</a> | <a href="tel:9456168611">+91 9456168611</a></p>
+                <p>✉️ <a href="mailto:priyanshukumar9916@gmail.com">priyanshukumar9916@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>© 2026 FindNainital (NTL). Developed by <strong>Priyanshu Kumar</strong>, Uttarakhand Government Institute of Polytechnic, Nainital.</p>
+                <div class="footer-links">
+                    <a href="index.html">Privacy</a>
+                    <a href="contact.html">Support</a>
+                    <a href="admin.html">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

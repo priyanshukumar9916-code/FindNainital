@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Places & Offbeat Gems | FindNainital (NTL)</title>
+    <meta name="description" content="Discover unexplored, secret, and peaceful hidden places in and around Nainital including Pangot, Land's End, Kilbury Forest, Guano Hills, and Camel's Back.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-left">
+                <span>📍 <strong>Live Weather:</strong> 16°C | Pleasant & Clear Skies in Nainital</span>
+            </div>
+            <div class="top-bar-right">
+                <span>📞 24x7 Tourist Helpline: <a href="tel:1364">1364</a></span>
+                <span>🚨 Emergency Cabs: <a href="tel:9456168611">+91 9456168611</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">N</span>
+                <div class="logo-text">
+                    <strong>FindNainital</strong>
+                    <small>FindNainital. Your Way.</small>
+                </div>
+            </a>
+
+            <div class="header-search">
+                <input type="text" id="globalSearchInput" placeholder="Search places, rides, hotels, temples..." oninput="handleGlobalSearch(event)">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+                <a href="services.html" class="nav-link" onclick="closeMenu()">⚡ All Functions</a>
+                <a href="booking.html" class="nav-link" onclick="closeMenu()">🚗 Rides & Booking</a>
+                <a href="places.html" class="nav-link" onclick="closeMenu()">Places</a>
+                <a href="hidden-places.html" class="nav-link active" onclick="closeMenu()">💎 Hidden Places</a>
+                <a href="tracking.html" class="nav-link" onclick="closeMenu()">🧭 Live Tracking</a>
+                <a href="temples.html" class="nav-link" onclick="closeMenu()">Temples</a>
+                <a href="hotels.html" class="nav-link" onclick="closeMenu()">Hotels</a>
+                <a href="food.html" class="nav-link" onclick="closeMenu()">Food & Cafes</a>
+                <a href="activities.html" class="nav-link" onclick="closeMenu()">Boating & Fun</a>
+                <a href="planner.html" class="nav-link" onclick="closeMenu()">Planner</a>
+                <a href="nearby.html" class="nav-link" onclick="closeMenu()">Nearby</a>
+                <a href="contact.html" class="nav-link" onclick="closeMenu()">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="booking.html" class="btn-book-nav">🚗 Book a Ride</a>
+                <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleMenu()"></div>
+
+    <!-- Page Banner -->
+    <div style="background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #0f766e 100%); color: white; padding: 45px 0 35px; text-align: center;">
+        <div class="container">
+            <span style="background: rgba(255,255,255,0.18); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; color: #a7f3d0;">OFF THE BEATEN TRACK</span>
+            <h1 style="color: white; font-size: 2.4rem; margin: 12px 0 8px;">💎 Hidden Places & Secret Mountain Gems</h1>
+            <p style="color: #e2e8f0; max-width: 680px; margin: 0 auto; font-size: 1rem;">Escape the bustling crowds of Mall Road and explore tranquil pine forests, panoramic cliff drop-offs, pristine bird sanctuaries, and virgin mountain viewpoints.</p>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="hidden-places-section section-padding" style="background: #f8fafc;">
+        <div class="container">
+            
+            <div class="section-header" style="margin-bottom: 35px;">
+                <span class="section-tag" style="background: #ecfdf5; color: #059669;">UNEXPLORED KUMAON WONDERS</span>
+                <h2>Serene, Peaceful & Untouched Spots</h2>
+                <p>Curated by local guides from Uttarakhand Polytechnic, Nainital for genuine nature lovers, photographers, and trekkers.</p>
+            </div>
+
+            <!-- Hidden Cards Grid -->
+            <div class="places-cards-grid">
+
+                <!-- Gem 1: Pangot & Kilbury Bird Sanctuary -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80" alt="Pangot Bird Sanctuary Dense Forest" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #059669;">Birdwatcher's Paradise</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 15 km from Mallital</span>
+                            <span>🏔️ Altitude: 2,150 m</span>
+                        </div>
+                        <h3>Pangot & Kilbury Forest</h3>
+                        <p>A quiet, dreamy hamlet tucked inside dense Oak and Rhododendron forests. Home to over 580 exotic Himalayan bird species like Cheer Pheasant, Koklass, and Lammergeier. Zero urban noise.</p>
+                        
+                        <div class="place-features">
+                            <span>🦜 580+ Bird Species</span>
+                            <span>🌲 Dense Oak Woods</span>
+                            <span>🏕️ Forest Homestays</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Pangot & Kilbury', 29.4280, 79.4210, 'Pangot, District Nainital, Uttarakhand 263001')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹1,500)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gem 2: Land's End Cliff View -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Land's End Cliff" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #d97706;">Dramatic Cliff</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 4 km from Tallital</span>
+                            <span>🏔️ Altitude: 2,118 m</span>
+                        </div>
+                        <h3>Land's End Viewpoint</h3>
+                        <p>Literally the point where the land drops into a sheer vertical precipice overlooking the emerald terraced fields and green waters of Khurpatal below. Ideal for horse rides and golden sunsets.</p>
+                        
+                        <div class="place-features">
+                            <span>🏞️ Valley Precipice</span>
+                            <span>🐎 Scenic Horse Trail</span>
+                            <span>🌅 Sunset Views</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Land\'s End', 29.3750, 79.4350, 'Land\'s End, Ayarpatta, Nainital, Uttarakhand 263002')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹800)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gem 3: Guano Hills & Sukhatal Forest -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=800&q=80" alt="Guano Hills Trail" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #2563eb;">Walking Haven</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 3 km from Mallital</span>
+                            <span>🏔️ Altitude: 2,200 m</span>
+                        </div>
+                        <h3>Guano Hills (Pangot Trail)</h3>
+                        <p>A tranquil nature trail lined with aromatic eucalyptus, deodar, and bamboo trees. Perfect for morning jogs, soul meditation, and discovering rare high-altitude butterflies and orchids.</p>
+                        
+                        <div class="place-features">
+                            <span>🚶 Walking Therapy</span>
+                            <span>🦋 Rare Butterflies</span>
+                            <span>🧘 Peaceful Solitude</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Guano Hills', 29.3950, 79.4420, 'Sukhatal Forest Range, Nainital, Uttarakhand 263001')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹600)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gem 4: Camel's Back Hill -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Camel's Back Hill" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #9333ea;">Unique Rock Form</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 2.5 km from Tallital</span>
+                            <span>🏔️ Altitude: 2,050 m</span>
+                        </div>
+                        <h3>Camel's Back Hill</h3>
+                        <p>Named after its unique geological rock structure that perfectly resembles a resting camel hump. Provides an unobstructed panorama of the southern Himalayan foothills and glowing sunset rays.</p>
+                        
+                        <div class="place-features">
+                            <span>⛰️ Natural Rock Shape</span>
+                            <span>📸 Photography</span>
+                            <span>🌾 Wild Flora</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Camel\'s Back Hill', 29.3770, 79.4750, 'Tallital Range, Nainital, Uttarakhand 263002')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹700)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gem 5: Khurpatal Emerald Lake -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Khurpatal Lake" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #0d9488;">Emerald Waters</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 10 km from Nainital</span>
+                            <span>🏔️ Altitude: 1,635 m</span>
+                        </div>
+                        <h3>Khurpatal Lake</h3>
+                        <p>A serene, bowl-shaped emerald green lake surrounded by terraced farms and tall pine groves. Famous for peaceful angling, fresh mountain air, and vegetable terraced farming.</p>
+                        
+                        <div class="place-features">
+                            <span>🎣 Angling & Fishing</span>
+                            <span>🌾 Terraced Valley</span>
+                            <span>🧘 Uncrowded Lake</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Khurpatal Lake', 29.3630, 79.4320, 'Khurpatal, Uttarakhand 263001')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹1,200)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gem 6: Sattal Butterfly Zone & Pine Woods -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=800&q=80" alt="Sattal Pine Forest" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #ea580c;">Forest Trail</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>📍 22 km from Nainital</span>
+                            <span>🏔️ Altitude: 1,370 m</span>
+                        </div>
+                        <h3>Sattal Forest & Butterfly Museum</h3>
+                        <p>Deep inside the oak forests of Sattal lies a world of pristine interconnected freshwater springs and the historic Butterfly Museum boasting 2,500+ insect and butterfly specimens.</p>
+                        
+                        <div class="place-features">
+                            <span>🦋 Butterfly Museum</span>
+                            <span>🚣 Kayaking Water</span>
+                            <span>⛺ Lakeside Camping</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Sattal Butterfly Zone', 29.3510, 79.5310, 'Sattal, Bhimtal, Uttarakhand 263136')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹1,800)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Explorer's Pro Tips -->
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; margin-top: 45px; box-shadow: var(--shadow-sm);">
+                <h3 style="margin-bottom: 12px; color: var(--primary-dark);">💡 Pro Tips for Visiting Hidden Gems</h3>
+                <ul style="padding-left: 20px; color: var(--text-sub); line-height: 1.8;">
+                    <li><strong>Best Time to Visit:</strong> Early mornings (7:00 AM - 10:30 AM) offer the best bird sightings in Pangot and clearest Himalayan views at Land's End.</li>
+                    <li><strong>Transport:</strong> Renting a self-drive bike or hiring an experienced hill cab from FindNainital is highly recommended since shared taxis are rare on these routes.</li>
+                    <li><strong>Eco-Responsible:</strong> Please carry your trash back. These pristine forest zones are protected wildlife habitats.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <div class="logo">
+                    <span class="logo-icon">N</span>
+                    <div class="logo-text">
+                        <strong>FindNainital</strong>
+                        <small>FindNainital. Your Way.</small>
+                    </div>
+                </div>
+                <p>Uttarakhand Tourism Assistance & Vehicle Booking Portal. Built with dedication for travelers exploring the Lake District of India.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home Hub</a></li>
+                    <li><a href="booking.html">🚗 Car & Bike Booking</a></li>
+                    <li><a href="places.html">📍 Sightseeing Places</a></li>
+                    <li><a href="hidden-places.html">💎 Hidden Spots</a></li>
+                    <li><a href="temples.html">🛕 Temples & Pilgrimage</a></li>
+                    <li><a href="tracking.html">🧭 Live GPS Tracker</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services & Support</h4>
+                <ul>
+                    <li><a href="hotels.html">🏨 Hotels & Stays</a></li>
+                    <li><a href="food.html">🍴 Food & Cafes</a></li>
+                    <li><a href="activities.html">🚣 Boating & Fun</a></li>
+                    <li><a href="planner.html">🗺️ Trip Planner</a></li>
+                    <li><a href="nearby.html">🌄 Nearby Destinations</a></li>
+                    <li><a href="contact.html">📞 24x7 Helpline</a></li>
+                    <li><a href="admin.html">🛠️ Admin Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Emergency Contact</h4>
+                <p>📍 Mallital / Tallital, Nainital, Uttarakhand 263001</p>
+                <p>📞 Helpline: <a href="tel:1364">1364</a> | <a href="tel:9456168611">+91 9456168611</a></p>
+                <p>✉️ <a href="mailto:priyanshukumar9916@gmail.com">priyanshukumar9916@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>© 2026 FindNainital (NTL). Developed by <strong>Priyanshu Kumar</strong>, Uttarakhand Government Institute of Polytechnic, Nainital.</p>
+                <div class="footer-links">
+                    <a href="index.html">Privacy</a>
+                    <a href="contact.html">Support</a>
+                    <a href="admin.html">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GPS Map Modal -->
+    <div class="map-modal-backdrop" id="mapModalBackdrop" onclick="closeMapModal(event)">
+        <div class="map-modal-card" onclick="event.stopPropagation()">
+            <div class="map-modal-header">
+                <div>
+                    <h3 id="modalPlaceTitle">Location Tracker</h3>
+                    <p id="modalPlaceAddress" style="font-size: 0.85rem; color: #64748b; margin: 0;">Nainital, Uttarakhand</p>
+                </div>
+                <button class="modal-close-btn" onclick="closeMapModal(event)">✕</button>
+            </div>
+            <div class="map-modal-body">
+                <div class="map-coordinates-bar">
+                    <span>GPS Coordinates: <strong id="modalCoordinatesText">29.3803° N, 79.4636° E</strong></span>
+                    <span class="badge-live-gps">● Satellite Linked</span>
+                </div>
+                <div class="map-embed-wrapper" id="modalMapFrameHolder">
+                    <!-- Map dynamically inserted by script.js -->
+                </div>
+            </div>
+            <div class="map-modal-footer">
+                <button class="btn-open-gmaps" id="modalGmapsBtn" onclick="window.open(this.dataset.url, '_blank')">
+                    🗺️ Open in Google Maps App
+                </button>
+                <button class="btn-modal-book" onclick="bookCabFromModal()">
+                    🚗 Dispatch Cab to This Place
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

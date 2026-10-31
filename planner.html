@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Trip Planner & Custom Itineraries | FindNainital (NTL)</title>
+    <meta name="description" content="Plan your perfect holiday with customized 1-Day, 2-Days, 3-Days & 5-Days Nainital itineraries, estimated budget calculators, and one-click tour booking.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-left">
+                <span>📍 <strong>Live Weather:</strong> 16°C | Pleasant & Clear Skies in Nainital</span>
+            </div>
+            <div class="top-bar-right">
+                <span>📞 24x7 Tourist Helpline: <a href="tel:1364">1364</a></span>
+                <span>🚨 Emergency Cabs: <a href="tel:9456168611">+91 9456168611</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">N</span>
+                <div class="logo-text">
+                    <strong>FindNainital</strong>
+                    <small>NTL Tourism Guide</small>
+                </div>
+            </a>
+
+            <div class="header-search">
+                <input type="text" id="globalSearchInput" placeholder="Search places, rides, hotels, temples..." oninput="handleGlobalSearch(event)">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+                <a href="services.html" class="nav-link" onclick="closeMenu()">⚡ All Functions</a>
+                <a href="booking.html" class="nav-link" onclick="closeMenu()">🚗 Rides & Booking</a>
+                <a href="places.html" class="nav-link" onclick="closeMenu()">Places</a>
+                <a href="hidden-places.html" class="nav-link" onclick="closeMenu()">💎 Hidden Places</a>
+                <a href="tracking.html" class="nav-link" onclick="closeMenu()">🧭 Live Tracking</a>
+                <a href="temples.html" class="nav-link" onclick="closeMenu()">Temples</a>
+                <a href="hotels.html" class="nav-link" onclick="closeMenu()">Hotels</a>
+                <a href="food.html" class="nav-link" onclick="closeMenu()">Food & Cafes</a>
+                <a href="activities.html" class="nav-link" onclick="closeMenu()">Boating & Fun</a>
+                <a href="planner.html" class="nav-link active" onclick="closeMenu()">Planner</a>
+                <a href="nearby.html" class="nav-link" onclick="closeMenu()">Nearby</a>
+                <a href="contact.html" class="nav-link" onclick="closeMenu()">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="booking.html" class="btn-book-nav">🚗 Book a Ride</a>
+                <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleMenu()"></div>
+
+    <!-- Page Banner -->
+    <div style="background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 50%, #7c3aed 100%); color: white; padding: 45px 0 35px; text-align: center;">
+        <div class="container">
+            <span style="background: rgba(255,255,255,0.2); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; color: #e9d5ff;">SMART AI ITINERARY GENERATOR</span>
+            <h1 style="color: white; font-size: 2.4rem; margin: 12px 0 8px;">🗺️ Nainital Smart Trip Planner</h1>
+            <p style="color: #ede9fe; max-width: 680px; margin: 0 auto; font-size: 1rem;">Expert-crafted day-by-day itineraries with estimated budgets, optimized travel routes, and direct ride booking.</p>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="planner-section section-padding" style="background: #f8fafc;">
+        <div class="container">
+            
+            <!-- Itinerary Days Tabs -->
+            <div class="itinerary-tabs" style="display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap;">
+                <button class="i-tab active" id="tabItin1" onclick="loadItinerary(1)" style="padding: 12px 24px; border-radius: 30px; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: 1px solid #7c3aed; background: #7c3aed; color: white;">
+                    ⚡ 1-Day Express Tour
+                </button>
+                <button class="i-tab" id="tabItin2" onclick="loadItinerary(2)" style="padding: 12px 24px; border-radius: 30px; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: 1px solid #cbd5e1; background: white; color: #334155;">
+                    🌟 2-Days Classic & Lakes
+                </button>
+                <button class="i-tab" id="tabItin3" onclick="loadItinerary(3)" style="padding: 12px 24px; border-radius: 30px; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: 1px solid #cbd5e1; background: white; color: #334155;">
+                    🏔️ 3-Days Kumaon Explorer
+                </button>
+            </div>
+
+            <!-- Itinerary Display Container -->
+            <div class="itinerary-display-card" style="background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 35px; box-shadow: var(--shadow-md); max-width: 950px; margin: 0 auto;">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px; margin-bottom: 30px;">
+                    <div>
+                        <h2 id="itinTitle" style="color: var(--primary-dark); font-size: 1.8rem; margin-bottom: 6px;">1-Day Express Nainital Highlights</h2>
+                        <span id="itinMeta" style="color: #7c3aed; font-weight: 600; font-size: 0.92rem;">⭐ Perfect for day-trippers & short weekend visits</span>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="window.print()" style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px 16px; border-radius: 10px; font-weight: 600; cursor: pointer;">
+                            🖨️ Print / Save PDF
+                        </button>
+                        <a href="booking.html" class="btn-submit-booking" style="padding: 10px 20px; font-size: 0.92rem; text-decoration: none; width: auto; margin: 0;">
+                            🚗 Book Cab for this Plan →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Timeline Items -->
+                <div class="timeline-container" id="itinTimeline" style="position: relative; padding-left: 30px; border-left: 2px solid #e2e8f0;">
+                    <!-- Dynamically filled by script.js -->
+                </div>
+
+            </div>
+
+            <!-- Quick Budget Estimator -->
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 35px; box-shadow: var(--shadow-sm); max-width: 950px; margin: 45px auto 0;">
+                <h3 style="color: var(--primary-dark); margin-bottom: 15px;">💰 Estimated Trip Budget Calculator</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                        <h4 style="color: #0284c7; margin-bottom: 8px;">🎒 Budget Solo Backpacker</h4>
+                        <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 10px;">Hostel / Homestay + Activa Scooty Rental + Local Street Food.</p>
+                        <strong style="font-size: 1.3rem; color: #0f172a;">₹1,800 - ₹2,500 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/day</small></strong>
+                    </div>
+
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                        <h4 style="color: #d97706; margin-bottom: 8px;">💑 Couple / Duo Comfort</h4>
+                        <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 10px;">3-Star Lake Hotel + Private Sedan Cab + Cafe Dining & Boating.</p>
+                        <strong style="font-size: 1.3rem; color: #0f172a;">₹4,500 - ₹6,500 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/day (2 Pax)</small></strong>
+                    </div>
+
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                        <h4 style="color: #7c3aed; margin-bottom: 8px;">👨‍👩‍👧‍👦 Family & Luxury Tour</h4>
+                        <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 10px;">Lakeside Resort + Innova Crysta SUV + All Activities & Guide.</p>
+                        <strong style="font-size: 1.3rem; color: #0f172a;">₹9,000 - ₹14,000 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/day (Family)</small></strong>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <div class="logo">
+                    <span class="logo-icon">N</span>
+                    <div class="logo-text">
+                        <strong>FindNainital</strong>
+                        <small>NTL Tourism Guide</small>
+                    </div>
+                </div>
+                <p>Uttarakhand Tourism Assistance & Vehicle Booking Portal. Built with dedication for travelers exploring the Lake District of India.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home Hub</a></li>
+                    <li><a href="booking.html">🚗 Car & Bike Booking</a></li>
+                    <li><a href="places.html">📍 Sightseeing Places</a></li>
+                    <li><a href="hidden-places.html">💎 Hidden Spots</a></li>
+                    <li><a href="temples.html">🛕 Temples & Pilgrimage</a></li>
+                    <li><a href="tracking.html">🧭 Live GPS Tracker</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services & Support</h4>
+                <ul>
+                    <li><a href="hotels.html">🏨 Hotels & Stays</a></li>
+                    <li><a href="food.html">🍴 Food & Cafes</a></li>
+                    <li><a href="activities.html">🚣 Boating & Fun</a></li>
+                    <li><a href="planner.html">🗺️ Trip Planner</a></li>
+                    <li><a href="nearby.html">🌄 Nearby Destinations</a></li>
+                    <li><a href="contact.html">📞 24x7 Helpline</a></li>
+                    <li><a href="admin.html">🛠️ Admin Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Emergency Contact</h4>
+                <p>📍 Mallital / Tallital, Nainital, Uttarakhand 263001</p>
+                <p>📞 Helpline: <a href="tel:1364">1364</a> | <a href="tel:9456168611">+91 9456168611</a></p>
+                <p>✉️ <a href="mailto:priyanshukumar9916@gmail.com">priyanshukumar9916@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>© 2026 FindNainital (NTL). Developed by <strong>Priyanshu Kumar</strong>, Uttarakhand Government Institute of Polytechnic, Nainital.</p>
+                <div class="footer-links">
+                    <a href="index.html">Privacy</a>
+                    <a href="contact.html">Support</a>
+                    <a href="admin.html">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

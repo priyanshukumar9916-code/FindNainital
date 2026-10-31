@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & 24x7 Tourist Helpline | FindNainital (NTL)</title>
+    <meta name="description" content="24x7 tourist assistance, emergency police, ambulance, disaster helpline, and direct inquiry support in Nainital, Uttarakhand.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-left">
+                <span>📍 <strong>Live Weather:</strong> 16°C | Pleasant & Clear Skies in Nainital</span>
+            </div>
+            <div class="top-bar-right">
+                <span>📞 24x7 Tourist Helpline: <a href="tel:1364">1364</a></span>
+                <span>🚨 Emergency Cabs & Rides: <a href="tel:9456168611">+91 9456168611</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">N</span>
+                <div class="logo-text">
+                    <strong>FindNainital</strong>
+                    <small>NTL Tourism Guide</small>
+                </div>
+            </a>
+
+            <div class="header-search">
+                <input type="text" id="globalSearchInput" placeholder="Search places, rides, hotels, temples..." oninput="handleGlobalSearch(event)">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+                <a href="services.html" class="nav-link" onclick="closeMenu()">⚡ All Functions</a>
+                <a href="booking.html" class="nav-link" onclick="closeMenu()">🚗 Rides & Booking</a>
+                <a href="places.html" class="nav-link" onclick="closeMenu()">Places</a>
+                <a href="hidden-places.html" class="nav-link" onclick="closeMenu()">💎 Hidden Places</a>
+                <a href="tracking.html" class="nav-link" onclick="closeMenu()">🧭 Live Tracking</a>
+                <a href="temples.html" class="nav-link" onclick="closeMenu()">Temples</a>
+                <a href="hotels.html" class="nav-link" onclick="closeMenu()">Hotels</a>
+                <a href="food.html" class="nav-link" onclick="closeMenu()">Food & Cafes</a>
+                <a href="activities.html" class="nav-link" onclick="closeMenu()">Boating & Fun</a>
+                <a href="planner.html" class="nav-link" onclick="closeMenu()">Planner</a>
+                <a href="nearby.html" class="nav-link" onclick="closeMenu()">Nearby</a>
+                <a href="contact.html" class="nav-link active" onclick="closeMenu()">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="booking.html" class="btn-book-nav">🚗 Book a Ride</a>
+                <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleMenu()"></div>
+
+    <!-- Page Banner -->
+    <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 45px 0 35px; text-align: center;">
+        <div class="container">
+            <span style="background: rgba(255,255,255,0.15); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; color: #fbbf24;">24x7 EMERGENCY & TOURIST SUPPORT</span>
+            <h1 style="color: white; font-size: 2.4rem; margin: 12px 0 8px;">📞 Contact & Help Desk</h1>
+            <p style="color: #cbd5e1; max-width: 680px; margin: 0 auto; font-size: 1rem;">We are here to assist you throughout your journey in Nainital. Reach out for rides, lodging queries, road conditions, or emergency helplines.</p>
+        </div>
+    </div>
+
+    <!-- Emergency Numbers Bar -->
+    <section style="background: #ef4444; color: white; padding: 25px 0;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center;">
+                <div>
+                    <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; opacity: 0.9;">Tourist Helpline (UK Tourism)</span>
+                    <div style="font-size: 1.5rem; font-weight: 800;"><a href="tel:1364" style="color: white;">📞 1364 (Toll-Free)</a></div>
+                </div>
+                <div>
+                    <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; opacity: 0.9;">Police / Emergency</span>
+                    <div style="font-size: 1.5rem; font-weight: 800;"><a href="tel:112" style="color: white;">🚨 112 / 100</a></div>
+                </div>
+                <div>
+                    <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; opacity: 0.9;">Ambulance / BD Pandey Hosp.</span>
+                    <div style="font-size: 1.5rem; font-weight: 800;"><a href="tel:108" style="color: white;">🚑 108</a></div>
+                </div>
+                <div>
+                    <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; opacity: 0.9;">Disaster Control (SDRF)</span>
+                    <div style="font-size: 1.5rem; font-weight: 800;"><a href="tel:1077" style="color: white;">⚠️ 1070 / 1077</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="contact-section section-padding" style="background: #f8fafc;">
+        <div class="container">
+            
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: start;">
+                
+                <!-- Left: Contact Details & Info -->
+                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: var(--shadow-sm);">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 8px; font-size: 1.4rem;">Get in Touch</h3>
+                    <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 25px;">FindNainital is managed in collaboration with local tourism operators and student innovators at Uttarakhand Polytechnic.</p>
+
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div style="background: #e0f2fe; color: #0284c7; width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">📍</div>
+                            <div>
+                                <strong style="color: var(--primary-dark); display: block; margin-bottom: 2px;">Headquarters / Tourist Desk</strong>
+                                <p style="font-size: 0.88rem; color: var(--text-sub); margin: 0;">Uttarakhand Government Polytechnic Campus, Mallital, Nainital, Uttarakhand 263001</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div style="background: #dcfce7; color: #16a34a; width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">📞</div>
+                            <div>
+                                <strong style="color: var(--primary-dark); display: block; margin-bottom: 2px;">Direct Assistance Phone & WhatsApp</strong>
+                                <p style="font-size: 0.88rem; color: var(--text-sub); margin: 0;"><a href="tel:9456168611" style="color: #16a34a; font-weight: 700;">+91 9456168611</a> (24x7 Cabs, Bikes & Rides)</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div style="background: #fef3c7; color: #d97706; width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">✉️</div>
+                            <div>
+                                <strong style="color: var(--primary-dark); display: block; margin-bottom: 2px;">Email Support</strong>
+                                <p style="font-size: 0.88rem; color: var(--text-sub); margin: 0;"><a href="mailto:priyanshukumar9916@gmail.com">priyanshukumar9916@gmail.com</a></p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div style="background: #f3e8ff; color: #9333ea; width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">👨‍💻</div>
+                            <div>
+                                <strong style="color: var(--primary-dark); display: block; margin-bottom: 2px;">Project Lead</strong>
+                                <p style="font-size: 0.88rem; color: var(--text-sub); margin: 0;">Priyanshu Kumar (Uttarakhand Government Institute of Polytechnic, Nainital)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px; padding: 18px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;">
+                        <h4 style="color: var(--primary-dark); margin-bottom: 8px; font-size: 0.95rem;">Looking to Manage Bookings?</h4>
+                        <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px;">Authorized operators can access the real-time reservation desk.</p>
+                        <a href="admin.html" style="color: #0284c7; font-weight: 700; font-size: 0.88rem;">Open Live Admin Portal →</a>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Inquiry Form -->
+                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: var(--shadow-sm);">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 8px; font-size: 1.4rem;">Send an Inquiry or Feedback</h3>
+                    <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 20px;">Fill out this form and our support desk will respond immediately via phone or email.</p>
+
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="contactName">👤 Your Name</label>
+                                <input type="text" id="contactName" placeholder="e.g. Priyanshu Kumar" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactPhone">📞 Phone Number</label>
+                                <input type="tel" id="contactPhone" placeholder="e.g. 9876543210" pattern="[0-9]{10}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="contactEmail">✉️ Email Address</label>
+                                <input type="email" id="contactEmail" placeholder="e.g. your@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactSubject">📌 Topic / Subject</label>
+                                <select id="contactSubject">
+                                    <option value="Cab & Ride Inquiry">Cab & Ride Inquiry</option>
+                                    <option value="Hotel / Homestay Recommendation">Hotel / Homestay Recommendation</option>
+                                    <option value="Custom Trip Planning Assistance">Custom Trip Planning Assistance</option>
+                                    <option value="Road Condition & Weather Update">Road Condition & Weather Update</option>
+                                    <option value="Feedback / Suggestion">Feedback / Suggestion</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">💬 Your Message / Details</label>
+                            <textarea id="contactMessage" rows="4" placeholder="Tell us how we can assist you..." required style="width: 100%; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; font-size: 0.95rem;"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit-booking" id="btnContactSubmit" style="margin-top: 15px;">
+                            <span>Submit Message to Support Desk</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- FAQs Section -->
+            <div style="margin-top: 60px;">
+                <div class="section-header" style="margin-bottom: 30px;">
+                    <span class="section-tag" style="background: #e2e8f0; color: #475569;">FREQUENTLY ASKED QUESTIONS</span>
+                    <h2>Nainital Travel Guidelines & FAQs</h2>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px;">
+                        <strong style="color: var(--primary-dark); font-size: 1rem; display: block; margin-bottom: 6px;">🚗 Are commercial vehicles allowed on Mall Road?</strong>
+                        <p style="font-size: 0.88rem; color: var(--text-sub); margin: 0;">Mall Road is closed for heavy vehicles from 6:00 PM to 8:00 PM during peak tourist season to keep the lakeside promenade pedestrian-only.</p>
+                    </div>
+
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px;">
+                        <strong style="color: var(--primary-dark); font-size: 1rem; display: block; margin-bottom: 6px;">❄️ When can I see snowfall in Nainital?</strong>
+                        <p style="font-size: 0.88rem; color: var(--text-sub); margin: 0;">Snowfall in Nainital, Kilbury, and Snow View Point generally occurs between late December and early February.</p>
+                    </div>
+
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px;">
+                        <strong style="color: var(--primary-dark); font-size: 1rem; display: block; margin-bottom: 6px;">🙏 What is the best time to visit Kainchi Dham?</strong>
+                        <p style="font-size: 0.88rem; color: var(--text-sub); margin: 0;">Kainchi Dham is open year-round from 6:30 AM to 7:00 PM. Morning darshan between 7:30 AM and 10:00 AM is the most peaceful before highway traffic builds up.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <div class="logo">
+                    <span class="logo-icon">N</span>
+                    <div class="logo-text">
+                        <strong>FindNainital</strong>
+                        <small>NTL Tourism Guide</small>
+                    </div>
+                </div>
+                <p>Uttarakhand Tourism Assistance & Vehicle Booking Portal. Built with dedication for travelers exploring the Lake District of India.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home Hub</a></li>
+                    <li><a href="booking.html">🚗 Car & Bike Booking</a></li>
+                    <li><a href="places.html">📍 Sightseeing Places</a></li>
+                    <li><a href="hidden-places.html">💎 Hidden Spots</a></li>
+                    <li><a href="temples.html">🛕 Temples & Pilgrimage</a></li>
+                    <li><a href="tracking.html">🧭 Live GPS Tracker</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services & Support</h4>
+                <ul>
+                    <li><a href="hotels.html">🏨 Hotels & Stays</a></li>
+                    <li><a href="food.html">🍴 Food & Cafes</a></li>
+                    <li><a href="activities.html">🚣 Boating & Fun</a></li>
+                    <li><a href="planner.html">🗺️ Trip Planner</a></li>
+                    <li><a href="nearby.html">🌄 Nearby Destinations</a></li>
+                    <li><a href="contact.html">📞 24x7 Helpline</a></li>
+                    <li><a href="admin.html">🛠️ Admin Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Emergency Contact</h4>
+                <p>📍 Mallital / Tallital, Nainital, Uttarakhand 263001</p>
+                <p>📞 Helpline: <a href="tel:1364">1364</a> | <a href="tel:9456168611">+91 9456168611</a></p>
+                <p>✉️ <a href="mailto:priyanshukumar9916@gmail.com">priyanshukumar9916@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>© 2026 FindNainital (NTL). Developed by <strong>Priyanshu Kumar</strong>, Uttarakhand Government Institute of Polytechnic, Nainital.</p>
+                <div class="footer-links">
+                    <a href="index.html">Privacy</a>
+                    <a href="contact.html">Support</a>
+                    <a href="admin.html">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

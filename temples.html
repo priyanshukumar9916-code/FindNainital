@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temples & Spiritual Trail Guide | FindNainital (NTL)</title>
+    <meta name="description" content="Complete spiritual pilgrimage guide to Maa Naina Devi Temple, Neem Karoli Baba Kainchi Dham, Hanuman Garhi, Mukteshwar Dham & Golu Devta with aarti timings & taxi booking.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-left">
+                <span>📍 <strong>Live Weather:</strong> 16°C | Pleasant & Clear Skies in Nainital</span>
+            </div>
+            <div class="top-bar-right">
+                <span>📞 24x7 Tourist Helpline: <a href="tel:1364">1364</a></span>
+                <span>🚨 Emergency Cabs: <a href="tel:9456168611">+91 9456168611</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">N</span>
+                <div class="logo-text">
+                    <strong>FindNainital</strong>
+                    <small>FindNainital. Your Way.</small>
+                </div>
+            </a>
+
+            <div class="header-search">
+                <input type="text" id="globalSearchInput" placeholder="Search places, rides, hotels, temples..." oninput="handleGlobalSearch(event)">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+                <a href="services.html" class="nav-link" onclick="closeMenu()">⚡ All Functions</a>
+                <a href="booking.html" class="nav-link" onclick="closeMenu()">🚗 Rides & Booking</a>
+                <a href="places.html" class="nav-link" onclick="closeMenu()">Places</a>
+                <a href="hidden-places.html" class="nav-link" onclick="closeMenu()">💎 Hidden Places</a>
+                <a href="tracking.html" class="nav-link" onclick="closeMenu()">🧭 Live Tracking</a>
+                <a href="temples.html" class="nav-link active" onclick="closeMenu()">Temples</a>
+                <a href="hotels.html" class="nav-link" onclick="closeMenu()">Hotels</a>
+                <a href="food.html" class="nav-link" onclick="closeMenu()">Food & Cafes</a>
+                <a href="activities.html" class="nav-link" onclick="closeMenu()">Boating & Fun</a>
+                <a href="planner.html" class="nav-link" onclick="closeMenu()">Planner</a>
+                <a href="nearby.html" class="nav-link" onclick="closeMenu()">Nearby</a>
+                <a href="contact.html" class="nav-link" onclick="closeMenu()">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="booking.html" class="btn-book-nav">🚗 Book a Ride</a>
+                <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleMenu()"></div>
+
+    <!-- Page Banner -->
+    <div style="background: linear-gradient(135deg, #7c2d12 0%, #9a3412 50%, #c2410c 100%); color: white; padding: 45px 0 35px; text-align: center;">
+        <div class="container">
+            <span style="background: rgba(255,255,255,0.2); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; color: #fed7aa;">DEVBHUMI SPIRITUAL CIRCUIT</span>
+            <h1 style="color: white; font-size: 2.4rem; margin: 12px 0 8px;">🛕 Sacred Temples & Spiritual Heritage</h1>
+            <p style="color: #ffedd5; max-width: 680px; margin: 0 auto; font-size: 1rem;">Experience divine energy and peace across ancient Shakti Peeths, world-renowned ashrams of Neem Karoli Baba, and mountaintop shrines in the Kumaon Himalayas.</p>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="temples-section section-padding" style="background: #f8fafc;">
+        <div class="container">
+            
+            <div class="section-header" style="margin-bottom: 35px;">
+                <span class="section-tag" style="background: #ffedd5; color: #c2410c;">HOLY SHRINES OF KUMAON</span>
+                <h2>Darshan Timings, Aarti & Pilgrimage Guide</h2>
+                <p>Plan your spiritual journey with verified aarti schedules, temple rules, GPS coordinates, and direct pilgrimage taxi bookings.</p>
+            </div>
+
+            <!-- Temples Cards Grid -->
+            <div class="places-cards-grid">
+
+                <!-- Temple 1: Maa Naina Devi -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="images/naina_devi_1789405033629.jpg" alt="Maa Naina Devi Temple" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #b91c1c;">51 Shakti Peeth</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 05:00 AM - 09:00 PM</span>
+                            <span>🙏 Aarti: 7 AM & 7:30 PM</span>
+                        </div>
+                        <h3>Maa Naina Devi Temple</h3>
+                        <p>One of the 51 revered Shakti Peeths of India, located at the northern edge of Naini Lake. Legend has it that the eyes (Nayan) of Goddess Sati fell here, giving the town its name 'Nainital'.</p>
+                        
+                        <div class="place-features">
+                            <span>✨ 51 Shakti Peeth</span>
+                            <span>🌊 Naini Lake Shore</span>
+                            <span>🪔 Grand Nanda Devi Fair</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Maa Naina Devi Temple', 29.3948, 79.4587, 'Mallital Flatts, Nainital, Uttarakhand 263001')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹500)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Temple 2: Kainchi Dham -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="images/kainchi_dham_1789405052626.jpg" alt="Kainchi Dham Ashram" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #ea580c;">World Famous Ashram</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 06:30 AM - 07:00 PM</span>
+                            <span>📍 17 km on Bhowali Road</span>
+                        </div>
+                        <h3>Kainchi Dham (Neem Karoli Baba)</h3>
+                        <p>The world-famous spiritual sanctuary of saint Neem Karoli Baba (Maharaj-ji). Renowned for inner peace and miracle blessings, attracting devotees worldwide including Steve Jobs, Mark Zuckerberg, and Virat Kohli.</p>
+                        
+                        <div class="place-features">
+                            <span>🕊️ Divine Meditation</span>
+                            <span>🍲 Free Prasad (Kichadi)</span>
+                            <span>🎉 15th June Foundation Day</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Kainchi Dham', 29.4237, 79.5167, 'Kainchi Dham, Bhowali-Almora Road, Uttarakhand 263132')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Round Trip Cab (₹1,400)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Temple 3: Hanuman Garhi -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80" alt="Hanuman Garhi Temple" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #d97706;">Sunset & Darshan</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 05:00 AM - 08:30 PM</span>
+                            <span>🏔️ Altitude: 1,951 m</span>
+                        </div>
+                        <h3>Hanuman Garhi Temple</h3>
+                        <p>Built by Neem Karoli Baba in 1950, housing a magnificent 70-foot standing statue of Lord Hanuman displaying Lord Rama in his chest. Renowned as the most peaceful sunset viewpoint in the valley.</p>
+                        
+                        <div class="place-features">
+                            <span>🌅 Glorious Sunset View</span>
+                            <span>🔭 ARIES Observatory Nearby</span>
+                            <span>🐒 Peaceful Grounds</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Hanuman Garhi', 29.3667, 79.4667, 'Hanuman Garhi, Tallital, Nainital, Uttarakhand 263002')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹600)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Temple 4: Mukteshwar Dham -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Mukteshwar Temple" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #0284c7;">350-Yr Ancient Shrine</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 06:00 AM - 07:30 PM</span>
+                            <span>📍 50 km from Nainital</span>
+                        </div>
+                        <h3>Mukteshwar Dham (Lord Shiva)</h3>
+                        <p>An ancient 350-year-old Lord Shiva temple atop a 2,312m high peak. Adjacent to Chauli Ki Jali, a natural cliff with rock lattice offering sweeping 180-degree Himalayan views from Nanda Devi to Trishul.</p>
+                        
+                        <div class="place-features">
+                            <span>🔱 350-Year Shivling</span>
+                            <span>🧗 Chauli Ki Jali Cliff</span>
+                            <span>🍎 Apple Orchards Route</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Mukteshwar Dham', 29.4722, 79.6480, 'Mukteshwar, Nainital District, Uttarakhand 263138')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Day Tour Cab (₹2,800)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Temple 5: Pashan Devi Temple -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=800&q=80" alt="Pashan Devi Temple" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #ec4899;">Natural Stone Icon</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 06:00 AM - 08:00 PM</span>
+                            <span>📍 Thandi Sadak, Naini Lake</span>
+                        </div>
+                        <h3>Pashan Devi Temple</h3>
+                        <p>A natural rock formation temple representing the nine forms of Goddess Durga (Navdurga) bathed by the waters of Naini Lake along the peaceful pedestrian promenade of Thandi Sadak.</p>
+                        
+                        <div class="place-features">
+                            <span>🌿 Navdurga Stone Relief</span>
+                            <span>🚶 Walking Promenade</span>
+                            <span>💧 Lake Water Touch</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Pashan Devi Temple', 29.3820, 79.4670, 'Thandi Sadak, Tallital, Nainital, Uttarakhand 263002')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹500)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Temple 6: Golu Devta Temple (Ghorakhal / Chitai) -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=800&q=80" alt="Golu Devta Temple" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #eab308;">God of Justice</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 06:00 AM - 07:00 PM</span>
+                            <span>📍 16 km near Bhowali</span>
+                        </div>
+                        <h3>Golu Devta Temple (Ghorakhal)</h3>
+                        <p>Dedicated to Lord Golu, the supreme presiding deity of Justice in Kumaon. Covered with thousands of brass bells and written stamp-paper petitions offered by devotees seeking divine justice and wish fulfillment.</p>
+                        
+                        <div class="place-features">
+                            <span>🔔 Thousands of Sacred Bells</span>
+                            <span>📜 Petition Rituals</span>
+                            <span>⛰️ Sainik School Vista</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Golu Devta Ghorakhal', 29.3980, 79.5460, 'Ghorakhal, near Bhowali, Nainital, Uttarakhand 263156')">
+                                📍 Track GPS
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab (₹1,500)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pilgrimage Packages Card -->
+            <div style="background: white; border: 1px solid #fed7aa; border-radius: 16px; padding: 30px; margin-top: 45px; box-shadow: var(--shadow-sm);">
+                <h3 style="color: #9a3412; margin-bottom: 15px;">🙏 Popular Spiritual Tour Packages</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <div style="background: #fff7ed; padding: 18px; border-radius: 12px; border: 1px solid #ffedd5;">
+                        <h4 style="color: #c2410c; margin-bottom: 6px;">Kainchi Dham + Hanuman Garhi</h4>
+                        <p style="font-size: 0.88rem; color: #7c2d12; margin-bottom: 12px;">Full day round-trip taxi with waiting time for darshan and sunset.</p>
+                        <strong style="color: #9a3412; font-size: 1.1rem;">₹1,600 / Cab</strong>
+                        <div style="margin-top: 10px;"><a href="booking.html" class="btn-submit-booking" style="padding: 6px 14px; font-size: 0.85rem; text-decoration: none; display: inline-block; width: auto;">Book This Pilgrimage →</a></div>
+                    </div>
+                    <div style="background: #fff7ed; padding: 18px; border-radius: 12px; border: 1px solid #ffedd5;">
+                        <h4 style="color: #c2410c; margin-bottom: 6px;">Complete Devbhoomi Shakti Circuit</h4>
+                        <p style="font-size: 0.88rem; color: #7c2d12; margin-bottom: 12px;">Maa Naina Devi, Kainchi Dham, Golu Devta Ghorakhal & Mukteshwar.</p>
+                        <strong style="color: #9a3412; font-size: 1.1rem;">₹3,400 / Cab</strong>
+                        <div style="margin-top: 10px;"><a href="booking.html" class="btn-submit-booking" style="padding: 6px 14px; font-size: 0.85rem; text-decoration: none; display: inline-block; width: auto;">Book This Pilgrimage →</a></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <div class="logo">
+                    <span class="logo-icon">N</span>
+                    <div class="logo-text">
+                        <strong>FindNainital</strong>
+                        <small>FindNainital. Your Way.</small>
+                    </div>
+                </div>
+                <p>Uttarakhand Tourism Assistance & Vehicle Booking Portal. Built with dedication for travelers exploring the Lake District of India.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home Hub</a></li>
+                    <li><a href="booking.html">🚗 Car & Bike Booking</a></li>
+                    <li><a href="places.html">📍 Sightseeing Places</a></li>
+                    <li><a href="hidden-places.html">💎 Hidden Spots</a></li>
+                    <li><a href="temples.html">🛕 Temples & Pilgrimage</a></li>
+                    <li><a href="tracking.html">🧭 Live GPS Tracker</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services & Support</h4>
+                <ul>
+                    <li><a href="hotels.html">🏨 Hotels & Stays</a></li>
+                    <li><a href="food.html">🍴 Food & Cafes</a></li>
+                    <li><a href="activities.html">🚣 Boating & Fun</a></li>
+                    <li><a href="planner.html">🗺️ Trip Planner</a></li>
+                    <li><a href="nearby.html">🌄 Nearby Destinations</a></li>
+                    <li><a href="contact.html">📞 24x7 Helpline</a></li>
+                    <li><a href="admin.html">🛠️ Admin Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Emergency Contact</h4>
+                <p>📍 Mallital / Tallital, Nainital, Uttarakhand 263001</p>
+                <p>📞 Helpline: <a href="tel:1364">1364</a> | <a href="tel:9456168611">+91 9456168611</a></p>
+                <p>✉️ <a href="mailto:priyanshukumar9916@gmail.com">priyanshukumar9916@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>© 2026 FindNainital (NTL). Developed by <strong>Priyanshu Kumar</strong>, Uttarakhand Government Institute of Polytechnic, Nainital.</p>
+                <div class="footer-links">
+                    <a href="index.html">Privacy</a>
+                    <a href="contact.html">Support</a>
+                    <a href="admin.html">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GPS Map Modal -->
+    <div class="map-modal-backdrop" id="mapModalBackdrop" onclick="closeMapModal(event)">
+        <div class="map-modal-card" onclick="event.stopPropagation()">
+            <div class="map-modal-header">
+                <div>
+                    <h3 id="modalPlaceTitle">Location Tracker</h3>
+                    <p id="modalPlaceAddress" style="font-size: 0.85rem; color: #64748b; margin: 0;">Nainital, Uttarakhand</p>
+                </div>
+                <button class="modal-close-btn" onclick="closeMapModal(event)">✕</button>
+            </div>
+            <div class="map-modal-body">
+                <div class="map-coordinates-bar">
+                    <span>GPS Coordinates: <strong id="modalCoordinatesText">29.3803° N, 79.4636° E</strong></span>
+                    <span class="badge-live-gps">● Satellite Linked</span>
+                </div>
+                <div class="map-embed-wrapper" id="modalMapFrameHolder">
+                    <!-- Map dynamically inserted by script.js -->
+                </div>
+            </div>
+            <div class="map-modal-footer">
+                <button class="btn-open-gmaps" id="modalGmapsBtn" onclick="window.open(this.dataset.url, '_blank')">
+                    🗺️ Open in Google Maps App
+                </button>
+                <button class="btn-modal-book" onclick="bookCabFromModal()">
+                    🚗 Dispatch Cab to This Place
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

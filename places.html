@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Places & Sightseeing Guide | FindNainital (NTL)</title>
+    <meta name="description" content="Explore top tourist attractions in Nainital including Naini Lake, Snow View Point, Eco Cave Gardens, Tiffin Top, High Altitude Zoo with live GPS navigation.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-left">
+                <span>📍 <strong>Live Weather:</strong> 16°C | Pleasant & Clear Skies in Nainital</span>
+            </div>
+            <div class="top-bar-right">
+                <span>📞 24x7 Tourist Helpline: <a href="tel:1364">1364</a></span>
+                <span>🚨 Emergency Cabs: <a href="tel:9456168611">+91 9456168611</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">N</span>
+                <div class="logo-text">
+                    <strong>FindNainital</strong>
+                    <small>FindNainital. Your Way.</small>
+                </div>
+            </a>
+
+            <div class="header-search">
+                <input type="text" id="globalSearchInput" placeholder="Search places, rides, hotels, temples..." oninput="handleGlobalSearch(event)">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+                <a href="services.html" class="nav-link" onclick="closeMenu()">⚡ All Functions</a>
+                <a href="booking.html" class="nav-link" onclick="closeMenu()">🚗 Rides & Booking</a>
+                <a href="places.html" class="nav-link active" onclick="closeMenu()">Places</a>
+                <a href="hidden-places.html" class="nav-link" onclick="closeMenu()">💎 Hidden Places</a>
+                <a href="tracking.html" class="nav-link" onclick="closeMenu()">🧭 Live Tracking</a>
+                <a href="temples.html" class="nav-link" onclick="closeMenu()">Temples</a>
+                <a href="hotels.html" class="nav-link" onclick="closeMenu()">Hotels</a>
+                <a href="food.html" class="nav-link" onclick="closeMenu()">Food & Cafes</a>
+                <a href="activities.html" class="nav-link" onclick="closeMenu()">Boating & Fun</a>
+                <a href="planner.html" class="nav-link" onclick="closeMenu()">Planner</a>
+                <a href="nearby.html" class="nav-link" onclick="closeMenu()">Nearby</a>
+                <a href="contact.html" class="nav-link" onclick="closeMenu()">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="booking.html" class="btn-book-nav">🚗 Book a Ride</a>
+                <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleMenu()"></div>
+
+    <!-- Page Banner -->
+    <div style="background: linear-gradient(135deg, #07251f 0%, #0d3b32 100%); color: white; padding: 45px 0 35px; text-align: center;">
+        <div class="container">
+            <span style="background: rgba(255,255,255,0.15); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; color: #ffd1a8;">EXPLORE THE LAKE DISTRICT OF INDIA</span>
+            <h1 style="color: white; font-size: 2.4rem; margin: 12px 0 8px;">Must-Visit Tourist Attractions</h1>
+            <p style="color: #cbd5e1; max-width: 650px; margin: 0 auto; font-size: 1rem;">Complete guide to famous lakes, breathtaking viewpoints, caves, wildlife and heritage trails with live Google Maps tracking.</p>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="places-section section-padding">
+        <div class="container">
+            <!-- Category Filter Tabs -->
+            <div class="place-filters">
+                <button class="filter-btn active" onclick="filterPlaces('all')">All Attractions</button>
+                <button class="filter-btn" onclick="filterPlaces('lakes')">🌊 Lakes</button>
+                <button class="filter-btn" onclick="filterPlaces('viewpoints')">🏔️ Viewpoints</button>
+                <button class="filter-btn" onclick="filterPlaces('nature')">🌲 Nature & Caves</button>
+                <button class="filter-btn" onclick="filterPlaces('shopping')">🛍️ Shopping & Culture</button>
+                <a href="hidden-places.html" class="filter-btn filter-highlight" style="text-decoration:none; display:inline-block;">💎 Hidden Places →</a>
+            </div>
+
+            <!-- Places Grid -->
+            <div class="places-cards-grid" id="placesGrid">
+
+                <!-- Place 1: Naini Lake -->
+                <div class="place-card" data-category="lakes">
+                    <div class="place-img-holder">
+                        <img src="images/nainital_hero_1789405015484.jpg" alt="Naini Lake Boating" class="place-real-img" loading="lazy">
+                        <span class="place-badge">Top Attraction</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 6:00 AM - 6:00 PM</span>
+                            <span>🎟️ Free Entry</span>
+                        </div>
+                        <h3>Naini Lake (Nainital Jheel)</h3>
+                        <p>The iconic eye-shaped natural freshwater lake nestled in the heart of town. Famous for scenic boating, yachting, and tranquil evening walks along the promenade.</p>
+                        
+                        <div class="place-features">
+                            <span>🚣 Boating Available</span>
+                            <span>📸 Photography</span>
+                            <span>🚶 Walking Promenade</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Naini Lake', 29.3803, 79.4636, 'Mallital/Tallital, Nainital, Uttarakhand 263002')">
+                                📍 Track Location
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Ride
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place 2: Snow View Point -->
+                <div class="place-card" data-category="viewpoints">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80" alt="Snow View Point Himalayan Peaks" class="place-real-img" loading="lazy">
+                        <span class="place-badge">Himalayan View</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 10:30 AM - 5:00 PM</span>
+                            <span>🎟️ ₹50 Entry</span>
+                        </div>
+                        <h3>Snow View Point</h3>
+                        <p>Perched at 2,270m altitude, offering breathtaking panoramic vistas of snow-capped Himalayan peaks including Nanda Devi, Trishul, and Nanda Kot. Reachable by Aerial Ropeway.</p>
+                        
+                        <div class="place-features">
+                            <span>🚠 Cable Car / Ropeway</span>
+                            <span>🔭 Telescopes</span>
+                            <span>☕ Mountain Cafes</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Snow View Point', 29.3970, 79.4580, 'Snow View Point, Nainital, Uttarakhand 263001')">
+                                📍 Track Location
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Ride
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place 3: Eco Cave Gardens -->
+                <div class="place-card" data-category="nature">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Eco Cave Gardens" class="place-real-img" loading="lazy">
+                        <span class="place-badge">Adventure</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 9:30 AM - 5:30 PM</span>
+                            <span>🎟️ ₹60 Adults</span>
+                        </div>
+                        <h3>Eco Cave Gardens</h3>
+                        <p>A cluster of 6 interconnected natural animal-shaped rocky caves (Tiger Cave, Panther Cave, Bat Cave) with hanging gardens and musical fountain. A must for families.</p>
+                        
+                        <div class="place-features">
+                            <span>🧗 Rock Crawling</span>
+                            <span>⛲ Musical Fountain</span>
+                            <span>🌺 Botanical Gardens</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Eco Cave Gardens', 29.3900, 79.4480, 'Sukhatal, Mallital, Nainital, Uttarakhand 263001')">
+                                📍 Track Location
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Ride
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place 4: Tiffin Top (Dorothy's Seat) -->
+                <div class="place-card" data-category="viewpoints">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Tiffin Top Viewpoint" class="place-real-img" loading="lazy">
+                        <span class="place-badge">Trek & Sunset</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 8:00 AM - 6:00 PM</span>
+                            <span>🎟️ Free</span>
+                        </div>
+                        <h3>Tiffin Top (Dorothy's Seat)</h3>
+                        <p>Located on Ayarpatta hill at 2,292m. Known for 360-degree views of Nainital town and surrounding green Kumaon hills. Popular for hiking and horse riding.</p>
+                        
+                        <div class="place-features">
+                            <span>🥾 4 km Forest Trek</span>
+                            <span>🐎 Horse Riding</span>
+                            <span>🌅 Sunset Point</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Tiffin Top', 29.3800, 79.4440, 'Ayarpatta, Nainital, Uttarakhand 263002')">
+                                📍 Track Location
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Ride
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place 5: Pt. G.B. Pant High Altitude Zoo -->
+                <div class="place-card" data-category="nature">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=800&q=80" alt="High Altitude Zoo Snow Leopard" class="place-real-img" loading="lazy">
+                        <span class="place-badge">Wildlife Sanctuary</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 10:00 AM - 4:30 PM (Closed Mon)</span>
+                            <span>🎟️ ₹50 Adults</span>
+                        </div>
+                        <h3>High Altitude Himalayan Zoo</h3>
+                        <p>One of only three high altitude zoos in India at 2,100m. Home to endangered Himalayan wildlife including the Royal Bengal Tiger, Snow Leopard, Tibetan Wolf, and Himalayan Black Bear.</p>
+                        
+                        <div class="place-features">
+                            <span>🐾 Snow Leopard</span>
+                            <span>🦅 Himalayan Monal</span>
+                            <span>🛺 Shuttle Service</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('High Altitude Zoo', 29.3880, 79.4710, 'Tallital, Nainital, Uttarakhand 263002')">
+                                📍 Track Location
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Ride
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Place 6: Mall Road & Tibetan Market -->
+                <div class="place-card" data-category="shopping">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=800&q=80" alt="Mall Road Nainital Evening" class="place-real-img" loading="lazy">
+                        <span class="place-badge">Shopping & Food</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 10:00 AM - 10:00 PM</span>
+                            <span>🎟️ Free Entry</span>
+                        </div>
+                        <h3>Mall Road & Tibetan Bhotia Market</h3>
+                        <p>The bustling heart of Nainital running parallel to Naini Lake. Famous for handmade scented candles, woolens, wooden artifacts, and lip-smacking hot Tibetan momos and thukpa.</p>
+                        
+                        <div class="place-features">
+                            <span>🕯️ Handcrafted Candles</span>
+                            <span>🥟 Famous Steamed Momos</span>
+                            <span>🚶 Evening Strolls</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Mall Road Nainital', 29.3840, 79.4580, 'Mall Road, Nainital, Uttarakhand 263001')">
+                                📍 Track Location
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Ride
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal: Location Tracking (Google Maps Embed) -->
+    <div class="modal-backdrop" id="mapModal" onclick="closeMapModal(event)">
+        <div class="modal-container map-modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div>
+                    <h3 id="modalPlaceTitle">📍 Location Tracking</h3>
+                    <p id="modalPlaceAddress">Nainital, Uttarakhand</p>
+                </div>
+                <button class="btn-close-modal" onclick="closeMapModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="map-embed-wrapper" id="mapEmbedWrapper">
+                    <iframe id="googleMapIframe" src="" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="modal-map-actions">
+                    <a id="directGoogleMapsLink" href="#" target="_blank" class="btn-open-google-maps">
+                        🗺️ Open in Google Maps App (Directions) →
+                    </a>
+                    <a href="booking.html" class="btn-modal-book-cab" style="text-decoration:none; text-align:center;">
+                        🚗 Book a Cab to this Spot
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <div class="mobile-bottom-bar">
+        <a href="index.html" class="m-bar-btn">
+            <span class="m-bar-icon">🏠</span>
+            <span class="m-bar-label">Home</span>
+        </a>
+        <a href="booking.html" class="m-bar-btn">
+            <span class="m-bar-icon">🚗</span>
+            <span class="m-bar-label">Rides</span>
+        </a>
+        <a href="places.html" class="m-bar-btn active">
+            <span class="m-bar-icon">📍</span>
+            <span class="m-bar-label">Places</span>
+        </a>
+        <a href="hidden-places.html" class="m-bar-btn">
+            <span class="m-bar-icon">💎</span>
+            <span class="m-bar-label">Hidden</span>
+        </a>
+        <a href="tracking.html" class="m-bar-btn">
+            <span class="m-bar-icon">🧭</span>
+            <span class="m-bar-label">Track</span>
+        </a>
+    </div>
+
+    <!-- Toast Popup -->
+    <div id="toast" class="toast-popup">
+        <span class="toast-icon">ℹ️</span>
+        <span class="toast-text" id="toastMessage">Welcome to FindNainital!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="footer-logo">
+                    <span class="logo-icon">N</span>
+                    <div>
+                        <strong>FindNainital</strong>
+                        <small>“FindNainital. Your Way.”</small>
+                    </div>
+                </a>
+                <p class="footer-desc">
+                    A comprehensive smart tourism assistance and vehicle booking platform designed to make exploring Nainital and surrounding Kumaon destinations effortless.
+                </p>
+                <div class="academic-credit-box">
+                    <div class="academic-badge">🎓 DIPLOMA FINAL YEAR PROJECT</div>
+                    <p><strong>Developed By:</strong> Priyanshu Kumar (Roll No. 19)</p>
+                    <p><strong>Branch:</strong> Information Technology (IT)</p>
+                    <p><strong>Institute:</strong> Uttarakhand Government Institute of Polytechnic, Nainital</p>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Explore Features</h4>
+                <ul class="footer-links-list">
+                    <li><a href="booking.html">Car & Bike Rentals</a></li>
+                    <li><a href="places.html">Famous Tourist Places</a></li>
+                    <li><a href="hidden-places.html">💎 Hidden Gems of Nainital</a></li>
+                    <li><a href="tracking.html">Live GPS Route Tracking</a></li>
+                    <li><a href="hotels.html">Hotels & Stays</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>More Guides</h4>
+                <ul class="footer-links-list">
+                    <li><a href="temples.html">Sacred Temples & Ashrams</a></li>
+                    <li><a href="food.html">Cafes & Kumaoni Cuisine</a></li>
+                    <li><a href="activities.html">Boating & Adventures</a></li>
+                    <li><a href="planner.html">Smart Trip Planner</a></li>
+                    <li><a href="nearby.html">Nearby Excursions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-col">
+                <h4>Emergency Help</h4>
+                <p>🚨 Police Control: <a href="tel:112">112</a></p>
+                <p>🏥 BD Pandey Hospital: <a href="tel:05942235012">05942-235012</a></p>
+                <p>📍 Gov. Polytechnic, Nainital</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>© 2026 FindNainital. All rights reserved. Uttarakhand Tourism Assistance Project.</p>
+                <p>Designed with ❤️ in Nainital, Uttarakhand</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

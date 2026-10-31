@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boating, Cable Car & Adventure Activities | FindNainital (NTL)</title>
+    <meta name="description" content="Official rates, timings, and booking assistance for Naini Lake Boating, Aerial Ropeway Cable Car, Paragliding in Naukuchiatal, Bhimtal Water Zorbing, and Horse Riding.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-left">
+                <span>📍 <strong>Live Weather:</strong> 16°C | Pleasant & Clear Skies in Nainital</span>
+            </div>
+            <div class="top-bar-right">
+                <span>📞 24x7 Tourist Helpline: <a href="tel:1364">1364</a></span>
+                <span>🚨 Emergency Cabs: <a href="tel:9456168611">+91 9456168611</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">N</span>
+                <div class="logo-text">
+                    <strong>FindNainital</strong>
+                    <small>NTL Tourism Guide</small>
+                </div>
+            </a>
+
+            <div class="header-search">
+                <input type="text" id="globalSearchInput" placeholder="Search places, rides, hotels, temples..." oninput="handleGlobalSearch(event)">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+                <a href="services.html" class="nav-link" onclick="closeMenu()">⚡ All Functions</a>
+                <a href="booking.html" class="nav-link" onclick="closeMenu()">🚗 Rides & Booking</a>
+                <a href="places.html" class="nav-link" onclick="closeMenu()">Places</a>
+                <a href="hidden-places.html" class="nav-link" onclick="closeMenu()">💎 Hidden Places</a>
+                <a href="tracking.html" class="nav-link" onclick="closeMenu()">🧭 Live Tracking</a>
+                <a href="temples.html" class="nav-link" onclick="closeMenu()">Temples</a>
+                <a href="hotels.html" class="nav-link" onclick="closeMenu()">Hotels</a>
+                <a href="food.html" class="nav-link" onclick="closeMenu()">Food & Cafes</a>
+                <a href="activities.html" class="nav-link active" onclick="closeMenu()">Boating & Fun</a>
+                <a href="planner.html" class="nav-link" onclick="closeMenu()">Planner</a>
+                <a href="nearby.html" class="nav-link" onclick="closeMenu()">Nearby</a>
+                <a href="contact.html" class="nav-link" onclick="closeMenu()">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="booking.html" class="btn-book-nav">🚗 Book a Ride</a>
+                <button class="menu-btn" id="menuToggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" onclick="toggleMenu()"></div>
+
+    <!-- Page Banner -->
+    <div style="background: linear-gradient(135deg, #0e7490 0%, #0891b2 50%, #06b6d4 100%); color: white; padding: 45px 0 35px; text-align: center;">
+        <div class="container">
+            <span style="background: rgba(255,255,255,0.2); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; color: #cffafe;">THRILL & LEISURE EXPERIENCES</span>
+            <h1 style="color: white; font-size: 2.4rem; margin: 12px 0 8px;">🚣 Boating, Cable Car & Adventure Sports</h1>
+            <p style="color: #e0f2fe; max-width: 680px; margin: 0 auto; font-size: 1rem;">Complete guide to official ticket rates, boat docks, aerial ropeways, tandem paragliding, and lake water sports in Kumaon.</p>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="boating-section section-padding" style="background: #f8fafc;">
+        <div class="container">
+            
+            <div class="section-header" style="margin-bottom: 35px;">
+                <span class="section-tag" style="background: #cffafe; color: #0891b2;">OFFICIAL RATES & EXPERIENCES</span>
+                <h2>Must-Do Activities in & Around Nainital</h2>
+                <p>Standard municipal approved fares and safety guidelines for an unforgettable holiday.</p>
+            </div>
+
+            <!-- Activities Cards Grid -->
+            <div class="places-cards-grid">
+
+                <!-- Activity 1: Naini Lake Row Boating -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="images/nainital_hero_1789405015484.jpg" alt="Row Boating in Naini Lake" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #0284c7;">#1 Activity</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 06:00 AM - 06:00 PM</span>
+                            <span>📍 Mallital & Tallital Boat Docks</span>
+                        </div>
+                        <h3>Traditional Row & Pedal Boating</h3>
+                        <p>Glide across the emerald green waters of Naini Lake in traditional colorful wooden gondolas steered by local boatmen, or rent self-pedal paddle boats for family fun.</p>
+                        
+                        <div class="place-features">
+                            <span>🦺 Life Jackets Mandatory</span>
+                            <span>⏱️ 45 Min Full Round</span>
+                            <span>📸 Lakeside Photography</span>
+                        </div>
+
+                        <div style="margin: 15px 0 10px; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; color: #64748b;">Official Rate:</span>
+                            <span style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">₹210 - ₹420 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/boat</small></span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-primary" style="background:#0891b2;color:white;padding:8px 10px;border:none;border-radius:6px;font-weight:700;cursor:pointer;flex:1.2;" onclick="openActivityBookingModal('Traditional Row Boating (Naini Lake)', 420)">
+                                🚣 Book Slot (₹420)
+                            </button>
+                            <button class="btn-track-location" onclick="openMapModal('Mallital Boat Stand', 29.3930, 79.4580, 'Mallital Boat Stand, Nainital 263001')">
+                                📍 Locate Dock
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Cab
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 2: Aerial Ropeway Cable Car -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80" alt="Aerial Ropeway Cable Car" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #d97706;">Scenic Cable Car</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 10:00 AM - 05:00 PM</span>
+                            <span>📍 Mallital Cable Car Station</span>
+                        </div>
+                        <h3>Aerial Ropeway to Snow View</h3>
+                        <p>Soar 2,270m above sea level in a high-tech Swiss cable car connecting Mallital to Snow View Point in under 3 minutes, giving jaw-dropping bird's-eye views of the whole town.</p>
+                        
+                        <div class="place-features">
+                            <span>🚠 3-Minute Aerial Flight</span>
+                            <span>🏔️ Himalayan Peak Views</span>
+                            <span>🎡 Amusement Park at Top</span>
+                        </div>
+
+                        <div style="margin: 15px 0 10px; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; color: #64748b;">Round Trip Fare:</span>
+                            <span style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">₹360 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/adult</small></span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-primary" style="background:#d97706;color:white;padding:8px 10px;border:none;border-radius:6px;font-weight:700;cursor:pointer;flex:1.2;" onclick="openActivityBookingModal('Aerial Ropeway to Snow View', 360)">
+                                🚠 Book Cable Car (₹360)
+                            </button>
+                            <button class="btn-track-location" onclick="openMapModal('Ropeway Station Mallital', 29.3935, 79.4560, 'Ropeway Station, Mallital, Nainital 263001')">
+                                📍 Station
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Cab
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 3: Tandem Paragliding in Naukuchiatal -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?auto=format&fit=crop&w=800&q=80" alt="Paragliding Naukuchiatal" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #ef4444;">High Adrenaline</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 08:00 AM - 05:00 PM</span>
+                            <span>📍 Naukuchiatal / Bhimtal (24 km)</span>
+                        </div>
+                        <h3>Tandem Paragliding Flight</h3>
+                        <p>Fly high like an eagle over lush green pine valleys and turquoise lakes with certified tandem pilots. Includes high-resolution GoPro 4K video recording options.</p>
+                        
+                        <div class="place-features">
+                            <span>🪂 Certified Pilots</span>
+                            <span>📹 4K Action Camera Recording</span>
+                            <span>⏱️ 5-15 Min Flight Time</span>
+                        </div>
+
+                        <div style="margin: 15px 0 10px; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; color: #64748b;">Flight Packages:</span>
+                            <span style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">₹1,500 - ₹3,500</span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-primary" style="background:#ef4444;color:white;padding:8px 10px;border:none;border-radius:6px;font-weight:700;cursor:pointer;flex:1.2;" onclick="openActivityBookingModal('Tandem Paragliding Flight', 1800)">
+                                🪂 Book Flight (₹1,800)
+                            </button>
+                            <button class="btn-track-location" onclick="openMapModal('Paragliding Site Naukuchiatal', 29.3170, 79.5820, 'Naukuchiatal Flight Point, Bhimtal 263136')">
+                                📍 Location
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Cab
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 4: Bhimtal Water Zorbing & Kayaking -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Bhimtal Kayaking" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #10b981;">Water Sports</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 09:00 AM - 06:00 PM</span>
+                            <span>📍 Bhimtal Lake (22 km)</span>
+                        </div>
+                        <h3>Water Zorbing & Kayaking</h3>
+                        <p>Step inside transparent giant inflatable zorb balls and roll over water, or paddle tandem sea kayaks around the scenic middle-lake island aquarium.</p>
+                        
+                        <div class="place-features">
+                            <span>🔮 Giant Water Zorbing</span>
+                            <span>🚣 Single & Tandem Kayaks</span>
+                            <span>🏝️ Island Aquarium Visit</span>
+                        </div>
+
+                        <div style="margin: 15px 0 10px; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; color: #64748b;">Activity Rate:</span>
+                            <span style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">₹300 - ₹600 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/person</small></span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-primary" style="background:#10b981;color:white;padding:8px 10px;border:none;border-radius:6px;font-weight:700;cursor:pointer;flex:1.2;" onclick="openActivityBookingModal('Bhimtal Water Zorbing & Kayaking', 350)">
+                                🔮 Book Zorbing (₹350)
+                            </button>
+                            <button class="btn-track-location" onclick="openMapModal('Bhimtal Lake Island', 29.3480, 79.5540, 'Bhimtal Lake, Uttarakhand 263136')">
+                                📍 Location
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Cab
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 5: Tiffin Top Horse Riding -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=800&q=80" alt="Horse Riding Tiffin Top" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #854d0e;">Mountain Ride</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 07:00 AM - 05:30 PM</span>
+                            <span>📍 Bara Patthar & Ayarpatta Stand</span>
+                        </div>
+                        <h3>Horse Riding to Tiffin Top & Land's End</h3>
+                        <p>Experience a guided horse trek through dense cedar and oak hills up to Dorothy's Seat and Land's End with licensed horse handlers.</p>
+                        
+                        <div class="place-features">
+                            <span>🐎 Licensed Mountain Horses</span>
+                            <span>🌲 Ayarpatta Forest Trails</span>
+                            <span>⛰️ 4 Scenic Viewpoints Circuit</span>
+                        </div>
+
+                        <div style="margin: 15px 0 10px; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; color: #64748b;">Circuit Package:</span>
+                            <span style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">₹600 - ₹1,000 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/round</small></span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Bara Patthar Horse Stand', 29.3880, 79.4410, 'Bara Patthar, Nainital 263001')">
+                                📍 Track Stand
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 6: Rock Climbing & Cave Crawling -->
+                <div class="place-card">
+                    <div class="place-img-holder">
+                        <img src="https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=800&q=80" alt="Rock Climbing Cave Garden" class="place-real-img" loading="lazy">
+                        <span class="place-badge" style="background: #4f46e5;">Adventure Training</span>
+                    </div>
+                    <div class="place-body">
+                        <div class="place-meta">
+                            <span>⏱️ 09:30 AM - 05:00 PM</span>
+                            <span>📍 Eco Cave Gardens & Sukhatal</span>
+                        </div>
+                        <h3>Rock Climbing & Rappelling</h3>
+                        <p>Undergo beginner to intermediate rock climbing, obstacle bouldering, and rappelling under the guidance of certified mountaineering instructors.</p>
+                        
+                        <div class="place-features">
+                            <span>🧗 Safety Harness & Helmets</span>
+                            <span>🧗‍♀️ Natural Rock Formations</span>
+                            <span>🏅 Fun for All Ages</span>
+                        </div>
+
+                        <div style="margin: 15px 0 10px; display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 0.85rem; color: #64748b;">Activity Fee:</span>
+                            <span style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">₹250 - ₹500 <small style="font-size: 0.8rem; font-weight: 400; color: #64748b;">/session</small></span>
+                        </div>
+
+                        <div class="place-card-actions">
+                            <button class="btn-track-location" onclick="openMapModal('Eco Cave Adventure', 29.3900, 79.4480, 'Sukhatal, Nainital 263001')">
+                                📍 Track Location
+                            </button>
+                            <a href="booking.html" class="btn-quick-book-ride" style="text-decoration:none; text-align:center;">
+                                🚗 Book Cab
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <div class="logo">
+                    <span class="logo-icon">N</span>
+                    <div class="logo-text">
+                        <strong>FindNainital</strong>
+                        <small>NTL Tourism Guide</small>
+                    </div>
+                </div>
+                <p>Uttarakhand Tourism Assistance & Vehicle Booking Portal. Built with dedication for travelers exploring the Lake District of India.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home Hub</a></li>
+                    <li><a href="booking.html">🚗 Car & Bike Booking</a></li>
+                    <li><a href="places.html">📍 Sightseeing Places</a></li>
+                    <li><a href="hidden-places.html">💎 Hidden Spots</a></li>
+                    <li><a href="temples.html">🛕 Temples & Pilgrimage</a></li>
+                    <li><a href="tracking.html">🧭 Live GPS Tracker</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services & Support</h4>
+                <ul>
+                    <li><a href="hotels.html">🏨 Hotels & Stays</a></li>
+                    <li><a href="food.html">🍴 Food & Cafes</a></li>
+                    <li><a href="activities.html">🚣 Boating & Fun</a></li>
+                    <li><a href="planner.html">🗺️ Trip Planner</a></li>
+                    <li><a href="nearby.html">🌄 Nearby Destinations</a></li>
+                    <li><a href="contact.html">📞 24x7 Helpline</a></li>
+                    <li><a href="admin.html">🛠️ Admin Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Emergency Contact</h4>
+                <p>📍 Mallital / Tallital, Nainital, Uttarakhand 263001</p>
+                <p>📞 Helpline: <a href="tel:1364">1364</a> | <a href="tel:9456168611">+91 9456168611</a></p>
+                <p>✉️ <a href="mailto:priyanshukumar9916@gmail.com">priyanshukumar9916@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>© 2026 FindNainital (NTL). Developed by <strong>Priyanshu Kumar</strong>, Uttarakhand Government Institute of Polytechnic, Nainital.</p>
+                <div class="footer-links">
+                    <a href="index.html">Privacy</a>
+                    <a href="contact.html">Support</a>
+                    <a href="admin.html">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GPS Map Modal -->
+    <div class="map-modal-backdrop" id="mapModalBackdrop" onclick="closeMapModal(event)">
+        <div class="map-modal-card" onclick="event.stopPropagation()">
+            <div class="map-modal-header">
+                <div>
+                    <h3 id="modalPlaceTitle">Location Tracker</h3>
+                    <p id="modalPlaceAddress" style="font-size: 0.85rem; color: #64748b; margin: 0;">Nainital, Uttarakhand</p>
+                </div>
+                <button class="modal-close-btn" onclick="closeMapModal(event)">✕</button>
+            </div>
+            <div class="map-modal-body">
+                <div class="map-coordinates-bar">
+                    <span>GPS Coordinates: <strong id="modalCoordinatesText">29.3803° N, 79.4636° E</strong></span>
+                    <span class="badge-live-gps">● Satellite Linked</span>
+                </div>
+                <div class="map-embed-wrapper" id="modalMapFrameHolder">
+                    <!-- Map dynamically inserted by script.js -->
+                </div>
+            </div>
+            <div class="map-modal-footer">
+                <button class="btn-open-gmaps" id="modalGmapsBtn" onclick="window.open(this.dataset.url, '_blank')">
+                    🗺️ Open in Google Maps App
+                </button>
+                <button class="btn-modal-book" onclick="bookCabFromModal()">
+                    🚗 Dispatch Cab to This Place
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

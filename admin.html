@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin & Booking Management Portal | FindNainital (NTL)</title>
+    <meta name="description" content="Manage real-time car & bike bookings, tourist inquiries, driver dispatches, and tourism analytics for Nainital.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-stat-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .admin-stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        .admin-table-wrapper {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        .admin-table th {
+            background: #f8fafc;
+            padding: 14px 18px;
+            font-weight: 700;
+            color: #334155;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .admin-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
+        .admin-table tr:hover {
+            background: #f8fafc;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .status-badge.Confirmed { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+        .status-badge.Pending { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+        .status-badge.InProgress, .status-badge[data-status="In Progress"] { background: #dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe; }
+        .status-badge.Completed { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+        .status-badge.Cancelled { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
+    </style>
+</head>
+<body>
+
+    <!-- Main Navigation Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">N</span>
+                <div class="logo-text">
+                    <strong>FindNainital</strong>
+                    <small>Admin Operations</small>
+                </div>
+            </a>
+
+            <nav class="navbar" id="navbar">
+                <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+                <a href="booking.html" class="nav-link" onclick="closeMenu()">🚗 Rides & Booking</a>
+                <a href="places.html" class="nav-link" onclick="closeMenu()">Places</a>
+                <a href="hidden-places.html" class="nav-link" onclick="closeMenu()">💎 Hidden Places</a>
+                <a href="tracking.html" class="nav-link" onclick="closeMenu()">🧭 Live Tracking</a>
+                <a href="temples.html" class="nav-link" onclick="closeMenu()">Temples</a>
+                <a href="hotels.html" class="nav-link" onclick="closeMenu()">Hotels</a>
+                <a href="admin.html" class="nav-link active" onclick="closeMenu()">🛠️ Admin Portal</a>
+            </nav>
+
+            <div class="header-actions">
+                <span style="font-size: 0.8rem; background: #ecfdf5; color: #059669; font-weight: 700; padding: 6px 14px; border-radius: 20px; border: 1px solid #a7f3d0;">
+                    🟢 Backend Live
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <div style="background: linear-gradient(135deg, #09241e 0%, #0d3b32 100%); color: white; padding: 35px 0 25px;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <div>
+                <span style="background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; color: #ffd1a8;">REAL-TIME RESERVATION DESK</span>
+                <h1 style="color: white; font-size: 2rem; margin: 8px 0 4px;">🛠️ Booking Operations & Dispatch Portal</h1>
+                <p style="color: #cbd5e1; font-size: 0.92rem; margin: 0;">Connected to SQLite Database & Automated Confirmation Dispatcher</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="exportBookingsCSV()" style="background: #2563eb; color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                    📥 Export CSV
+                </button>
+                <button onclick="loadAdminDashboardData()" style="background: #165a4d; color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                    🔄 Refresh Data
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <section class="admin-section section-padding" style="background: #f8fafc; padding-top: 35px;">
+        <div class="container">
+            
+            <!-- Stats Counters -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background: #dbeafe; color: #1d4ed8;">🚗</div>
+                    <div>
+                        <small style="color: #64748b; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">Total Bookings</small>
+                        <div id="statTotalBookings" style="font-size: 1.6rem; font-weight: 800; color: #0f172a;">3</div>
+                    </div>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background: #dcfce7; color: #15803d;">💰</div>
+                    <div>
+                        <small style="color: #64748b; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">Estimated Value</small>
+                        <div id="statTotalRevenue" style="font-size: 1.6rem; font-weight: 800; color: #15803d;">₹8,000</div>
+                    </div>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background: #fef3c7; color: #b45309;">📩</div>
+                    <div>
+                        <small style="color: #64748b; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">Tourist Inquiries</small>
+                        <div id="statTotalInquiries" style="font-size: 1.6rem; font-weight: 800; color: #b45309;">0</div>
+                    </div>
+                </div>
+
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background: #f3e8ff; color: #7c3aed;">🚘</div>
+                    <div>
+                        <small style="color: #64748b; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">Active Fleet</small>
+                        <div style="font-size: 1.6rem; font-weight: 800; color: #7c3aed;">50+ Cabs/Bikes</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Management Tabs & Search Bar -->
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+                <!-- Filter Pills -->
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button class="filter-btn active" id="btnFilterAll" onclick="filterAdminTable('all')">All Bookings</button>
+                    <button class="filter-btn" id="btnFilterConfirmed" onclick="filterAdminTable('Confirmed')">Confirmed</button>
+                    <button class="filter-btn" id="btnFilterPending" onclick="filterAdminTable('Pending')">Pending</button>
+                    <button class="filter-btn" id="btnFilterInProgress" onclick="filterAdminTable('In Progress')">In Progress</button>
+                    <button class="filter-btn" id="btnFilterCompleted" onclick="filterAdminTable('Completed')">Completed</button>
+                </div>
+
+                <!-- Search Input -->
+                <div style="position: relative; width: 300px;">
+                    <input type="text" id="adminSearchInput" placeholder="Search by name, phone, or ID..." oninput="handleAdminSearch(event)" style="width: 100%; padding: 10px 14px 10px 36px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem;">
+                    <span style="position: absolute; left: 12px; top: 10px; color: #94a3b8;">🔍</span>
+                </div>
+            </div>
+
+            <!-- Bookings Table -->
+            <div class="admin-table-wrapper">
+                <table class="admin-table" id="adminBookingsTable">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer Info</th>
+                            <th>Vehicle & Route</th>
+                            <th>Pickup Date & Time</th>
+                            <th>Fare</th>
+                            <th>Status (Click to toggle)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminBookingsTableBody">
+                        <!-- Loaded dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Inquiries Section -->
+            <div style="margin-top: 45px;">
+                <div class="section-header" style="text-align: left; margin-bottom: 20px;">
+                    <h3 style="color: var(--primary-dark); font-size: 1.4rem;">📩 Recent Tourist Help Desk Inquiries</h3>
+                </div>
+
+                <div class="admin-table-wrapper">
+                    <table class="admin-table" id="adminInquiriesTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name & Phone</th>
+                                <th>Topic / Subject</th>
+                                <th>Message</th>
+                                <th>Received At</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminInquiriesTableBody">
+                            <!-- Loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <div class="logo">
+                    <span class="logo-icon">N</span>
+                    <div class="logo-text">
+                        <strong>FindNainital</strong>
+                        <small>NTL Tourism Guide</small>
+                    </div>
+                </div>
+                <p>Uttarakhand Tourism Assistance & Vehicle Booking Portal. Built with dedication for travelers exploring the Lake District of India.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home Hub</a></li>
+                    <li><a href="booking.html">🚗 Car & Bike Booking</a></li>
+                    <li><a href="places.html">📍 Sightseeing Places</a></li>
+                    <li><a href="hidden-places.html">💎 Hidden Spots</a></li>
+                    <li><a href="temples.html">🛕 Temples & Pilgrimage</a></li>
+                    <li><a href="tracking.html">🧭 Live GPS Tracker</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services & Support</h4>
+                <ul>
+                    <li><a href="hotels.html">🏨 Hotels & Stays</a></li>
+                    <li><a href="food.html">🍴 Food & Cafes</a></li>
+                    <li><a href="activities.html">🚣 Boating & Fun</a></li>
+                    <li><a href="planner.html">🗺️ Trip Planner</a></li>
+                    <li><a href="nearby.html">🌄 Nearby Destinations</a></li>
+                    <li><a href="contact.html">📞 24x7 Helpline</a></li>
+                    <li><a href="admin.html">🛠️ Admin Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Emergency Contact</h4>
+                <p>📍 Mallital / Tallital, Nainital, Uttarakhand 263001</p>
+                <p>📞 Helpline: <a href="tel:1364">1364</a> | <a href="tel:9456168611">+91 9456168611</a></p>
+                <p>✉️ <a href="mailto:priyanshukumar9916@gmail.com">priyanshukumar9916@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-flex">
+                <p>© 2026 FindNainital (NTL). Developed by <strong>Priyanshu Kumar</strong>, Uttarakhand Government Institute of Polytechnic, Nainital.</p>
+                <div class="footer-links">
+                    <a href="index.html">Privacy</a>
+                    <a href="contact.html">Support</a>
+                    <a href="admin.html">Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAdminDashboardData();
+        });
+    </script>
+</body>
+</html>
